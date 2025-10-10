@@ -1,44 +1,26 @@
 # institute
 
-This template should help get you started developing with Vue 3 in Vite.
 
-## Recommended IDE Setup
+一个vue的原型设计源码，使用vue3+vlite构建。
+使用了:
+1. element-plus
+2. vue-router
+3. storybook
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
 
-## Recommended Browser Setup
-
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd) 
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
+## 构建
+使用node 22.0.0版本
+``` bash
 npm install
 ```
 
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
+## 运行
+``` bash
+npm run storybook
 ```
 
-### Compile and Minify for Production
+## 参与贡献
 
-```sh
-npm run build
-```
+[UI原型](https://js.design/f/aEOFpu?p=TQQhbJr-N8&mode=design)
 
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+根据分组创建文件夹，并编写vue组件，同时创建对应的story文件。

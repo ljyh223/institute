@@ -1,0 +1,22 @@
+@use "./variables.scss" as *;
+
+:root {
+  /* 中文最优回退方案 */
+  --font-family-base:
+    "PingFang SC",              /* 苹方（macOS） */
+    "Hiragino Sans GB",         /* 冬青黑（旧 Mac） */
+    "Microsoft YaHei",          /* 雅黑（Win） */
+    "WenQuanYi Micro Hei",      /* 文泉驿（Linux） */
+    sans-serif;
+}
+
+/* 全局一次性设置 */
+body {
+  font-family: var(--font-family-base);
+  /* 顺手把常用排版归一 */
+  font-size: 14px;
+  line-height: 1.5;
+  color: $text;          // 之前定义的语义变量
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
