@@ -263,14 +263,14 @@
                     <h4>下载我们的APP</h4>
                     <div class="app-badges">
                       <a href="#" class="app-badge">
-                        <img class="app-badge-icon" src="src/components/Homepage1/Teacher/picture/google-play 1.png" alt="Google Play Store">
+                        <img class="app-badge-icon" src="./picture/google-play_1.png" alt="Google Play Store">
                         <span class="app-badge-text">
                           <span>GET IT ON</span>
                           <strong>Google Play</strong>
                         </span>
                       </a>
                       <a href="#" class="app-badge">
-                        <img class="app-badge-icon" src="src/components/Homepage1/Teacher/picture/苹果.png" alt="Apple App Store">
+                        <img class="app-badge-icon" src="./picture/苹果.png" alt="Apple App Store">
                         <span class="app-badge-text">
                           <span>Available on the</span>
                           <strong>Apple Store</strong>
@@ -295,23 +295,23 @@ import 'element-plus/theme-chalk/display.css';
 const teacherRating = ref(4.5);
 
 const courses = ref([
-  { id: 1, title: '微软 Power BI 数据分析师', instructor: '陈老师', price: '99', image: 'src/components/Homepage1/Person/picture/image (1).png' },
-  { id: 2, title: 'UI/UX 设计全方位指南', instructor: '王设计师', price: '129', image: 'src/components/Homepage1/Person/picture/image (2).png' },
-  { id: 3, title: '前端Vue3框架实战精讲', instructor: '李工', price: '99', image: 'src/components/Homepage1/Person/picture/image (3).png' },
-  { id: 4, title: 'Python从入门到数据科学', instructor: '赵博士', price: '149', image: 'src/components/Homepage1/Person/picture/image (4).png' },
+  { id: 1, title: '微软 Power BI 数据分析师', instructor: '陈老师', price: '99', image: 'src/components/Homepage1/Person/picture/image_(1).png' },
+  { id: 2, title: 'UI/UX 设计全方位指南', instructor: '王设计师', price: '129', image: 'src/components/Homepage1/Person/picture/image_(2).png' },
+  { id: 3, title: '前端Vue3框架实战精讲', instructor: '李工', price: '99', image: 'src/components/Homepage1/Person/picture/image_(3).png' },
+  { id: 4, title: 'Python从入门到数据科学', instructor: '赵博士', price: '149', image: 'src/components/Homepage1/Person/picture/image_(4).png' },
 ]);
 
 // Data for Popular Teachers
 const popularTeachers = ref([
-  { id: 1, name: '于常宣', field: '艺术人文', bio: '毕业于国内知名师范院校的汉语言文学专业...', avatar: 'src/components/Homepage1/Teacher/picture/Rectangle 3.png' },
-  { id: 2, name: '于常宣', field: '艺术人文', bio: null, avatar: 'src/components/Homepage1/Teacher/picture/Rectangle 3 (1).png' },
-  { id: 3, name: '于常宣', field: '艺术人文', bio: null, avatar: 'src/components/Homepage1/Teacher/picture/Rectangle 3 (2).png' },
-  { id: 4, name: '于常宣', field: '艺术人文', bio: null, avatar: 'src/components/Homepage1/Teacher/picture/Rectangle 3 (3).png' },
-  { id: 5, name: '于常宣', field: '艺术人文', bio: null, avatar: 'src/components/Homepage1/Teacher/picture/Rectangle 3 (4).png' },
-  { id: 6, name: '于常宣', field: '艺术人文', bio: null, avatar: 'src/components/Homepage1/Teacher/picture/Rectangle 3 (5).png' },
-  { id: 7, name: '于常宣', field: '艺术人文', bio: null, avatar: 'src/components/Homepage1/Teacher/picture/Rectangle 3 (6).png' },
-  { id: 8, name: '于常宣', field: '艺术人文', bio: null, avatar: 'src/components/Homepage1/Teacher/picture/Rectangle 3 (7).png' },
-  { id: 9, name: '于常宣', field: '艺术人文', bio: null, avatar: 'src/components/Homepage1/Teacher/picture/Rectangle 3 (8).png' },
+  { id: 1, name: '于常宣', field: '艺术人文', bio: '毕业于国内知名师范院校的汉语言文学专业...', avatar: 'src/components/Homepage1/Teacher/picture/Rectangle_3.png' },
+  { id: 2, name: '于常宣', field: '艺术人文', bio: null, avatar: 'src/components/Homepage1/Teacher/picture/Rectangle_3_(1).png' },
+  { id: 3, name: '于常宣', field: '艺术人文', bio: null, avatar: 'src/components/Homepage1/Teacher/picture/Rectangle_3_(2).png' },
+  { id: 4, name: '于常宣', field: '艺术人文', bio: null, avatar: 'src/components/Homepage1/Teacher/picture/Rectangle_3_(3).png' },
+  { id: 5, name: '于常宣', field: '艺术人文', bio: null, avatar: 'src/components/Homepage1/Teacher/picture/Rectangle_3_(4).png' },
+  { id: 6, name: '于常宣', field: '艺术人文', bio: null, avatar: 'src/components/Homepage1/Teacher/picture/Rectangle_3_(5).png' },
+  { id: 7, name: '于常宣', field: '艺术人文', bio: null, avatar: 'src/components/Homepage1/Teacher/picture/Rectangle_3_(6).png' },
+  { id: 8, name: '于常宣', field: '艺术人文', bio: null, avatar: 'src/components/Homepage1/Teacher/picture/Rectangle_3_(7).png' },
+  { id: 9, name: '于常宣', field: '艺术人文', bio: null, avatar: 'src/components/Homepage1/Teacher/picture/Rectangle_3_(8).png' },
 ]);
 
 // [NEW ADDITION] Data for Featured Institutions

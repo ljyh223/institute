@@ -160,7 +160,7 @@
           <!-- 注意：课程数据未提供，所以这里显示空状态 -->
           <el-empty description="数据为空" class="empty-data-state">
             <template #image>
-              <img class="custom-empty-image" src="./picture/分组 58.png" alt="">
+              <img class="custom-empty-image" src="./picture/分组_58.png" alt="">
             </template>
           </el-empty>
         </div>
@@ -315,7 +315,7 @@
                     <h4>下载我们的APP</h4>
                     <div class="app-badges">
                       <a href="#" class="app-badge">
-                        <img class="app-badge-icon" src="./picture/google-play 1.png" alt="">
+                        <img class="app-badge-icon" src="./picture/google-play_1.png" alt="">
                         <span class="app-badge-text">
                           <span>GET IT ON</span>
                           <strong>Google Play</strong>
@@ -358,18 +358,18 @@ import 'element-plus/theme-chalk/display.css'; // 引入响应式隐藏类
 const teacherRating = ref(4.5);
 
 const teachers = ref([
-  { id: 1, name: '李明', field: '基础教育', bio: '前Google数据科学家, 10年机器学习经验', avatar: 'src/components/Homepage1/Person/picture/圆形 3.png' },
-  { id: 2, name: '李明', field: '基础教育', bio: '前Google数据科学家, 10年机器学习经验', avatar: 'src/components/Homepage1/Person/picture/圆形 3.png' },
-  { id: 3, name: '李明', field: '基础教育', bio: '前Google数据科学家, 10年机器学习经验', avatar: 'src/components/Homepage1/Person/picture/圆形 3.png' },
-  { id: 4, name: '李明', field: '基础教育', bio: '前Google数据科学家, 10年机器学习经验', avatar: 'src/components/Homepage1/Person/picture/圆形 3.png' },
-  { id: 5, name: '李明', field: '基础教育', bio: '前Google数据科学家, 10年机器学习经验', avatar: 'src/components/Homepage1/Person/picture/圆形 3.png' },
-  { id: 6, name: '李明', field: '基础教育', bio: '前Google数据科学家, 10年机器学习经验', avatar: 'src/components/Homepage1/Person/picture/圆形 3.png' },
+  { id: 1, name: '李明', field: '基础教育', bio: '前Google数据科学家, 10年机器学习经验', avatar: 'src/components/Homepage1/Person/picture/圆形_3.png' },
+  { id: 2, name: '李明', field: '基础教育', bio: '前Google数据科学家, 10年机器学习经验', avatar: 'src/components/Homepage1/Person/picture/圆形_3.png' },
+  { id: 3, name: '李明', field: '基础教育', bio: '前Google数据科学家, 10年机器学习经验', avatar: 'src/components/Homepage1/Person/picture/圆形_3.png' },
+  { id: 4, name: '李明', field: '基础教育', bio: '前Google数据科学家, 10年机器学习经验', avatar: 'src/components/Homepage1/Person/picture/圆形_3.png' },
+  { id: 5, name: '李明', field: '基础教育', bio: '前Google数据科学家, 10年机器学习经验', avatar: 'src/components/Homepage1/Person/picture/圆形_3.png' },
+  { id: 6, name: '李明', field: '基础教育', bio: '前Google数据科学家, 10年机器学习经验', avatar: 'src/components/Homepage1/Person/picture/圆形_3.png' },
 ]);
 
 const venues = ref([
-  { id: 1, name: '飞羽竞技场', type: '篮球场馆', address: '苏州市工业园区独墅湖校区258号', phone: '19552698532', image: 'src/components/Homepage1/Person/picture/矩形 17.png' },
-  { id: 2, name: '飞羽竞技场', type: '篮球场馆', address: '苏州市工业园区独墅湖校区258号', phone: '19552698532', image: 'src/components/Homepage1/Person/picture/矩形 17 (1).png' },
-  { id: 3, name: '飞羽竞技场', type: '篮球场馆', address: '苏州市工业园区独墅湖校区258号', phone: '19552698532', image: 'src/components/Homepage1/Person/picture/矩形 17 (2).png' },
+  { id: 1, name: '飞羽竞技场', type: '篮球场馆', address: '苏州市工业园区独墅湖校区258号', phone: '19552698532', image: 'src/components/Homepage1/Person/picture/矩形_17.png' },
+  { id: 2, name: '飞羽竞技场', type: '篮球场馆', address: '苏州市工业园区独墅湖校区258号', phone: '19552698532', image: 'src/components/Homepage1/Person/picture/矩形_17_(1).png' },
+  { id: 3, name: '飞羽竞技场', type: '篮球场馆', address: '苏州市工业园区独墅湖校区258号', phone: '19552698532', image: 'src/components/Homepage1/Person/picture/矩形_17_(2).png' },
 ]);
 
 // 页脚数据

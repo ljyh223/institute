@@ -303,7 +303,7 @@
                     <h4>下载我们的APP</h4>
                     <div class="app-badges">
                       <a href="#" class="app-badge">
-                        <img class="app-badge-icon" src="./picture/google-play 1.png" alt="">
+                        <img class="app-badge-icon" src="./picture/google-play_1.png" alt="">
                         <span class="app-badge-text">
                           <span>GET IT ON</span>
                           <strong>Google Play</strong>
@@ -351,24 +351,24 @@ const teacherRating = ref(4.5);
 
 // 课程卡片模拟数据
 const courses = ref([
-  { id: 1, title: '微软 Power BI 数据分析师', instructor: '陈老师', price: '99', image: 'src/components/Homepage1/Person/picture/image (1).png' },
-  { id: 2, title: 'UI/UX 设计全方位指南', instructor: '王设计师', price: '129', image: 'src/components/Homepage1/Person/picture/image (2).png' },
-  { id: 3, title: '前端Vue3框架实战精讲', instructor: '李工', price: '99', image: 'src/components/Homepage1/Person/picture/image (3).png' },
-  { id: 4, title: 'Python从入门到数据科学', instructor: '赵博士', price: '149', image: 'src/components/Homepage1/Person/picture/image (4).png' },
+  { id: 1, title: '微软 Power BI 数据分析师', instructor: '陈老师', price: '99', image: 'src/components/Homepage1/Person/picture/image_(1).png' },
+  { id: 2, title: 'UI/UX 设计全方位指南', instructor: '王设计师', price: '129', image: 'src/components/Homepage1/Person/picture/image_(2).png' },
+  { id: 3, title: '前端Vue3框架实战精讲', instructor: '李工', price: '99', image: 'src/components/Homepage1/Person/picture/image_(3).png' },
+  { id: 4, title: 'Python从入门到数据科学', instructor: '赵博士', price: '149', image: 'src/components/Homepage1/Person/picture/image_(4).png' },
 ]);
 
 // 教师卡片模拟数据
 const teachers = ref([
-  { id: 1, name: '李明', field: '基础教育', description: '毕业于国内知名师范院校的汉语言文学专业，系统学习了现代汉语，毕业于国内知名师范院校的汉语言文学专业，系统学习了现代汉语', image: 'src/components/Homepage1/Person/picture/1.png.png.png' },
-  { id: 2, name: '李明', field: '基础教育', description: '毕业于国内知名师范院校的汉语言文学专业，系统学习了现代汉语，毕业于国内知名师范院校的汉语言文学专业，系统学习了现代汉语', image: 'src/components/Homepage1/Person/picture/1.png.png.png' },
-  { id: 3, name: '李明', field: '基础教育', description: '毕业于国内知名师范院校的汉语言文学专业，系统学习了现代汉语，毕业于国内知名师范院校的汉语言文学专业，系统学习了现代汉语', image: 'src/components/Homepage1/Person/picture/1.png.png.png' },
+  { id: 1, name: '李明', field: '基础教育', description: '毕业于国内知名师范院校的汉语言文学专业，系统学习了现代汉语，毕业于国内知名师范院校的汉语言文学专业，系统学习了现代汉语', image: 'src/components/Homepage1/Person/picture/1.png' },
+  { id: 2, name: '李明', field: '基础教育', description: '毕业于国内知名师范院校的汉语言文学专业，系统学习了现代汉语，毕业于国内知名师范院校的汉语言文学专业，系统学习了现代汉语', image: 'src/components/Homepage1/Person/picture/1.png' },
+  { id: 3, name: '李明', field: '基础教育', description: '毕业于国内知名师范院校的汉语言文学专业，系统学习了现代汉语，毕业于国内知名师范院校的汉语言文学专业，系统学习了现代汉语', image: 'src/components/Homepage1/Person/picture/1.png' },
 ]);
 
 // [新增] 场馆数据
 const venues = ref([
-  { id: 1, name: '飞羽竞技场', type: '篮球场馆', address: '苏州市工业园区独墅湖校区258号', phone: '19552698532', image: 'src/components/Homepage1/Person/picture/矩形 17.png' },
-  { id: 2, name: '飞羽竞技场', type: '篮球场馆', address: '苏州市工业园区独墅湖校区258号', phone: '19552698532', image: 'src/components/Homepage1/Person/picture/矩形 17 (1).png' },
-  { id: 3, name: '飞羽竞技场', type: '篮球场馆', address: '苏州市工业园区独墅湖校区258号', phone: '19552698532', image: 'src/components/Homepage1/Person/picture/矩形 17 (2).png' },
+  { id: 1, name: '飞羽竞技场', type: '篮球场馆', address: '苏州市工业园区独墅湖校区258号', phone: '19552698532', image: 'src/components/Homepage1/Person/picture/矩形_17.png' },
+  { id: 2, name: '飞羽竞技场', type: '篮球场馆', address: '苏州市工业园区独墅湖校区258号', phone: '19552698532', image: 'src/components/Homepage1/Person/picture/矩形_17_(1).png' },
+  { id: 3, name: '飞羽竞技场', type: '篮球场馆', address: '苏州市工业园区独墅湖校区258号', phone: '19552698532', image: 'src/components/Homepage1/Person/picture/矩形_17_(2).png' },
 ]);
 
 // [新增] 页脚数据
