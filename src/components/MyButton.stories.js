@@ -24,6 +24,8 @@ const Template = (args) => ({
   template: '<my-button v-bind="args" />',
 });
 
+
+
 // "Primary" 是这个故事的一个变种 (variant)
 export const Primary = Template.bind({});
 Primary.args = {

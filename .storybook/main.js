@@ -16,7 +16,6 @@ const config = {
     "name": "@storybook/vue3-vite",
     "options": {}
   },
-
   viteFinal: async (config) => {
     config.css = config.css || {}
     config.css.preprocessorOptions = {
