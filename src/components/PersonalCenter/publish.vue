@@ -63,7 +63,7 @@
 
       <!-- 导航标签 -->
       <div class="nav-tabs">
-        <el-tabs v-model="activeTab" type="card">
+        <el-tabs v-model="activeTab" type="card" @tab-change="onTabChange">
           <el-tab-pane label="我的课程" name="courses" />
           <el-tab-pane label="共享空间" name="shared" />
           <el-tab-pane label="我的商品" name="products" />
@@ -76,77 +76,17 @@
       <!-- 内容区域 -->
       <div class="content-area">
         <!-- 子导航 -->
-        <div class="sub-nav">
-          <el-button-group>
-            <el-button type="primary" plain>我发布的</el-button>
-            <el-button plain>我购买的</el-button>
-          </el-button-group>
-          <el-checkbox v-model="selectAll" size="small">全选下架</el-checkbox>
-        </div>
+       
 
-        <!-- 课程卡片列表 -->
-        <div class="course-cards">
-          <div v-for="item in currentCourseList" :key="item.id" class="course-card">
-            <div class="course-image">
-              <img src="./assets/image.png" alt="课程封面" />
-            </div>
-            <div class="course-info">
-              <div class="course-title">{{ item.title }}</div>
-              <div class="course-author">{{ item.author }}</div>
-              <div class="course-actions">
-                <el-button size="small" plain>查看详情</el-button>
-                <el-button size="small" plain>下架课程</el-button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 分页组件（自定义布局） -->
-        <div class="pagination">
-         <el-pagination
-  v-model:current-page="currentPage"
-  v-model:page-size="pageSize"
-  :total="total"
-  :page-sizes="[8, 16, 24, 32]"
-  layout="prev, pager, next, ->, sizes, slot"
-  background
-  @size-change="handleSizeChange"
-  @current-change="handleCurrentChange"
->
-  <!-- 自定义每页显示文字 -->
-  <template #page-size="{ value }">
-    {{ value }}条/页
-  </template>
-
-  <!-- 跳转 + 总页数 -->
-  <template #default>
-    <span class="jump-control">
-      跳转
-      <el-input-number
-        v-model="jumpPage"
-        :min="1"
-        :max="Math.ceil(total / pageSize)"
-        size="small"
-        controls-position="right"
-        style="width: 60px"
-        @keyup.enter="handleJump"
-      />
-      页
-      <el-button type="primary" size="small" @click="handleJump">确认</el-button>
-    </span>
-    <span class="total-text">
-      共 {{ Math.ceil(total / pageSize) }} 页
-    </span>
-  </template>
-</el-pagination>
-        </div>
+        <router-view />
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import {
   Search,
@@ -155,51 +95,25 @@ import {
   Bell
 } from '@element-plus/icons-vue'
 
-const activeTab = ref('courses')
+const router = useRouter()
+const route = useRoute()
+const activeTab = ref(route.name && ['courses','shared','products','wallet','credit','favorites'].includes(route.name) ? route.name : 'courses')
+
+const onTabChange = (name) => {
+  router.push({ name })
+}
+
+watch(
+  () => route.name,
+  (newName) => {
+    if (typeof newName === 'string' && ['courses','shared','products','wallet','credit','favorites'].includes(newName)) {
+      activeTab.value = newName
+    }
+  }
+)
 const selectAll = ref(false)
 
-// 静态课程数据（共 625 条，这里用 625 条模拟）
-const courseData = ref(
-  Array.from({ length: 625 }, (_, i) => ({
-    id: i + 1,
-    title: `课程 ${i + 1}`,
-    author: '陈恩翔'
-  }))
-)
-
-// 分页相关
-const currentPage = ref(1)
-const pageSize = ref(8) // 👈 每页 8 条（4列×2行）
-const jumpPage = ref('')
-
-// 计算属性
-const total = computed(() => courseData.value.length)
-const currentCourseList = computed(() => {
-  const start = (currentPage.value - 1) * pageSize.value
-  const end = start + pageSize.value
-  return courseData.value.slice(start, end)
-})
-
-// 事件处理
-const handleSizeChange = (val) => {
-  pageSize.value = val
-  currentPage.value = 1
-}
-
-const handleCurrentChange = (val) => {
-  currentPage.value = val
-}
-
-const handleJump = () => {
-  const page = parseInt(jumpPage.value)
-  const maxPage = Math.ceil(total.value / pageSize.value)
-  if (page && page >= 1 && page <= maxPage) {
-    currentPage.value = page
-    jumpPage.value = ''
-  } else {
-    ElMessage.warning(`请输入 1 到 ${maxPage} 之间的页码`)
-  }
-}
+// 下方原有课程卡片与分页展示被替换为基于路由的子视图
 </script>
 
 <style lang="scss" scoped>
@@ -214,7 +128,8 @@ const handleJump = () => {
   padding: 10px 20px;
   color: #fff;
   font-size: 14px;
-  
+  max-width: 1200px;
+  margin: 0 auto;
   .breadcrumb {
     margin-bottom: 10px;
   }
