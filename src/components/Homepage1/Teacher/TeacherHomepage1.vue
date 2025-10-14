@@ -58,7 +58,7 @@
               <div class="banner-image-container">
                 <el-image
                   class="banner-main-image"
-                  src="https://img.js.design/assets/img/64db6e69d0d62d05779148d8.png"
+                  src=".\picture\Rectangle 4392.png"
                   fit="cover"
                 ></el-image>
                 <div class="background-circle circle-1"></div>
@@ -87,9 +87,9 @@
                 <div class="bubble-content">
                   <p class="bubble-text">快乐的学生</p>
                   <div class="student-avatars">
-                    <el-avatar :size="20" src="https://cube.elemecdn.com/0/88/03b0d40e0df97365330aa5fd22429.jpeg"></el-avatar>
-                    <el-avatar :size="20" src="https://cube.elemecdn.com/0/88/03b0d40e0df97365330aa5fd22429.jpeg"></el-avatar>
-                    <el-avatar :size="20" src="https://cube.elemecdn.com/0/88/03b0d40e0df97365330aa5fd22429.jpeg"></el-avatar>
+                    <el-avatar :size="20" src="./picture/happy-good-looking-man-glasses-pointing-finger-left_176420-21192 1.png"></el-avatar>
+                    <el-avatar :size="20" src="./picture/waist-up-shot-pretty-girl-smiles-pleasantly_273609-28224 3.png"></el-avatar>
+                    <el-avatar :size="20" src="./picture/education-teachers-university-schools-concept_1258-14246 1.png"></el-avatar>
                     <span class="more-students">+10</span>
                   </div>
                 </div>
