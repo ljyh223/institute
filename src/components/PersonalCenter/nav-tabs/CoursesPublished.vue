@@ -21,46 +21,20 @@
     </div>
 
     <div class="pagination">
-      <el-pagination
-        v-model:current-page="currentPage"
-        v-model:page-size="pageSize"
+      <PaginationBar
         :total="total"
-        :page-sizes="[8, 16, 24, 32]"
-        layout="prev, pager, next, ->, sizes, slot"
-        background
-        size="small"
+        v-model:currentPage="currentPage"
+        v-model:pageSize="pageSize"
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
-      >
-        <template #page-size="{ value }">
-          {{ value }}条/页
-        </template>
-        <template #default>
-          <span class="jump-control">
-            跳转
-            <el-input-number
-              v-model="jumpPage"
-              :min="1"
-              :max="Math.ceil(total / pageSize)"
-              size="small"
-              controls-position="right"
-              style="width: 60px"
-              @keyup.enter="handleJump"
-            />
-            页
-            <el-button type="primary" size="small" @click="handleJump">确认</el-button>
-          </span>
-          <span class="total-text">
-            共 {{ Math.ceil(total / pageSize) }} 页
-          </span>
-        </template>
-      </el-pagination>
+      />
     </div>
   </div>
 </template>
 
 <script setup>
 import { ref, computed } from 'vue'
+import PaginationBar from './components/PaginationBar.vue'
 
 const courseData = ref(
   Array.from({ length: 625 }, (_, i) => ({
@@ -119,7 +93,7 @@ const handleJump = () => {
 .course-author { color: #909399; font-size: 13px; margin-bottom: 12px; }
 .course-actions { display: flex; gap: 8px;  justify-content: space-between;line-height: 31px;}
 .pagination { display: flex; justify-content: flex-end; margin-top: 12px; }
-.pagination :deep(.el-pagination) { --el-pagination-button-height: 32px; display: flex; align-items: center; gap: 12px; }
+.pagination :deep(.el-pagination) { --el-pagination-button-height: 32px; display: flex; align-items: center; gap: 14px; }
 /* 蓝色主题定制 */
 .pagination :deep(.el-pagination .btn-prev),
 .pagination :deep(.el-pagination .btn-next),
@@ -128,19 +102,21 @@ const handleJump = () => {
 .pagination :deep(.el-pagination .el-pager li:hover) { border-color: #409eff; color: #409eff; }
 .pagination :deep(.el-pagination .btn-prev:hover),
 .pagination :deep(.el-pagination .btn-next:hover) { border-color: #409eff; }
-.pagination :deep(.el-select .el-input__wrapper) {
-  border: 1px solid #a0cfff;
-  box-shadow: none !important;
-  height: 32px;
-  border-radius: 4px;
-}
+.pagination :deep(.el-pagination__sizes) { margin-left: 8px; }
+.pagination :deep(.el-select .el-input__wrapper) { border: 1px solid #a0cfff; box-shadow: none !important; height: 32px; border-radius: 6px; transition: all .2s; }
+.pagination :deep(.el-select .el-input__wrapper:hover),
+.pagination :deep(.is-focus .el-input__wrapper) { border-color: #409eff; }
 .pagination :deep(.el-select .el-input__inner) { color: #409eff; }
 .pagination :deep(.el-pagination__sizes .el-select .el-input .el-input__suffix) { color: #409eff; }
 .pagination :deep(.el-pagination button.is-active) { color: #fff; }
 .pagination :deep(.el-pagination .is-disabled) { opacity: 0.6; }
-.pagination :deep(.el-input-number .el-input__wrapper) { border: 1px solid #a0cfff; height: 32px; border-radius: 4px; }
+.pagination :deep(.el-input-number .el-input__wrapper) { border: 1px solid #a0cfff; height: 32px; border-radius: 6px; transition: all .2s; }
+.pagination :deep(.el-input-number .el-input__wrapper:hover),
+.pagination :deep(.el-input-number.is-controls-right .el-input__wrapper.is-active) { border-color: #409eff; }
 .pagination :deep(.el-input-number .el-input__inner) { text-align: center; }
-.pagination :deep(.el-button--primary) { background-color: #409eff; border-color: #409eff; }
+.pagination :deep(.el-button--primary) { background-color: #409eff; border-color: #409eff; height: 32px; padding: 6px 12px; border-radius: 6px; }
+.pagination :deep(.el-button--primary:hover) { filter: brightness(1.05); }
+.pagination :deep(.total-text) { color: #409eff; margin-left: 6px; }
 .jump-control { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #606266; }
 @media (max-width: 1024px) { .course-cards { grid-template-columns: repeat(3, 1fr); } }
 @media (max-width: 768px) { .course-cards { grid-template-columns: repeat(2, 1fr); } }

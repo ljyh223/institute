@@ -29,7 +29,7 @@
             <el-avatar :size="30" src="https://cube.elemecdn.com/3/7c/3ed689582b989fd05f42a77428753.jpeg"></el-avatar>
             <el-popover placement="bottom-end" :width="150" trigger="hover">
               <template #reference>
-                <el-button link class="personal-center-btn hidden-xs-only">个人中心</el-button>
+                <el-button link class="Teacheral-center-btn hidden-xs-only">个人中心</el-button>
               </template>
               <div class="popover-menu">
                 <p>我的订单</p>
@@ -288,7 +288,7 @@
                     <h4>下载我们的APP</h4>
                     <div class="app-badges">
                       <a href="#" class="app-badge">
-                        <img class="app-badge-icon" src="./picture/google-play 1.png" alt="">
+                        <img class="app-badge-icon" src="./picture/google-play_1.png" alt="">
                         <span class="app-badge-text">
                           <span>GET IT ON</span>
                           <strong>Google Play</strong>
@@ -320,25 +320,25 @@ import 'element-plus/theme-chalk/display.css';
 const teacherRating = ref(4.5);
 
 const venues = ref([
-  { id: 1, name: '飞羽竞技场', type: '篮球场馆', address: '苏州市工业园区独墅湖校区258号', phone: '19552698532', image: 'src/components/Homepage1/Person/picture/矩形 17.png' },
-  { id: 2, name: '飞羽竞技场', type: '篮球场馆', address: '苏州市工业园区独墅湖校区258号', phone: '19552698532', image: 'src/components/Homepage1/Person/picture/矩形 17 (1).png' },
-  { id: 3, name: '飞羽竞技场', type: '篮球场馆', address: '苏州市工业园区独墅湖校区258号', phone: '19552698532', image: 'src/components/Homepage1/Person/picture/矩形 17 (2).png' },
+  { id: 1, name: '飞羽竞技场', type: '篮球场馆', address: '苏州市工业园区独墅湖校区258号', phone: '19552698532', image: 'src/components/Homepage1/Teacher/picture/矩形_17.png' },
+  { id: 2, name: '飞羽竞技场', type: '篮球场馆', address: '苏州市工业园区独墅湖校区258号', phone: '19552698532', image: 'src/components/Homepage1/Teacher/picture/矩形_17_(1).png' },
+  { id: 3, name: '飞羽竞技场', type: '篮球场馆', address: '苏州市工业园区独墅湖校区258号', phone: '19552698532', image: 'src/components/Homepage1/Teacher/picture/矩形_17_(2).png' },
 ]);
 
 const courses = ref([
-  { id: 1, title: '微软 Power BI 数据分析师', instructor: '陈老师', price: '99', image: 'src/components/Homepage1/Person/picture/image (1).png' },
-  { id: 2, title: 'UI/UX 设计全方位指南', instructor: '王设计师', price: '129', image: 'src/components/Homepage1/Person/picture/image (2).png' },
-  { id: 3, title: '前端Vue3框架实战精讲', instructor: '李工', price: '99', image: 'src/components/Homepage1/Person/picture/image (3).png' },
-  { id: 4, title: 'Python从入门到数据科学', instructor: '赵博士', price: '149', image: 'src/components/Homepage1/Person/picture/image (4).png' },
+  { id: 1, title: '微软 Power BI 数据分析师', instructor: '陈老师', price: '99', image: 'src/components/Homepage1/Teacher/picture/image_(1).png' },
+  { id: 2, title: 'UI/UX 设计全方位指南', instructor: '王设计师', price: '129', image: 'src/components/Homepage1/Teacher/picture/image_(2).png' },
+  { id: 3, title: '前端Vue3框架实战精讲', instructor: '李工', price: '99', image: 'src/components/Homepage1/Teacher/picture/image_(3).png' },
+  { id: 4, title: 'Python从入门到数据科学', instructor: '赵博士', price: '149', image: 'src/components/Homepage1/Teacher/picture/image_(4).png' },
 ]);
 
 const teachers = ref([
-  { id: 1, name: '李明', field: '基础教育 · 人工智能', rating: 4.5, bio: '前Google数据科学家, 10年机器学习经验', avatar: 'src/components/Homepage1/Teacher/picture/圆形 3 (1).png' },
-  { id: 2, name: '张伟', field: '艺术人文 · 艺术史', rating: 5.0, bio: '中央美术学院教授, 20年艺术史教学经验', avatar: 'src/components/Homepage1/Teacher/picture/圆形 3 (2).png' },
-  { id: 3, name: '王芳', field: '经济金融 · 投资学', rating: 4.0, bio: '华尔街资深分析师, 15年投资实战经验', avatar: 'src/components/Homepage1/Teacher/picture/圆形 3 (3).png' },
-  { id: 1, name: '李明', field: '基础教育 · 人工智能', rating: 4.5, bio: '前Google数据科学家, 10年机器学习经验', avatar: 'src/components/Homepage1/Teacher/picture/圆形 3 (2).png' },
-  { id: 2, name: '张伟', field: '艺术人文 · 艺术史', rating: 5.0, bio: '中央美术学院教授, 20年艺术史教学经验', avatar: 'src/components/Homepage1/Teacher/picture/圆形 3 (4).png' },
-  { id: 3, name: '王芳', field: '经济金融 · 投资学', rating: 4.0, bio: '华尔街资深分析师, 15年投资实战经验', avatar: 'src/components/Homepage1/Teacher/picture/圆形 3.png' },
+  { id: 1, name: '李明', field: '基础教育 · 人工智能', rating: 4.5, bio: '前Google数据科学家, 10年机器学习经验', avatar: 'src/components/Homepage1/Teacher/picture/圆形_3_(1).png' },
+  { id: 2, name: '张伟', field: '艺术人文 · 艺术史', rating: 5.0, bio: '中央美术学院教授, 20年艺术史教学经验', avatar: 'src/components/Homepage1/Teacher/picture/圆形_3_(2).png' },
+  { id: 3, name: '王芳', field: '经济金融 · 投资学', rating: 4.0, bio: '华尔街资深分析师, 15年投资实战经验', avatar: 'src/components/Homepage1/Teacher/picture/圆形_3_(3).png' },
+  { id: 1, name: '李明', field: '基础教育 · 人工智能', rating: 4.5, bio: '前Google数据科学家, 10年机器学习经验', avatar: 'src/components/Homepage1/Teacher/picture/圆形_3_(2).png' },
+  { id: 2, name: '张伟', field: '艺术人文 · 艺术史', rating: 5.0, bio: '中央美术学院教授, 20年艺术史教学经验', avatar: 'src/components/Homepage1/Teacher/picture/圆形_3_(4).png' },
+  { id: 3, name: '王芳', field: '经济金融 · 投资学', rating: 4.0, bio: '华尔街资深分析师, 15年投资实战经验', avatar: 'src/components/Homepage1/Teacher/picture/圆形_3.png' },
 ]);
 
 // [REPLACED] Footer data from First Code Snippet
