@@ -47,7 +47,7 @@
                                 <el-avatar size="small" :src="instructor.avatar"></el-avatar>
                                 <span class="instructor-name">授课老师：{{ instructor.name }}</span>
                             </div>
-                            <el-button type="primary" size="large" class="join-course-btn">加入我的课程</el-button>
+                            <el-button type="primary" size="large" class="join-course-btn">立即购买</el-button>
                         </div>
                         <div class="progress-circle-placeholder"></div>
                     </div>
