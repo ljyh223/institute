@@ -2,7 +2,7 @@ import HomepageList from './HomepageList.vue';
 
 export default {
 
-  title: 'components/homepage/Homepage2/HomepageList',
+  title: 'Homepage2/HomepageList',
 
   component: HomepageList,
 

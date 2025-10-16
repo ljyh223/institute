@@ -2,7 +2,7 @@ import HomepageSpace from './HomepageSpace.vue';
 
 export default {
 
-  title: 'components/homepage/Homepage2/HomepageSpace',
+  title: 'Homepage2/HomepageSpace',
 
   component: HomepageSpace,
 
