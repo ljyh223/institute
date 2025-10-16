@@ -66,26 +66,7 @@
           <el-button type="primary" link class="switcher-btn">关注</el-button>
         </div>
 
-        <!-- 发布动态 -->
-        <div class="post-creator">
-            <div class="creator-top">
-                <el-input
-                    type="textarea"
-                    :rows="3"
-                    placeholder="说点什么吧"
-                    v-model="newPostText"
-                    resize="none"
-                    class="creator-textarea"
-                ></el-input>
-                <div class="image-upload-box">
-                    <img src="./picture/路径1(1).png" alt="" >
-                </div>
-            </div>
-            <div class="creator-bottom">
-                <span class="hash-tag">#</span>
-                <el-button type="primary">发表</el-button>
-            </div>
-        </div>
+
         
         <!-- 动态列表 -->
         <div class="feed-list">
@@ -162,8 +143,9 @@ const posts = ref([
     content: '相比于Options API，Composition API 带来了更灵活的代码组织方式...',
     images: [
         'https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=2070&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop'
     ],
-    stats: { likes: 42, comments: 42, shares: 0 }
+    stats: { likes: 221, comments: 258, shares: 310 }
   },
   { 
     id: 3, 
@@ -263,124 +245,28 @@ const posts = ref([
 .switcher-btn.active { font-weight: 600; color: var(--el-color-primary); position: relative; }
 .switcher-btn.active::after { content: ''; position: absolute; bottom: -13px; left: 8px; right: 8px; height: 3px; background-color: var(--el-color-primary); border-radius: 2px; }
 
-/* 发布动态 */
-.post-creator {
-  background-color: #fff;
-  border: 1px solid var(--el-border-color-lighter); /* 使用更细的边框 */
-  border-radius: 6px;
-  margin-bottom: 24px;
-  overflow: hidden; /* 确保内部边框不会溢出 */
-}
-.creator-top {
-  display: flex; /* 改为 flex 布局 */
-  align-items: center; /* 垂直居中 */
-  padding: 0; /* 移除内边距 */
-}
-.creator-textarea {
-  flex-grow: 1;
-}
-.creator-textarea :deep(.el-textarea__inner) {
-  box-shadow: none !important;
-  background-color: transparent;
-  border: none;
-  padding: 16px; /* 在输入框内部添加 padding */
-  font-size: 15px;
-  border-radius: 0; /* 移除输入框自身的圆角 */
-}
-.image-upload-box {
-  width: 80px;
-  flex-shrink: 0;
-  align-self: stretch; /* 让自身高度撑满父容器 */
-  border-left: 1px solid var(--el-border-color-lighter); /* 左侧分割线 */
-  background-color: #f9fafb; /* 添加淡灰色背景 */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #c0c4cc; /* 调整图标颜色 */
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.image-upload-box img{
-    width: 50%;
-}
-
-.image-upload-box:hover {
-  background-color: #f5f7fa;
-}
-.creator-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-top: 1px solid var(--el-border-color-lighter);
-  padding: 12px 16px;
-}
-.hash-tag {
-  font-size: 22px;
-  font-weight: 500;
-  color: var(--el-text-color-placeholder);
-  cursor: pointer;
-}
-
+/* 发布动态 (优化后) */
+.post-input-card { background-color: #fff; padding: 20px; border-radius: 8px; margin-bottom: 16px; border: 1px solid var(--el-border-color-lighter); }
+.input-main { display: flex; gap: 16px; }
+.post-textarea { flex-grow: 1; }
+.post-textarea :deep(.el-textarea__inner) { box-shadow: none !important; border: none; padding: 0; font-size: 15px; background-color: transparent; }
+.input-actions { display: flex; justify-content: space-between; align-items: center; margin-top: 12px; padding-left: 56px; /* 40px avatar + 16px gap */ }
+.action-icons { display: flex; gap: 16px; }
+.action-icon { font-size: 20px; color: var(--el-text-color-secondary); cursor: pointer; }
 /* 动态列表 */
-.feed-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0; /* 移除卡片间的外部间距 */
-}
-.post-card {
-  background-color: #fff;
-  padding: 24px;
-  border-bottom: 1px solid var(--el-border-color-lighter); /* 使用下边框作为分割线 */
-  border-radius: 0; /* 移除圆角 */
-  box-shadow: none; /* 移除阴影 */
-}
-.post-card:first-child {
-  border-radius: 8px 8px 0 0;
-}
-.post-card:last-child {
-  border-bottom: none;
-  border-radius: 0 0 8px 8px;
-}
+.feed-list { display: flex; flex-direction: column; }
+.post-card { background-color: #fff; padding: 24px; border: 1px solid var(--el-border-color-lighter); border-top: none; }
+.feed-list > .post-card:first-child { border-radius: 8px 8px 0 0; border-top: 1px solid var(--el-border-color-lighter); }
+.feed-list > .post-card:last-child { border-radius: 0 0 8px 8px; }
 
-.post-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 16px;
-}
-.author-info {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-}
-.author-name {
-  font-weight: 600;
-  color: var(--el-text-color-primary);
-}
-.post-timestamp {
-  font-size: 13px;
-  color: var(--el-text-color-secondary);
-}
-.follow-btn {
-  margin-left: auto;
-}
+.post-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.author-info { display: flex; flex-direction: column; flex-grow: 1; }
+.author-name { font-weight: 600; }
+.post-timestamp { font-size: 13px; color: var(--el-text-color-secondary); }
 
-.post-content {
-  margin: 0; /* 移除左侧缩进 */
-}
-.post-title {
-  font-size: 18px; /* 标题字号加大 */
-  font-weight: 600;
-  margin: 0 0 12px;
-}
-.post-text {
-  font-size: 15px;
-  line-height: 1.8; /* 加大行距 */
-  color: var(--el-text-color-regular);
-  margin: 0 0 16px;
-  white-space: pre-wrap;
-}
+.post-content { margin-left: 52px; }
+.post-title { font-size: 16px; font-weight: 600; margin: 0 0 8px; }
+.post-text { font-size: 15px; line-height: 1.7; margin: 0 0 16px; white-space: pre-wrap; }
 
 /* 图片画廊 */
 .image-gallery {

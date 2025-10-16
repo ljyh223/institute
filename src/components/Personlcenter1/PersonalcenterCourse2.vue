@@ -47,7 +47,7 @@
                                 <el-avatar size="small" :src="instructor.avatar"></el-avatar>
                                 <span class="instructor-name">授课老师：{{ instructor.name }}</span>
                             </div>
-                            <el-button type="primary" size="large" class="join-course-btn">立即购买</el-button>
+                            <el-button type="primary" size="large" class="join-course-btn">已购买</el-button>
                         </div>
                         <div class="progress-circle-placeholder"></div>
                     </div>
@@ -80,9 +80,6 @@
                         <div class="course-details-section">
                             <el-tabs v-model="activeTab">
                                 <el-tab-pane label="关于" name="about">
-                                    <p class="tab-content-text">课程内容正在更新中...</p>
-                                </el-tab-pane>
-                                <el-tab-pane label="课程" name="content">
                                     <h4 class="tab-section-title">您将学到什么？</h4>
                                     <div class="learning-goals">
                                         <ul class="learning-goals-list">
@@ -111,7 +108,9 @@
                                         </div>
                                     </div>
                                 </el-tab-pane>
-                                
+                                <el-tab-pane label="课程" name="content">
+                                    <p class="tab-content-text">课程内容正在更新中...</p>
+                                </el-tab-pane>
                                 <el-tab-pane label="推荐" name="recommendation">
                                     <p class="tab-content-text">相关推荐正在更新中...</p>
                                 </el-tab-pane>

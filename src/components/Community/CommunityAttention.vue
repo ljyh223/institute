@@ -153,16 +153,16 @@ const posts = ref([
     images: ['https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=2070&auto-format&fit=crop'],
     stats: { likes: 42, favorites: 42 } // <-- 已更新
   },
-  { 
+    { 
     id: 2, 
     author: { name: '王静', avatar: 'https://randomuser.me/api/portraits/women/44.jpg' },
     timestamp: '2025-09-03 15:30',
     title: 'Vue3 组合式API深度解析',
     content: '相比于Options API，Composition API 带来了更灵活的代码组织方式...',
-    images: [
-        'https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=2070&auto=format&fit=crop',
+    images: [ // 确保这里有两个图片链接
+        'https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop',
     ],
-    stats: { likes: 42, comments: 42, shares: 0 }
+    stats: { likes: 42, favorites: 42 } // 修正数据
   },
   { 
     id: 3, 
