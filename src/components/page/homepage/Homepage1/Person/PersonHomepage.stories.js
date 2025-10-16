@@ -1,7 +1,7 @@
 import PersonHomepage from './PersonHomepage.vue' 
 
 export default {
-  title: 'Homepage/Person/PersonHomepage', 
+  title: 'Homepage1/Person/PersonHomepage', 
   component: PersonHomepage, 
   tags: ['autodocs'],
 }

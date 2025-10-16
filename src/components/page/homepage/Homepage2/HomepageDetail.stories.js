@@ -2,7 +2,7 @@ import HomepageDetail from './HomepageDetail.vue';
 
 export default {
 
-  title: 'components/homepage/Homepage2/HomepageDetail',
+  title: 'Homepage2/HomepageDetail',
 
   component: HomepageDetail,
 

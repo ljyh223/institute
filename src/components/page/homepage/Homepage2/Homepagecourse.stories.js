@@ -2,7 +2,7 @@ import Homepagecourse from './Homepagecourse.vue';
 
 export default {
 
-  title: 'components/homepage/Homepage2/Homepagecourse',
+  title: 'Homepage2/Homepagecourse',
 
   component: Homepagecourse,
 

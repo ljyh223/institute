@@ -1,8 +1,11 @@
-<script setup></script>
+<script setup>
+import { ref } from 'vue';
+import PersonHomePage from './views/PersonlHomePage.vue';
+</script>
 
 <template>
-  <router-view />
-  
+
+  <PersonHomePage/>
 </template>
 
 <style scoped></style>

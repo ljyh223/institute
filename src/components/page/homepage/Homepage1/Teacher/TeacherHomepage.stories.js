@@ -1,7 +1,7 @@
 import TeacherHomepage from './TeacherHomepage.vue' 
 
 export default {
-  title: 'Homepage/Teacher/TeacherHomepage', 
+  title: 'Homepage1/Teacher/TeacherHomepage', 
   component: TeacherHomepage, 
   tags: ['autodocs'],
 }
