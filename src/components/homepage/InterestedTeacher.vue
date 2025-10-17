@@ -26,7 +26,7 @@
       <p class="teacher-bio">{{ teacher.bio }}</p>
     </div>
 
-    <el-button type="primary" class="view-profile-btn">
+    <el-button type="primary" class="view-profile-btn" @click="goTeacherHome(teacher.id)">
       查看主页
     </el-button>
   </el-card>
@@ -34,6 +34,7 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 
 const props = defineProps({
   teacher: {
@@ -53,6 +54,12 @@ function selectSort(val) {
   activeSort.value = val
   // 如需通知父组件，可 emit 出去
   // emit('sortChange', val)
+}
+
+// 跳转到老师主页（HomepageDetail1）
+const router = useRouter()
+function goTeacherHome(id) {
+  router.push({ name: 'teacher-home', params: { id } })
 }
 </script>
 <style scoped>

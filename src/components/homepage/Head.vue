@@ -1,6 +1,4 @@
-<script setup>
-import { Bell, ArrowRight } from '@element-plus/icons-vue'
-</script>
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
 
   <el-header class="header">
@@ -30,9 +28,10 @@ import { Bell, ArrowRight } from '@element-plus/icons-vue'
         <el-avatar :size="30" src="https://cube.elemecdn.com/3/7c/3ed689582b989fd05f42a77428753.jpeg"></el-avatar>
         <el-popover placement="bottom-end" :width="150" trigger="hover">
           <template #reference>
-            <el-button link class="personal-center-btn hidden-xs-only">个人中心</el-button>
+            <el-button link class="personal-center-btn hidden-xs-only" @click="goPersonalCenter">个人中心</el-button>
           </template>
           <div class="popover-menu">
+            <p @click="goPersonalCenter">个人中心</p>
             <p>我的订单</p>
             <p>联系市场</p>
             <p>我的收藏</p>
@@ -44,6 +43,16 @@ import { Bell, ArrowRight } from '@element-plus/icons-vue'
   </el-header>
 </template>
 
+<script setup>
+import { Bell, ArrowRight } from '@element-plus/icons-vue'
+import { useRouter } from 'vue-router'
+
+// 跳转到个人中心（publish.vue 作为个人中心布局页）
+const router = useRouter()
+function goPersonalCenter() {
+  router.push({ name: 'PersonalCenter' })
+}
+</script>
 
 
 

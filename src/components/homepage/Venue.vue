@@ -1,5 +1,6 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <el-card class="venue-card" shadow="hover" :body-style="{ padding: '0px' }">
+  <el-card class="venue-card" shadow="hover" :body-style="{ padding: '0px' }" @click="goVenueDetail(venue.id)">
     <!-- 封面图 -->
     <el-image :src="venue.image" class="venue-image" fit="cover" />
 
@@ -28,6 +29,7 @@
 
 <script setup>
 import { Location, User } from '@element-plus/icons-vue'
+import { useRouter } from 'vue-router'
 defineProps({
   venue: {
     type: Object,
@@ -37,6 +39,12 @@ defineProps({
       ['name', 'type', 'address', 'phone', 'image'].every(k => k in v)
   }
 })
+
+// 点击小卡片跳转到场馆详情页（HomepageDetail）
+const router = useRouter()
+function goVenueDetail(id) {
+  router.push({ name: 'venue-detail', params: { id } })
+}
 </script>
 
 <style scoped>

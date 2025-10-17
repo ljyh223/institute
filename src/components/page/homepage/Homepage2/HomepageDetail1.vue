@@ -52,7 +52,7 @@
             <el-breadcrumb-item>老师详情</el-breadcrumb-item>
         </el-breadcrumb>
     </div>
-        
+
     <!-- 老师主 Banner -->
     <div class="teacher-banner">
         <el-row :gutter="30" align="middle">
@@ -81,9 +81,9 @@
                 </el-button>
             </el-col>
             <el-col :xs="24" :md="14" class="teacher-image-col">
-                <el-image 
-                    src="src/components/homepage/Homepage2/picture/矩形2(1).png" 
-                    fit="contain" 
+                <el-image
+                    src="src/components/homepage/Homepage2/picture/矩形2(1).png"
+                    fit="contain"
                     class="teacher-main-image"
                 >
                    <template #placeholder>
@@ -93,16 +93,9 @@
             </el-col>
         </el-row>
     </div>
-            
-            <!-- 设施服务栏 -->
-            <div class="amenities-section">
-                <div class="amenities-bar">
-                    <div v-for="(amenity, index) in amenities" :key="index" class="amenity-item">
-                      <el-icon v-if="amenity.icon" :size="18" color="#606266"><component :is="amenity.icon" /></el-icon>
-                      <span>{{ amenity.text }}</span>
-                    </div>
-                </div>
-            </div>
+
+
+
 
             <!-- 相关证书 -->
             <div class="page-section certificates-section">
@@ -135,7 +128,7 @@
                 <el-button type="primary" size="large">查看更多</el-button>
             </div>
         </div>
-        
+
         <!-- 附近适合您的场馆 -->
         <div class="page-section nearby-venues-section">
             <h3 class="section-title">合作的场馆</h3>
@@ -193,7 +186,7 @@
             </div>
         </div>
 
-    
+
     <!-- Footer -->
        <footer class="site-footer">
         <div class="footer-container">
@@ -293,29 +286,29 @@ const footerLinks = ref([
 ]);
 
 const recommendedTeachers = ref([
-  { 
-    id: 1, 
-    name: '李明', 
-    avatar: 'src/components/homepage/Homepage2/picture/圆形3(2).png', 
-    specialization: '数据科学 · 人工智能', 
-    rating: 4.8, 
-    description: '前Google数据科学家, 10年机器学习经验' 
+  {
+    id: 1,
+    name: '李明',
+    avatar: 'src/components/homepage/Homepage2/picture/圆形3(2).png',
+    specialization: '数据科学 · 人工智能',
+    rating: 4.8,
+    description: '前Google数据科学家, 10年机器学习经验'
   },
-  { 
-    id: 2, 
-    name: '李明', 
-    avatar: 'src/components/homepage/Homepage2/picture/圆形3(1).png', 
-    specialization: '数据科学 · 人工智能', 
-    rating: 4.8, 
-    description: '前Google数据科学家, 10年机器学习经验' 
+  {
+    id: 2,
+    name: '李明',
+    avatar: 'src/components/homepage/Homepage2/picture/圆形3(1).png',
+    specialization: '数据科学 · 人工智能',
+    rating: 4.8,
+    description: '前Google数据科学家, 10年机器学习经验'
   },
-  { 
-    id: 3, 
-    name: '李明', 
-    avatar: 'src/components/homepage/Homepage2/picture/圆形3(3).png', 
-    specialization: '数据科学 · 人工智能', 
-    rating: 4.8, 
-    description: '前Google数据科学家, 10年机器学习经验' 
+  {
+    id: 3,
+    name: '李明',
+    avatar: 'src/components/homepage/Homepage2/picture/圆形3(3).png',
+    specialization: '数据科学 · 人工智能',
+    rating: 4.8,
+    description: '前Google数据科学家, 10年机器学习经验'
   },
 ]);
 
@@ -469,7 +462,7 @@ const recommendedTeachers = ref([
     align-items: flex-start; /* 文字左对齐 */
     box-sizing: border-box;
     padding-left: 50px; /* 将文字向内推 */
-    
+
     color: white;
     font-size: 20px;
     font-weight: bold;
@@ -678,7 +671,7 @@ const recommendedTeachers = ref([
 /* 响应式适配 */
 @media (max-width: 992px) {
     .venue-title { font-size: 28px; }
-    .amenities-bar { 
+    .amenities-bar {
       flex-wrap: wrap;
       justify-content: flex-start;
       gap: 15px;

@@ -31,6 +31,7 @@
                     <el-dropdown-item v-for="item in TeacherField" :key="item" :command="item">
                       {{ item }}
                     </el-dropdown-item>
+
                   </el-dropdown-menu>
                 </template>
               </el-dropdown>
@@ -73,7 +74,7 @@
           </el-row>
 
           <div class="load-more-container">
-            <el-button type="primary" size="large">查看更多</el-button>
+            <el-button type="primary" size="large" @click="goTeacherList">查看更多</el-button>
           </div>
 
         </div>
@@ -87,7 +88,7 @@
             </el-col>
           </el-row>
           <div class="load-more-container">
-            <el-button type="primary" size="large">查看更多</el-button>
+            <el-button type="primary" size="large" @click="goVenueList">查看更多</el-button>
           </div>
         </div>
 
@@ -102,6 +103,7 @@
 
 <script setup>
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 import HomePageHead from '@/components/homepage/Head.vue';
 import HomePageTopBar from '@/components/homepage/TopBar.vue';
 import HomePageSearchBar from '@/components/homepage/SearchBar.vue';
@@ -112,9 +114,18 @@ import { Search, ArrowDown, } from '@element-plus/icons-vue';
 import 'element-plus/theme-chalk/display.css'; // 引入响应式隐藏类
 const TeacherField = ['全部领域', '艺术人文', '经济金融', '健康时尚', '职业教育']
 const currentField = ref('全部领域')
+const router = useRouter()
 
 function handleFieldChange(val) {
   currentField.value = val
+}
+
+// 三个“查看更多”跳转
+function goTeacherList() {
+  router.push({ name: 'venue-list' })
+}
+function goVenueList() {
+  router.push({ name: 'course-list' })
 }
 
 const teachers = ref([
