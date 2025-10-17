@@ -12,7 +12,12 @@
           </p>
         </div>
         <!-- 探索你感兴趣的课程 -->
-        <InterestClass />
+
+        <div class="explore-courses-section">
+          <h3 class="explore-title">探索你感兴趣的课程</h3>
+          <InterestClass :tag-list="tagList" :courses="courses" />
+        </div>
+
 
         <div class="explore-teachers-section">
           <h3 class="section-title">探索你感兴趣的老师</h3>
@@ -77,6 +82,7 @@
             <el-button type="primary" size="large" @click="goTeacherList">查看更多</el-button>
           </div>
 
+          <InterestedTeacher :teachers="teachers" :sort="sort" :modality="modality" :field="field" />
         </div>
 
         <!-- Nearby Venues Section -->
@@ -96,7 +102,7 @@
     </el-container>
 
     <footer class="site-footer">
-
+      <BottomBar />
     </footer>
   </div>
 </template>
@@ -110,41 +116,66 @@ import HomePageSearchBar from '@/components/homepage/SearchBar.vue';
 import InterestedTeacher from '@/components/homepage/InterestedTeacher.vue';
 import VenueCard from '@/components/homepage/Venue.vue';
 import InterestClass from '@/components/homepage/InterestClass.vue';
-import { Search, ArrowDown, } from '@element-plus/icons-vue';
+import BottomBar from '@/components/homepage/BottomBar.vue';
 import 'element-plus/theme-chalk/display.css'; // 引入响应式隐藏类
-const TeacherField = ['全部领域', '艺术人文', '经济金融', '健康时尚', '职业教育']
-const currentField = ref('全部领域')
-const router = useRouter()
 
-function handleFieldChange(val) {
-  currentField.value = val
-}
 
-// 三个“查看更多”跳转
-function goTeacherList() {
-  router.push({ name: 'venue-list' })
-}
-function goVenueList() {
-  router.push({ name: 'course-list' })
-}
+const tagList = ref([
+  '热门',
+  '艺术人文',
+  '金融经济',
+  '健康时尚',
+  '职业教育',
+  '自然科学',
+  '基础教育',
+  '高等教育',
+  '个人发展',
+  '兴趣爱好'
+]);
 
+const courses = ref([
+  { id: 1, title: '微软 Power BI 数据分析师', instructor: '陈老师', price: '99', image: 'src/assets/static/course.png' },
+  { id: 2, title: '微软 Power BI 数据分析师', instructor: '陈老师', price: '99', image: 'src/assets/static/course.png' },
+  { id: 3, title: '微软 Power BI 数据分析师', instructor: '陈老师', price: '99', image: 'src/assets/static/course.png' }
+])
+
+const sort = ref([
+  '综合推荐',
+  '人气最高'
+]);
+
+const modality = ref([
+  '全部形式',
+  '线上课',
+  '直播课',
+  '线下课'
+]);
+const field = ref([
+  '全部领域',
+  '艺术人文',
+  '经济金融',
+  '健康时尚',
+  '职业教育',
+  '自然科学',
+  '基础教育',
+  '高等教育',
+  '个人发展',
+  '兴趣爱好'
+]);
 const teachers = ref([
-  { id: 1, name: '李明', field: '基础教育', bio: '前Google数据科学家, 10年机器学习经验', avatar: 'src/components/Homepage1/Person/picture/圆形_3.png' },
-  { id: 2, name: '李明', field: '基础教育', bio: '前Google数据科学家, 10年机器学习经验', avatar: 'src/components/Homepage1/Person/picture/圆形_3.png' },
-  { id: 3, name: '李明', field: '基础教育', bio: '前Google数据科学家, 10年机器学习经验', avatar: 'src/components/Homepage1/Person/picture/圆形_3.png' },
-  { id: 4, name: '李明', field: '基础教育', bio: '前Google数据科学家, 10年机器学习经验', avatar: 'src/components/Homepage1/Person/picture/圆形_3.png' },
-  { id: 5, name: '李明', field: '基础教育', bio: '前Google数据科学家, 10年机器学习经验', avatar: 'src/components/Homepage1/Person/picture/圆形_3.png' },
-  { id: 6, name: '李明', field: '基础教育', bio: '前Google数据科学家, 10年机器学习经验', avatar: 'src/components/Homepage1/Person/picture/圆形_3.png' },
+  { id: 1, name: '李明', field: '基础教育', bio: '前Google数据科学家, 10年机器学习经验', avatar: 'src/assets/static/圆形_3.png' },
+  { id: 2, name: '李明', field: '基础教育', bio: '前Google数据科学家, 10年机器学习经验', avatar: 'src/assets/static/圆形_3.png' },
+  { id: 3, name: '李明', field: '基础教育', bio: '前Google数据科学家, 10年机器学习经验', avatar: 'src/assets/static/圆形_3.png' },
+  { id: 4, name: '李明', field: '基础教育', bio: '前Google数据科学家, 10年机器学习经验', avatar: 'src/assets/static/圆形_3.png' },
+  { id: 5, name: '李明', field: '基础教育', bio: '前Google数据科学家, 10年机器学习经验', avatar: 'src/assets/static/圆形_3.png' },
+  { id: 6, name: '李明', field: '基础教育', bio: '前Google数据科学家, 10年机器学习经验', avatar: 'src/assets/static/圆形_3.png' },
 ]);
 
 const venues = ref([
-  { id: 1, name: '飞羽竞技场', type: '篮球场馆', address: '苏州市工业园区独墅湖校区258号', phone: '19552698532', image: 'src/components/Homepage1/Person/picture/矩形_17.png' },
-  { id: 2, name: '飞羽竞技场', type: '篮球场馆', address: '苏州市工业园区独墅湖校区258号', phone: '19552698532', image: 'src/components/Homepage1/Person/picture/矩形_17_(1).png' },
-  { id: 3, name: '飞羽竞技场', type: '篮球场馆', address: '苏州市工业园区独墅湖校区258号', phone: '19552698532', image: 'src/components/Homepage1/Person/picture/矩形_17_(2).png' },
+  { id: 1, name: '飞羽竞技场', type: '篮球场馆', address: '苏州市工业园区独墅湖校区258号', phone: '19552698532', image: 'src/assets/static/矩形_17.png' },
+  { id: 2, name: '飞羽竞技场', type: '篮球场馆', address: '苏州市工业园区独墅湖校区258号', phone: '19552698532', image: 'src/assets/static/矩形_17.png' },
+  { id: 3, name: '飞羽竞技场', type: '篮球场馆', address: '苏州市工业园区独墅湖校区258号', phone: '19552698532', image: 'src/assets/static/矩形_17.png' },
 ]);
-
-// 页脚数据
-
 
 </script>
 
@@ -156,15 +187,6 @@ const venues = ref([
   flex-direction: column;
   background-color: #f7f8fa;
   /* 使用更柔和的背景色 */
-}
-
-.top-black-bar {
-  width: 100%;
-  height: 30px;
-  background-color: rgba(56, 56, 56, 1);
-  position: sticky;
-  top: 0;
-  z-index: 1001;
 }
 
 .main-container {
@@ -181,9 +203,19 @@ const venues = ref([
 
 
 
-/* ==================== ^^^ 替换后的 Banner 样式 ^^^ ==================== */
+.explore-courses-section {
+  max-width: 1200px;
+  margin: 60px auto 80px;
+  padding: 0 20px;
+}
 
-/* 快捷功能/搜索栏样式 */
+.explore-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--el-text-color-primary);
+  margin-bottom: 20px;
+}
+
 
 
 /* 核心优势介绍 */
@@ -223,38 +255,6 @@ const venues = ref([
   margin-bottom: 25px;
 }
 
-.filter-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 20px;
-  margin-bottom: 30px;
-}
-
-.filter-options {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  flex-wrap: wrap;
-}
-
-.filter-label {
-  font-size: 14px;
-  color: var(--el-text-color-secondary);
-  margin-right: -5px;
-}
-
-.filter-search {
-  width: 240px;
-}
-
-
-.load-more-container {
-  text-align: center;
-  margin-top: 20px;
-}
-
 /* 附近场馆区 */
 .nearby-venues-section {
   max-width: 1200px;
@@ -270,162 +270,15 @@ const venues = ref([
   border-top: 1px solid var(--el-border-color-light);
 }
 
-.footer-container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.footer-col {
-  margin-bottom: 30px;
-}
-
-.footer-brand h3 {
-  font-size: 32px;
-  font-weight: bold;
-  color: var(--el-text-color-primary);
-  margin: 0 0 10px;
-}
-
-.footer-brand p {
-  font-size: 14px;
-  color: var(--el-text-color-regular);
-  margin: 0;
-}
-
-.footer-links h4 {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--el-text-color-primary);
-  margin: 0 0 20px;
-}
-
-.footer-links ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.footer-links li {
-  margin-bottom: 12px;
-}
-
-.footer-links .el-link {
-  --el-link-text-color: var(--el-text-color-regular);
-  font-weight: 400;
-}
-
-.footer-links .el-link:hover {
-  --el-link-text-color: var(--el-color-primary);
-}
-
-.footer-social h4 {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--el-text-color-primary);
-  margin: 20px 0;
-}
-
-.social-icons {
-  display: flex;
-  gap: 15px;
-  margin-bottom: 20px;
-}
-
-.social-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: #fff;
-  color: var(--el-text-color-secondary);
-  box-shadow: var(--el-box-shadow-light);
-  transition: all 0.3s ease;
-}
-
-.social-icon:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--el-box-shadow);
-  color: var(--el-text-color-primary);
-}
-
-.social-icon.instagram {
-  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-  color: #fff;
-}
-
-.social-icon.instagram:hover {
-  opacity: 0.9;
-}
-
-.app-badges {
-  display: flex;
-  gap: 15px;
-  flex-wrap: wrap;
-  /* 在小屏幕上允许换行 */
-}
-
-.app-badge {
-  display: inline-flex;
-  align-items: center;
-  background-color: #404040;
-  /* 深灰色背景 */
-  color: #ffffff;
-  padding: 8px 16px;
-  border-radius: 20px;
-  /* 圆角 */
-  text-decoration: none;
-  transition: background-color 0.2s;
-}
-
-.app-badge:hover {
-  background-color: #2c2c2c;
-  /* 悬停时颜色变深 */
-}
 
 
+
+
+
+/* 响应式适配 - 页面布局相关 */
 
 /* 响应式适配 (Tablet) */
-@media (max-width: 992px) {
-  .banner-left h1 {
-    font-size: 42px;
-  }
-
-  .banner-left h2 {
-    font-size: 32px;
-  }
-
-  .banner-right-image-col {
-    min-height: 450px;
-  }
-
-  .banner-image-container {
-    width: 320px;
-    height: 320px;
-  }
-
-  .background-circle.circle-1 {
-    width: 380px;
-    height: 380px;
-  }
-
-  .floating-bubble {
-    padding: 12px 18px;
-    font-size: 13px;
-  }
-
-  .bubble-great-teacher {
-    left: -10px;
-  }
-
-  .bubble-happy-students {
-    right: -20px;
-  }
-
-  .bubble-weekly-progress {
-    bottom: 8%;
-  }
+@media (min-width: 768px) and (max-width: 1024px) {
 
   .efficiency-title,
   .explore-title {
@@ -435,109 +288,10 @@ const venues = ref([
   .section-title {
     font-size: 26px;
   }
-
-  .hidden-sm-and-down {
-    display: none;
-  }
 }
 
 /* 响应式适配 (Mobile) */
 @media (max-width: 767px) {
-  .header {
-    height: auto;
-    padding: 10px 15px;
-  }
-
-  .header-content {
-    flex-wrap: wrap;
-  }
-
-  .logo-section {
-    flex: 1 0 50%;
-  }
-
-  .search-section {
-    order: 3;
-    flex: 1 0 100%;
-    margin-top: 10px;
-  }
-
-  .user-action-section {
-    flex: 1 0 50%;
-  }
-
-  .header-search-input {
-    max-width: 100%;
-  }
-
-  .personal-center-btn {
-    display: none;
-  }
-
-  .top-banner-wrapper {
-    padding: 30px 15px;
-  }
-
-  .banner-left {
-    text-align: center;
-    margin-bottom: 30px;
-  }
-
-  .banner-left h1 {
-    font-size: 38px;
-  }
-
-  .banner-left h2 {
-    font-size: 28px;
-  }
-
-  .banner-right-image-col {
-    min-height: 350px;
-  }
-
-  .banner-image-container {
-    width: 280px;
-    height: 280px;
-  }
-
-  .background-circle.circle-1 {
-    width: 330px;
-    height: 330px;
-  }
-
-  .floating-bubble {
-    padding: 10px 15px;
-    font-size: 12px;
-  }
-
-  .bubble-great-teacher {
-    top: 5%;
-    left: 5%;
-  }
-
-  .bubble-happy-students {
-    top: 8%;
-    right: 5%;
-  }
-
-  .bubble-weekly-progress {
-    bottom: 5%;
-    left: 8%;
-  }
-
-  .search-bar-wrapper {
-    margin-top: -30px;
-    padding: 0 8px;
-    height: 54px;
-  }
-
-  .links-container {
-    margin-right: 10px;
-  }
-
-  .link-item .el-icon {
-    font-size: 18px;
-  }
 
   .efficiency-title,
   .explore-title {
@@ -551,38 +305,6 @@ const venues = ref([
   .section-title {
     font-size: 24px;
     text-align: center;
-  }
-
-  .tag-list {
-    justify-content: center;
-  }
-
-  .tag-list .el-button {
-    font-size: 12px;
-    padding: 5px 10px;
-  }
-
-  .filter-bar {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .filter-search {
-    width: 100%;
-  }
-
-  .footer-col {
-    text-align: center;
-  }
-
-  .footer-social,
-  .footer-brand {
-    width: 100%;
-  }
-
-  .social-icons,
-  .app-badges {
-    justify-content: center;
   }
 }
 </style>

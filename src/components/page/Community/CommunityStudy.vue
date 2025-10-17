@@ -3,37 +3,7 @@
     <!-- 顶部深灰色细条 -->
     <div class="top-black-bar"></div>
 
-    <!-- 白色导航栏 -->
-    <el-header class="header">
-      <div class="header-content">
-        <div class="logo-section">
-          <span class="logo-text">学会</span>
-          <el-button class="ai-explore-btn">
-            AI探索
-            <el-icon><ArrowRight /></el-icon>
-          </el-button>
-        </div>
-        <div class="search-container hidden-xs-only">
-          <el-input placeholder="What do you want learn?" class="header-search-input" />
-          <el-button type="primary" :icon="Search" circle class="search-icon-btn" />
-        </div>
-        <div class="user-action-section">
-          <el-dropdown trigger="click">
-             <span class="el-dropdown-link">
-              <el-icon :size="22" class="notification-bell"><Bell /></el-icon>
-              <el-avatar :size="32" src="src/components/Community/picture/矩形2(1).png" />
-             </span>
-            <template #dropdown>
-              <el-dropdown-menu>
-                <el-dropdown-item>个人中心</el-dropdown-item>
-                <el-dropdown-item>我的订单</el-dropdown-item>
-                <el-dropdown-item divided>退出登录</el-dropdown-item>
-              </el-dropdown-menu>
-            </template>
-          </el-dropdown>
-        </div>
-      </div>
-    </el-header>
+    <HomePageHead/>
 
     <!-- 主内容区 -->
     <el-main class="main-content">
@@ -121,6 +91,7 @@
 import { ref } from 'vue';
 import { ArrowRight, Search, Bell, Camera, Pointer, Star, Warning } from '@element-plus/icons-vue';
 import 'element-plus/theme-chalk/display.css';
+import HomePageHead from '@/components/homepage/Head.vue';
 
 const newPostText = ref('');
 

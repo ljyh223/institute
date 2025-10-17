@@ -98,6 +98,11 @@ const footerLinks = ref([
 
 </script>
 <style scoped>
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 .app-badge-icon {
   width: 24px;
   height: 24px;
@@ -118,5 +123,47 @@ const footerLinks = ref([
 .app-badge-text strong {
   font-size: 16px;
   font-weight: 600;
+}
+
+.app-badges {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  /* 在小屏幕上允许换行 */
+}
+
+.app-badge {
+  display: inline-flex;
+  align-items: center;
+  background-color: #404040;
+  /* 深灰色背景 */
+  color: #ffffff;
+  padding: 8px 16px;
+  border-radius: 20px;
+  /* 圆角 */
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.app-badge:hover {
+  background-color: #2c2c2c;
+  /* 悬停时颜色变深 */
+}
+
+/* 响应式适配 - 移动端 */
+@media (max-width: 767px) {
+  .footer-col {
+    text-align: center;
+  }
+  
+  .footer-social,
+  .footer-brand {
+    width: 100%;
+  }
+  
+  .social-icons,
+  .app-badges {
+    justify-content: center;
+  }
 }
 </style>

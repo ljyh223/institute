@@ -279,4 +279,100 @@ const teacherRating = ref(4.5);
     transform: translateY(-8px);
   }
 }
+
+/* 响应式适配 - 平板 */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .banner-left h1 {
+    font-size: 42px;
+  }
+
+  .banner-left h2 {
+    font-size: 32px;
+  }
+
+  .banner-right-image-col {
+    min-height: 450px;
+  }
+
+  .banner-image-container {
+    width: 320px;
+    height: 320px;
+  }
+
+  .background-circle.circle-1 {
+    width: 380px;
+    height: 380px;
+  }
+
+  .floating-bubble {
+    padding: 12px 18px;
+    font-size: 13px;
+  }
+
+  .bubble-great-teacher {
+    left: -10px;
+  }
+
+  .bubble-happy-students {
+    right: -20px;
+  }
+
+  .bubble-weekly-progress {
+    bottom: 8%;
+  }
+}
+
+/* 响应式适配 - 移动端 */
+@media (max-width: 767px) {
+  .top-banner-wrapper {
+    padding: 30px 15px;
+  }
+
+  .banner-left {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .banner-left h1 {
+    font-size: 38px;
+  }
+
+  .banner-left h2 {
+    font-size: 28px;
+  }
+
+  .banner-right-image-col {
+    min-height: 350px;
+  }
+
+  .banner-image-container {
+    width: 280px;
+    height: 280px;
+  }
+
+  .background-circle.circle-1 {
+    width: 330px;
+    height: 330px;
+  }
+
+  .floating-bubble {
+    padding: 10px 15px;
+    font-size: 12px;
+  }
+
+  .bubble-great-teacher {
+    top: 5%;
+    left: 5%;
+  }
+
+  .bubble-happy-students {
+    top: 8%;
+    right: 5%;
+  }
+
+  .bubble-weekly-progress {
+    bottom: 5%;
+    left: 8%;
+  }
+}
 </style>

@@ -1,4 +1,11 @@
-<!-- eslint-disable vue/multi-word-component-names -->
+<script setup>
+import { Bell, ArrowRight } from '@element-plus/icons-vue'
+
+// 定义组件名称
+defineOptions({
+  name: 'HomePageHead'
+})
+</script>
 <template>
 
   <el-header class="header">
@@ -145,5 +152,39 @@ function goPersonalCenter() {
 
 .popover-menu p:hover {
   background-color: var(--el-color-primary-light-9);
+}
+
+/* 响应式适配 - 移动端 */
+@media (max-width: 767px) {
+  .header {
+    height: auto;
+    padding: 10px 15px;
+  }
+
+  .header-content {
+    flex-wrap: wrap;
+  }
+
+  .logo-section {
+    flex: 1 0 50%;
+  }
+
+  .search-section {
+    order: 3;
+    flex: 1 0 100%;
+    margin-top: 10px;
+  }
+
+  .user-action-section {
+    flex: 1 0 50%;
+  }
+
+  .header-search-input {
+    max-width: 100%;
+  }
+
+  .personal-center-btn {
+    display: none;
+  }
 }
 </style>

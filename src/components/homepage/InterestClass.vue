@@ -1,38 +1,32 @@
 <template>
-  <div class="explore-courses-section">
-    <h3 class="explore-title">探索你感兴趣的课程</h3>
-    <div class="tag-list">
-      <span class="tag-label">标签：</span>
-      <el-button v-for="(tag, idx) in props.tagList" :key="tag" :type="activeIdx === idx ? 'primary' : undefined"
-        :plain="activeIdx !== idx" @click="switchTag(idx)">
-        {{ tag }}
-      </el-button>
-    </div>
-
-    <!-- 课程宫格列表（使用虚拟数据） -->
-    <el-row :gutter="24">
-      <el-col v-for="course in filteredCourses" :key="course.id" :xs="24" :sm="12" :md="8" :lg="6">
-        <el-card shadow="hover" class="course-card">
-          <div class="course-image-wrapper">
-            <!-- 留空的图片路径，方便你后续替换 -->
-            <img :src="course.image || ''" class="course-image" alt="" />
-          </div>
-          <div class="course-info">
-            <h4 class="course-title">{{ course.title }}</h4>
-            <p class="course-author">{{ course.author }}</p>
-            <div class="course-bottom">
-              <span class="course-price">¥ {{ course.price }}/课</span>
-              <el-button size="small" type="primary" plain @click="goDetail(course.id)">查看详情</el-button>
-            </div>
-          </div>
-        </el-card>
-      </el-col>
-    </el-row>
-
-    <div class="load-more-container">
-      <el-button type="primary" size="large" @click="goCourseList">查看更多</el-button>
-    </div>
+  <div class="tag-list">
+    <span class="tag-label">标签：</span>
+    <el-button v-for="(tag, idx) in props.tagList" :key="tag" :type="activeIdx === idx ? 'primary' : undefined"
+      :plain="activeIdx !== idx" @click="switchTag(idx)">
+      {{ tag }}
+    </el-button>
   </div>
+  <!-- 注意：课程数据未提供，所以这里显示空状态 -->
+  <el-row :gutter="24" v-if="props.courses.length != 0">
+    <el-col v-for="course in props.courses" :key="course.id" :xs="12" :sm="8" :md="6">
+      <el-card shadow="hover" class="course-card" :body-style="{ padding: '0px' }">
+        <el-image :src="course.image" fit="cover" class="course-image" />
+        <div class="course-info">
+          <h4 class="course-title">{{ course.title }}</h4>
+          <p class="course-instructor">{{ course.instructor }}</p>
+          <div class="course-meta">
+            <span class="course-price">¥{{ course.price }} <span class="price-unit">/节</span></span>
+            <el-button type="primary" link>免费详情</el-button>
+          </div>
+        </div>
+      </el-card>
+    </el-col>
+  </el-row>
+  <el-empty description="数据为空" class="empty-data-state" v-else>
+    <template #image>
+      <img class="custom-empty-image" src="@/assets/static/empty.png" alt="">
+    </template>
+  </el-empty>
 
 </template>
 
@@ -55,6 +49,13 @@ const props = defineProps({
       '高等教育',
       '个人发展',
       '兴趣爱好'
+    ]
+  },
+
+  courses: {
+    type: Array,
+    default: () => [
+      { id: 1, title: '微软 Power BI 数据分析师', instructor: '陈老师', price: '99', image: 'src/assets/static/course.png' }
     ]
   }
 })
@@ -103,21 +104,6 @@ const filteredCourses = computed(() => {
 </script>
 
 <style scoped>
-.explore-courses-section {
-  max-width: 1200px;
-  margin: 60px auto 80px;
-  padding: 30px;
-  background-color: #ffffff;
-  box-sizing: border-box;
-}
-
-.explore-title {
-  font-size: 22px;
-  font-weight: 600;
-  color: var(--el-text-color-primary);
-  margin-bottom: 20px;
-}
-
 .tag-list {
   display: flex;
   flex-wrap: wrap;
@@ -133,33 +119,118 @@ const filteredCourses = computed(() => {
   flex-shrink: 0;
 }
 
-.tag-list .el-button {
-  border-radius: 4px;
-  padding: 8px 15px;
-  font-size: 14px;
-  font-weight: 400;
-}
-
-.tag-list .el-button.is-plain:hover,
-.tag-list .el-button.is-plain:focus {
-  background-color: var(--el-color-primary-light-9);
-  color: var(--el-color-primary);
-  border-color: var(--el-color-primary-light-7);
-}
-
 .course-card {
-  border-radius: 10px;
+  margin-bottom: 24px;
+  border-radius: 12px;
   overflow: hidden;
+  border: 1px solid var(--el-border-color-lighter);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.course-image-wrapper {
+.course-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--el-box-shadow);
+}
+
+.course-image {
   width: 100%;
-  height: 180px;
-  background-color: #f4f5f7;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: 160px;
+  display: block;
+}
+
+.course-info {
+  padding: 16px;
+}
+
+.course-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--el-text-color-primary);
+  margin: 0 0 8px;
+  white-space: nowrap;
   overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.course-instructor {
+  font-size: 13px;
+  color: var(--el-text-color-secondary);
+  margin: 0 0 16px;
+}
+
+.course-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.course-price {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--el-color-danger);
+}
+
+.price-unit {
+  font-size: 13px;
+  color: var(--el-text-color-secondary);
+  font-weight: normal;
+  margin-left: 2px;
+}
+
+.load-more-container {
+  text-align: left;
+  margin-top: 20px;
+}
+
+.load-more-container.text-center {
+  text-align: center;
+}
+
+/* 响应式适配 - 移动端 */
+@media (max-width: 767px) {
+  .tag-list {
+    justify-content: center;
+  }
+
+  .tag-list .el-button {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+
+  .course-image {
+    height: 140px;
+  }
+
+  .course-info {
+    padding: 12px;
+  }
+
+  .course-title {
+    font-size: 14px;
+  }
+
+  .course-instructor {
+    font-size: 12px;
+  }
+
+  .course-price {
+    font-size: 16px;
+  }
+}
+
+/* 响应式适配 - 平板 */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .course-image {
+    height: 150px;
+  }
+
+  .course-info {
+    padding: 14px;
+  }
+
+  .course-title {
+    font-size: 15px;
+  }
 }
 
 .course-image {
