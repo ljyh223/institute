@@ -11,7 +11,7 @@
             构建AI技术驱动的终身学习生态,让每个人都能在成长的任何阶段都能找到属于自己的进阶路径
           </p>
         </div>
-
+        <!-- 探索你感兴趣的课程 -->
         <InterestClass />
 
         <div class="explore-teachers-section">
@@ -21,20 +21,19 @@
           <div class="filter-bar">
             <div class="filter-options">
               <span class="filter-label">领域:</span>
-              <el-dropdown>
+              <el-dropdown @command="handleFieldChange">
                 <el-button plain>
-                  全部领域<el-icon class="el-icon--right"><arrow-down /></el-icon>
+                  {{ currentField }}<el-icon class="el-icon--right"><arrow-down /></el-icon>
                 </el-button>
+
                 <template #dropdown>
                   <el-dropdown-menu>
-                    <el-dropdown-item>艺术人文</el-dropdown-item>
-                    <el-dropdown-item>经济金融</el-dropdown-item>
-                    <el-dropdown-item>健康时尚</el-dropdown-item>
-                    <el-dropdown-item>职业教育</el-dropdown-item>
+                    <el-dropdown-item v-for="item in TeacherField" :key="item" :command="item">
+                      {{ item }}
+                    </el-dropdown-item>
                   </el-dropdown-menu>
                 </template>
               </el-dropdown>
-
               <span class="filter-label">排序:</span>
               <el-dropdown>
                 <el-button plain>
@@ -69,27 +68,7 @@
           <!-- Teacher List -->
           <el-row :gutter="24">
             <el-col v-for="teacher in teachers" :key="teacher.id" :xs="24" :sm="12" :md="8">
-              <el-card class="teacher-card" shadow="hover">
-                <div class="teacher-card-sort-popover">
-                  <el-popover placement="bottom-end" :width="100" trigger="hover">
-                    <template #reference>
-                      <el-button text bg>综合推荐 <el-icon><arrow-down /></el-icon></el-button>
-                    </template>
-                    <div class="popover-menu">
-                      <p>综合推荐</p>
-                      <p>人气最高</p>
-                    </div>
-                  </el-popover>
-                </div>
-
-                <div class="teacher-info">
-                  <el-avatar :size="100" :src="teacher.avatar" />
-                  <h4 class="teacher-name">{{ teacher.name }}</h4>
-                  <p class="teacher-field">{{ teacher.field }}</p>
-                  <p class="teacher-bio">{{ teacher.bio }}</p>
-                </div>
-                <el-button type="primary" class="view-profile-btn">查看主页</el-button>
-              </el-card>
+              <InterestedTeacher :teacher="teacher" />
             </el-col>
           </el-row>
 
@@ -104,24 +83,7 @@
           <h3 class="section-title">附近适合您的场馆</h3>
           <el-row :gutter="24">
             <el-col v-for="venue in venues" :key="venue.id" :xs="24" :sm="12" :md="8">
-              <el-card class="venue-card" shadow="hover" :body-style="{ padding: '0px' }">
-                <el-image :src="venue.image" class="venue-image" fit="cover" />
-                <div class="venue-info-body">
-                  <h4 class="venue-name">{{ venue.name }} ({{ venue.type }})</h4>
-                  <p class="venue-detail">
-                    <el-icon>
-                      <Location />
-                    </el-icon>
-                    <span>{{ venue.address }}</span>
-                  </p>
-                  <p class="venue-detail">
-                    <el-icon>
-                      <User />
-                    </el-icon>
-                    <span>{{ venue.phone }}</span>
-                  </p>
-                </div>
-              </el-card>
+              <VenueCard :venue="venue" />
             </el-col>
           </el-row>
           <div class="load-more-container">
@@ -133,69 +95,7 @@
     </el-container>
 
     <footer class="site-footer">
-      <div class="footer-container">
-        <el-row :gutter="30" justify="space-between">
-          <!-- Brand Info -->
-          <el-col :xs="24" :sm="12" :md="6" class="footer-col footer-brand">
-            <h3>学会</h3>
-            <p>新一代学习生态系统</p>
-          </el-col>
 
-          <!-- Footer Links -->
-          <el-col :xs="12" :sm="6" :md="3" class="footer-col footer-links" v-for="section in footerLinks"
-            :key="section.title">
-            <h4>{{ section.title }}</h4>
-            <ul>
-              <li v-for="link in section.links" :key="link.name">
-                <el-link :underline="false">{{ link.name }}</el-link>
-              </li>
-            </ul>
-          </el-col>
-
-          <!-- Social and App Downloads -->
-          <el-col :xs="24" :sm="12" :md="5" class="footer-col footer-social">
-            <div class="social-icons">
-              <a href="#" class="social-icon" aria-label="Facebook">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                  <path
-                    d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z" />
-                </svg>
-              </a>
-              <a href="#" class="social-icon instagram" aria-label="Instagram">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                </svg>
-              </a>
-              <a href="#" class="social-icon" aria-label="Twitter">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                  <path
-                    d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616v.064c0 2.295 1.616 4.212 3.763 4.649-.69.188-1.432.233-2.193.084.623 1.955 2.441 3.364 4.604 3.404-1.72 1.34-3.882 2.083-6.242 2.083-.404 0-.802-.023-1.195-.069 2.209 1.409 4.833 2.231 7.646 2.231 9.177 0 14.209-7.469 13.945-14.517.975-.701 1.816-1.583 2.483-2.578z" />
-                </svg>
-              </a>
-            </div>
-            <h4>下载我们的APP</h4>
-            <div class="app-badges">
-              <a href="#" class="app-badge">
-                <img class="app-badge-icon" src="./picture/google-play_1.png" alt="">
-                <span class="app-badge-text">
-                  <span>GET IT ON</span>
-                  <strong>Google Play</strong>
-                </span>
-              </a>
-              <a href="#" class="app-badge">
-                <img class="app-badge-icon" src="./picture/苹果.png" alt="">
-                <span class="app-badge-text">
-                  <span>Available on the</span>
-                  <strong>Apple Store</strong>
-                </span>
-              </a>
-            </div>
-          </el-col>
-        </el-row>
-      </div>
     </footer>
   </div>
 </template>
@@ -205,17 +105,17 @@ import { ref } from 'vue';
 import HomePageHead from '@/components/homepage/Head.vue';
 import HomePageTopBar from '@/components/homepage/TopBar.vue';
 import HomePageSearchBar from '@/components/homepage/SearchBar.vue';
-
+import InterestedTeacher from '@/components/homepage/InterestedTeacher.vue';
+import VenueCard from '@/components/homepage/Venue.vue';
 import InterestClass from '@/components/homepage/InterestClass.vue';
-import {
-  Search,
-
-  ArrowDown,
-  Location,
-  User,
-} from '@element-plus/icons-vue';
+import { Search, ArrowDown, } from '@element-plus/icons-vue';
 import 'element-plus/theme-chalk/display.css'; // 引入响应式隐藏类
+const TeacherField = ['全部领域', '艺术人文', '经济金融', '健康时尚', '职业教育']
+const currentField = ref('全部领域')
 
+function handleFieldChange(val) {
+  currentField.value = val
+}
 
 const teachers = ref([
   { id: 1, name: '李明', field: '基础教育', bio: '前Google数据科学家, 10年机器学习经验', avatar: 'src/components/Homepage1/Person/picture/圆形_3.png' },
@@ -233,33 +133,6 @@ const venues = ref([
 ]);
 
 // 页脚数据
-const footerLinks = ref([
-  {
-    title: '公司',
-    links: [
-      { name: '关于我们', url: '#' },
-      { name: '职业', url: '#' },
-      { name: '其他', url: '#' },
-    ]
-  },
-  {
-    title: '常见问题',
-    links: [
-      { name: '帮助/常见问题', url: '#' },
-      { name: '问题', url: '#' },
-      { name: '客服', url: '#' },
-    ]
-  },
-  {
-    title: '更多',
-    links: [
-      { name: '服务协议', url: '#' },
-      { name: '隐私政策', url: '#' },
-      { name: '商务洽谈', url: '#' },
-      { name: '帮助中心', url: '#' },
-    ]
-  }
-]);
 
 
 </script>
@@ -365,53 +238,6 @@ const footerLinks = ref([
   width: 240px;
 }
 
-.teacher-card {
-  text-align: center;
-  margin-bottom: 24px;
-  position: relative;
-  --el-card-padding: 30px 20px;
-}
-
-.teacher-card-sort-popover {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-}
-
-.teacher-card-sort-popover .el-button {
-  --el-button-text-color: var(--el-text-color-secondary);
-}
-
-.teacher-info .el-avatar {
-  margin-bottom: 15px;
-  border: 3px solid #fff;
-  box-shadow: var(--el-box-shadow-light);
-}
-
-.teacher-name {
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--el-text-color-primary);
-  margin: 0 0 5px;
-}
-
-.teacher-field {
-  font-size: 14px;
-  color: var(--el-text-color-secondary);
-  margin: 0 0 15px;
-}
-
-.teacher-bio {
-  font-size: 14px;
-  color: var(--el-text-color-regular);
-  line-height: 1.6;
-  margin: 0 0 20px;
-  min-height: 45px;
-}
-
-.view-profile-btn {
-  width: 100%;
-}
 
 .load-more-container {
   text-align: center;
@@ -423,56 +249,6 @@ const footerLinks = ref([
   max-width: 1200px;
   margin: 60px auto 80px;
   padding: 0 30px;
-}
-
-.venue-card {
-  margin-bottom: 24px;
-  border-radius: var(--el-card-border-radius);
-  overflow: hidden;
-}
-
-.venue-image {
-  width: 100%;
-  height: 200px;
-  display: block;
-}
-
-.venue-info-body {
-  padding: 20px;
-}
-
-.venue-name {
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--el-text-color-primary);
-  margin: 0 0 15px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.venue-detail {
-  display: flex;
-  align-items: center;
-  font-size: 14px;
-  color: var(--el-text-color-secondary);
-  margin: 0 0 10px;
-}
-
-.venue-detail .el-icon {
-  margin-right: 8px;
-  font-size: 16px;
-  flex-shrink: 0;
-}
-
-.venue-detail span {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.venue-detail:last-child {
-  margin-bottom: 0;
 }
 
 
@@ -597,27 +373,7 @@ const footerLinks = ref([
   /* 悬停时颜色变深 */
 }
 
-.app-badge-icon {
-  width: 24px;
-  height: 24px;
-  margin-right: 12px;
-}
 
-.app-badge-text {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  line-height: 1.2;
-}
-
-.app-badge-text span {
-  font-size: 10px;
-}
-
-.app-badge-text strong {
-  font-size: 16px;
-  font-weight: 600;
-}
 
 /* 响应式适配 (Tablet) */
 @media (max-width: 992px) {
