@@ -12,70 +12,16 @@
           </p>
         </div>
         <!-- 探索你感兴趣的课程 -->
-        <InterestClass />
+
+        <div class="explore-courses-section">
+          <h3 class="explore-title">探索你感兴趣的课程</h3>
+          <InterestClass :tag-list="tagList" :courses="courses" />
+        </div>
+
 
         <div class="explore-teachers-section">
           <h3 class="section-title">探索你感兴趣的老师</h3>
-
-          <!-- Filter Bar -->
-          <div class="filter-bar">
-            <div class="filter-options">
-              <span class="filter-label">领域:</span>
-              <el-dropdown @command="handleFieldChange">
-                <el-button plain>
-                  {{ currentField }}<el-icon class="el-icon--right"><arrow-down /></el-icon>
-                </el-button>
-
-                <template #dropdown>
-                  <el-dropdown-menu>
-                    <el-dropdown-item v-for="item in TeacherField" :key="item" :command="item">
-                      {{ item }}
-                    </el-dropdown-item>
-                  </el-dropdown-menu>
-                </template>
-              </el-dropdown>
-              <span class="filter-label">排序:</span>
-              <el-dropdown>
-                <el-button plain>
-                  综合推荐<el-icon class="el-icon--right"><arrow-down /></el-icon>
-                </el-button>
-                <template #dropdown>
-                  <el-dropdown-menu>
-                    <el-dropdown-item>综合推荐</el-dropdown-item>
-                    <el-dropdown-item>人气最高</el-dropdown-item>
-                  </el-dropdown-menu>
-                </template>
-              </el-dropdown>
-
-              <el-dropdown class="hidden-sm-and-down">
-                <el-button plain>
-                  全部形式<el-icon class="el-icon--right"><arrow-down /></el-icon>
-                </el-button>
-                <template #dropdown>
-                  <el-dropdown-menu>
-                    <el-dropdown-item>线上课</el-dropdown-item>
-                    <el-dropdown-item>直播课</el-dropdown-item>
-                    <el-dropdown-item>线下课</el-dropdown-item>
-                  </el-dropdown-menu>
-                </template>
-              </el-dropdown>
-            </div>
-            <div class="filter-search">
-              <el-input placeholder="搜索" :prefix-icon="Search" />
-            </div>
-          </div>
-
-          <!-- Teacher List -->
-          <el-row :gutter="24">
-            <el-col v-for="teacher in teachers" :key="teacher.id" :xs="24" :sm="12" :md="8">
-              <InterestedTeacher :teacher="teacher" />
-            </el-col>
-          </el-row>
-
-          <div class="load-more-container">
-            <el-button type="primary" size="large">查看更多</el-button>
-          </div>
-
+          <InterestedTeacher :teachers="teachers" :sort="sort" :modality="modality" :field="field" />
         </div>
 
         <!-- Nearby Venues Section -->
@@ -95,7 +41,7 @@
     </el-container>
 
     <footer class="site-footer">
-
+      <BottomBar />
     </footer>
   </div>
 </template>
@@ -108,32 +54,66 @@ import HomePageSearchBar from '@/components/homepage/SearchBar.vue';
 import InterestedTeacher from '@/components/homepage/InterestedTeacher.vue';
 import VenueCard from '@/components/homepage/Venue.vue';
 import InterestClass from '@/components/homepage/InterestClass.vue';
-import { Search, ArrowDown, } from '@element-plus/icons-vue';
+import BottomBar from '@/components/homepage/BottomBar.vue';
 import 'element-plus/theme-chalk/display.css'; // 引入响应式隐藏类
-const TeacherField = ['全部领域', '艺术人文', '经济金融', '健康时尚', '职业教育']
-const currentField = ref('全部领域')
 
-function handleFieldChange(val) {
-  currentField.value = val
-}
 
+const tagList = ref([
+  '热门',
+  '艺术人文',
+  '金融经济',
+  '健康时尚',
+  '职业教育',
+  '自然科学',
+  '基础教育',
+  '高等教育',
+  '个人发展',
+  '兴趣爱好'
+]);
+
+const courses = ref([
+  { id: 1, title: '微软 Power BI 数据分析师', instructor: '陈老师', price: '99', image: 'src/assets/static/course.png' },
+  { id: 2, title: '微软 Power BI 数据分析师', instructor: '陈老师', price: '99', image: 'src/assets/static/course.png' },
+  { id: 3, title: '微软 Power BI 数据分析师', instructor: '陈老师', price: '99', image: 'src/assets/static/course.png' }
+])
+
+const sort = ref([
+  '综合推荐',
+  '人气最高'
+]);
+
+const modality = ref([
+  '全部形式',
+  '线上课',
+  '直播课',
+  '线下课'
+]);
+const field = ref([
+  '全部领域',
+  '艺术人文',
+  '经济金融',
+  '健康时尚',
+  '职业教育',
+  '自然科学',
+  '基础教育',
+  '高等教育',
+  '个人发展',
+  '兴趣爱好'
+]);
 const teachers = ref([
-  { id: 1, name: '李明', field: '基础教育', bio: '前Google数据科学家, 10年机器学习经验', avatar: 'src/components/Homepage1/Person/picture/圆形_3.png' },
-  { id: 2, name: '李明', field: '基础教育', bio: '前Google数据科学家, 10年机器学习经验', avatar: 'src/components/Homepage1/Person/picture/圆形_3.png' },
-  { id: 3, name: '李明', field: '基础教育', bio: '前Google数据科学家, 10年机器学习经验', avatar: 'src/components/Homepage1/Person/picture/圆形_3.png' },
-  { id: 4, name: '李明', field: '基础教育', bio: '前Google数据科学家, 10年机器学习经验', avatar: 'src/components/Homepage1/Person/picture/圆形_3.png' },
-  { id: 5, name: '李明', field: '基础教育', bio: '前Google数据科学家, 10年机器学习经验', avatar: 'src/components/Homepage1/Person/picture/圆形_3.png' },
-  { id: 6, name: '李明', field: '基础教育', bio: '前Google数据科学家, 10年机器学习经验', avatar: 'src/components/Homepage1/Person/picture/圆形_3.png' },
+  { id: 1, name: '李明', field: '基础教育', bio: '前Google数据科学家, 10年机器学习经验', avatar: 'src/assets/static/圆形_3.png' },
+  { id: 2, name: '李明', field: '基础教育', bio: '前Google数据科学家, 10年机器学习经验', avatar: 'src/assets/static/圆形_3.png' },
+  { id: 3, name: '李明', field: '基础教育', bio: '前Google数据科学家, 10年机器学习经验', avatar: 'src/assets/static/圆形_3.png' },
+  { id: 4, name: '李明', field: '基础教育', bio: '前Google数据科学家, 10年机器学习经验', avatar: 'src/assets/static/圆形_3.png' },
+  { id: 5, name: '李明', field: '基础教育', bio: '前Google数据科学家, 10年机器学习经验', avatar: 'src/assets/static/圆形_3.png' },
+  { id: 6, name: '李明', field: '基础教育', bio: '前Google数据科学家, 10年机器学习经验', avatar: 'src/assets/static/圆形_3.png' },
 ]);
 
 const venues = ref([
-  { id: 1, name: '飞羽竞技场', type: '篮球场馆', address: '苏州市工业园区独墅湖校区258号', phone: '19552698532', image: 'src/components/Homepage1/Person/picture/矩形_17.png' },
-  { id: 2, name: '飞羽竞技场', type: '篮球场馆', address: '苏州市工业园区独墅湖校区258号', phone: '19552698532', image: 'src/components/Homepage1/Person/picture/矩形_17_(1).png' },
-  { id: 3, name: '飞羽竞技场', type: '篮球场馆', address: '苏州市工业园区独墅湖校区258号', phone: '19552698532', image: 'src/components/Homepage1/Person/picture/矩形_17_(2).png' },
+  { id: 1, name: '飞羽竞技场', type: '篮球场馆', address: '苏州市工业园区独墅湖校区258号', phone: '19552698532', image: 'src/assets/static/矩形_17.png' },
+  { id: 2, name: '飞羽竞技场', type: '篮球场馆', address: '苏州市工业园区独墅湖校区258号', phone: '19552698532', image: 'src/assets/static/矩形_17.png' },
+  { id: 3, name: '飞羽竞技场', type: '篮球场馆', address: '苏州市工业园区独墅湖校区258号', phone: '19552698532', image: 'src/assets/static/矩形_17.png' },
 ]);
-
-// 页脚数据
-
 
 </script>
 
@@ -145,15 +125,6 @@ const venues = ref([
   flex-direction: column;
   background-color: #f7f8fa;
   /* 使用更柔和的背景色 */
-}
-
-.top-black-bar {
-  width: 100%;
-  height: 30px;
-  background-color: rgba(56, 56, 56, 1);
-  position: sticky;
-  top: 0;
-  z-index: 1001;
 }
 
 .main-container {
@@ -170,9 +141,19 @@ const venues = ref([
 
 
 
-/* ==================== ^^^ 替换后的 Banner 样式 ^^^ ==================== */
+.explore-courses-section {
+  max-width: 1200px;
+  margin: 60px auto 80px;
+  padding: 0 20px;
+}
 
-/* 快捷功能/搜索栏样式 */
+.explore-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--el-text-color-primary);
+  margin-bottom: 20px;
+}
+
 
 
 /* 核心优势介绍 */
@@ -212,38 +193,6 @@ const venues = ref([
   margin-bottom: 25px;
 }
 
-.filter-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 20px;
-  margin-bottom: 30px;
-}
-
-.filter-options {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  flex-wrap: wrap;
-}
-
-.filter-label {
-  font-size: 14px;
-  color: var(--el-text-color-secondary);
-  margin-right: -5px;
-}
-
-.filter-search {
-  width: 240px;
-}
-
-
-.load-more-container {
-  text-align: center;
-  margin-top: 20px;
-}
-
 /* 附近场馆区 */
 .nearby-venues-section {
   max-width: 1200px;
@@ -259,124 +208,13 @@ const venues = ref([
   border-top: 1px solid var(--el-border-color-light);
 }
 
-.footer-container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
 
-.footer-col {
-  margin-bottom: 30px;
-}
 
-.footer-brand h3 {
-  font-size: 32px;
-  font-weight: bold;
-  color: var(--el-text-color-primary);
-  margin: 0 0 10px;
-}
-
-.footer-brand p {
-  font-size: 14px;
-  color: var(--el-text-color-regular);
-  margin: 0;
-}
-
-.footer-links h4 {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--el-text-color-primary);
-  margin: 0 0 20px;
-}
-
-.footer-links ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.footer-links li {
-  margin-bottom: 12px;
-}
-
-.footer-links .el-link {
-  --el-link-text-color: var(--el-text-color-regular);
-  font-weight: 400;
-}
-
-.footer-links .el-link:hover {
-  --el-link-text-color: var(--el-color-primary);
-}
-
-.footer-social h4 {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--el-text-color-primary);
-  margin: 20px 0;
-}
-
-.social-icons {
-  display: flex;
-  gap: 15px;
-  margin-bottom: 20px;
-}
-
-.social-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: #fff;
-  color: var(--el-text-color-secondary);
-  box-shadow: var(--el-box-shadow-light);
-  transition: all 0.3s ease;
-}
-
-.social-icon:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--el-box-shadow);
-  color: var(--el-text-color-primary);
-}
-
-.social-icon.instagram {
-  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-  color: #fff;
-}
-
-.social-icon.instagram:hover {
-  opacity: 0.9;
-}
-
-.app-badges {
-  display: flex;
-  gap: 15px;
-  flex-wrap: wrap;
-  /* 在小屏幕上允许换行 */
-}
-
-.app-badge {
-  display: inline-flex;
-  align-items: center;
-  background-color: #404040;
-  /* 深灰色背景 */
-  color: #ffffff;
-  padding: 8px 16px;
-  border-radius: 20px;
-  /* 圆角 */
-  text-decoration: none;
-  transition: background-color 0.2s;
-}
-
-.app-badge:hover {
-  background-color: #2c2c2c;
-  /* 悬停时颜色变深 */
-}
 
 
 
 /* 响应式适配 (Tablet) */
-@media (max-width: 992px) {
+@media (min-width: 768px) and (max-width: 1024px) {
   .banner-left h1 {
     font-size: 42px;
   }
