@@ -95,7 +95,7 @@
     </el-container>
 
     <footer class="site-footer">
-
+      <BottomBar/>
     </footer>
   </div>
 </template>
@@ -108,6 +108,7 @@ import HomePageSearchBar from '@/components/homepage/SearchBar.vue';
 import InterestedTeacher from '@/components/homepage/InterestedTeacher.vue';
 import VenueCard from '@/components/homepage/Venue.vue';
 import InterestClass from '@/components/homepage/InterestClass.vue';
+import BottomBar from '@/components/homepage/BottomBar.vue';
 import { Search, ArrowDown, } from '@element-plus/icons-vue';
 import 'element-plus/theme-chalk/display.css'; // 引入响应式隐藏类
 const TeacherField = ['全部领域', '艺术人文', '经济金融', '健康时尚', '职业教育']

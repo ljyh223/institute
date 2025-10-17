@@ -61,7 +61,7 @@
               </div>
 
               <!-- 订单列表 -->
-              <div class="order-list">
+              <div class="order-list">  
                 <!-- 列表头部 -->
                 <div class="order-list-header">
                   <div class="header-col col-info">商品信息</div>
