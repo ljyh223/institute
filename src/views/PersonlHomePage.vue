@@ -213,46 +213,10 @@ const venues = ref([
 
 
 
+/* 响应式适配 - 页面布局相关 */
+
 /* 响应式适配 (Tablet) */
 @media (min-width: 768px) and (max-width: 1024px) {
-  .banner-left h1 {
-    font-size: 42px;
-  }
-
-  .banner-left h2 {
-    font-size: 32px;
-  }
-
-  .banner-right-image-col {
-    min-height: 450px;
-  }
-
-  .banner-image-container {
-    width: 320px;
-    height: 320px;
-  }
-
-  .background-circle.circle-1 {
-    width: 380px;
-    height: 380px;
-  }
-
-  .floating-bubble {
-    padding: 12px 18px;
-    font-size: 13px;
-  }
-
-  .bubble-great-teacher {
-    left: -10px;
-  }
-
-  .bubble-happy-students {
-    right: -20px;
-  }
-
-  .bubble-weekly-progress {
-    bottom: 8%;
-  }
 
   .efficiency-title,
   .explore-title {
@@ -262,109 +226,10 @@ const venues = ref([
   .section-title {
     font-size: 26px;
   }
-
-  .hidden-sm-and-down {
-    display: none;
-  }
 }
 
 /* 响应式适配 (Mobile) */
 @media (max-width: 767px) {
-  .header {
-    height: auto;
-    padding: 10px 15px;
-  }
-
-  .header-content {
-    flex-wrap: wrap;
-  }
-
-  .logo-section {
-    flex: 1 0 50%;
-  }
-
-  .search-section {
-    order: 3;
-    flex: 1 0 100%;
-    margin-top: 10px;
-  }
-
-  .user-action-section {
-    flex: 1 0 50%;
-  }
-
-  .header-search-input {
-    max-width: 100%;
-  }
-
-  .personal-center-btn {
-    display: none;
-  }
-
-  .top-banner-wrapper {
-    padding: 30px 15px;
-  }
-
-  .banner-left {
-    text-align: center;
-    margin-bottom: 30px;
-  }
-
-  .banner-left h1 {
-    font-size: 38px;
-  }
-
-  .banner-left h2 {
-    font-size: 28px;
-  }
-
-  .banner-right-image-col {
-    min-height: 350px;
-  }
-
-  .banner-image-container {
-    width: 280px;
-    height: 280px;
-  }
-
-  .background-circle.circle-1 {
-    width: 330px;
-    height: 330px;
-  }
-
-  .floating-bubble {
-    padding: 10px 15px;
-    font-size: 12px;
-  }
-
-  .bubble-great-teacher {
-    top: 5%;
-    left: 5%;
-  }
-
-  .bubble-happy-students {
-    top: 8%;
-    right: 5%;
-  }
-
-  .bubble-weekly-progress {
-    bottom: 5%;
-    left: 8%;
-  }
-
-  .search-bar-wrapper {
-    margin-top: -30px;
-    padding: 0 8px;
-    height: 54px;
-  }
-
-  .links-container {
-    margin-right: 10px;
-  }
-
-  .link-item .el-icon {
-    font-size: 18px;
-  }
 
   .efficiency-title,
   .explore-title {
@@ -378,38 +243,6 @@ const venues = ref([
   .section-title {
     font-size: 24px;
     text-align: center;
-  }
-
-  .tag-list {
-    justify-content: center;
-  }
-
-  .tag-list .el-button {
-    font-size: 12px;
-    padding: 5px 10px;
-  }
-
-  .filter-bar {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .filter-search {
-    width: 100%;
-  }
-
-  .footer-col {
-    text-align: center;
-  }
-
-  .footer-social,
-  .footer-brand {
-    width: 100%;
-  }
-
-  .social-icons,
-  .app-badges {
-    justify-content: center;
   }
 }
 </style>

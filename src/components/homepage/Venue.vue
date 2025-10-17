@@ -28,6 +28,12 @@
 
 <script setup>
 import { Location, User } from '@element-plus/icons-vue'
+
+// 定义组件名称
+defineOptions({
+  name: 'VenueCard'
+})
+
 defineProps({
   venue: {
     type: Object,
@@ -88,5 +94,46 @@ defineProps({
 
 .venue-detail:last-child {
   margin-bottom: 0;
+}
+
+/* 响应式适配 - 移动端 */
+@media (max-width: 767px) {
+  .venue-image {
+    height: 160px;
+  }
+  
+  .venue-info-body {
+    padding: 15px;
+  }
+  
+  .venue-name {
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+  
+  .venue-detail {
+    font-size: 13px;
+    margin-bottom: 8px;
+  }
+  
+  .venue-detail .el-icon {
+    font-size: 14px;
+    margin-right: 6px;
+  }
+}
+
+/* 响应式适配 - 平板 */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .venue-image {
+    height: 180px;
+  }
+  
+  .venue-info-body {
+    padding: 18px;
+  }
+  
+  .venue-name {
+    font-size: 17px;
+  }
 }
 </style>

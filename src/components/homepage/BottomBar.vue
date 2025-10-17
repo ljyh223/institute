@@ -149,4 +149,21 @@ const footerLinks = ref([
   background-color: #2c2c2c;
   /* 悬停时颜色变深 */
 }
+
+/* 响应式适配 - 移动端 */
+@media (max-width: 767px) {
+  .footer-col {
+    text-align: center;
+  }
+  
+  .footer-social,
+  .footer-brand {
+    width: 100%;
+  }
+  
+  .social-icons,
+  .app-badges {
+    justify-content: center;
+  }
+}
 </style>

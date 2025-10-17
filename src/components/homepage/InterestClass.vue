@@ -148,4 +148,51 @@ function switchTag(idx) {
 .load-more-container.text-center {
   text-align: center;
 }
+
+/* 响应式适配 - 移动端 */
+@media (max-width: 767px) {
+  .tag-list {
+    justify-content: center;
+  }
+
+  .tag-list .el-button {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+
+  .course-image {
+    height: 140px;
+  }
+
+  .course-info {
+    padding: 12px;
+  }
+
+  .course-title {
+    font-size: 14px;
+  }
+
+  .course-instructor {
+    font-size: 12px;
+  }
+
+  .course-price {
+    font-size: 16px;
+  }
+}
+
+/* 响应式适配 - 平板 */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .course-image {
+    height: 150px;
+  }
+
+  .course-info {
+    padding: 14px;
+  }
+
+  .course-title {
+    font-size: 15px;
+  }
+}
 </style>

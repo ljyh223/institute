@@ -71,4 +71,33 @@ import { Search, ChatDotSquare, Monitor, Goods, ShoppingCartFull, } from '@eleme
 .link-text {
   margin-left: 8px;
 }
+
+/* 响应式适配 - 移动端 */
+@media (max-width: 767px) {
+  .search-bar-wrapper {
+    width: 95%;
+    margin-top: -30px;
+    padding: 0 8px;
+    height: 54px;
+  }
+  
+  .links-container {
+    margin-right: 10px;
+  }
+  
+  .link-item .el-icon {
+    font-size: 18px;
+  }
+}
+
+/* 响应式适配 - 平板 */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .search-bar-wrapper {
+    width: 92%;
+  }
+  
+  .links-container {
+    margin-right: 15px;
+  }
+}
 </style>
