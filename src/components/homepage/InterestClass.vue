@@ -1,20 +1,32 @@
 <template>
-  <div class="explore-courses-section">
-    <h3 class="explore-title">探索你感兴趣的课程</h3>
-    <div class="tag-list">
-      <span class="tag-label">标签：</span>
-      <el-button v-for="(tag, idx) in props.tagList" :key="tag" :type="activeIdx === idx ? 'primary' : undefined"
-        :plain="activeIdx !== idx" @click="switchTag(idx)">
-        {{ tag }}
-      </el-button>
-    </div>
-    <!-- 注意：课程数据未提供，所以这里显示空状态 -->
-    <el-empty description="数据为空" class="empty-data-state">
-      <template #image>
-        <img class="custom-empty-image" src="@/assets/static/empty.png" alt="">
-      </template>
-    </el-empty>
+  <div class="tag-list">
+    <span class="tag-label">标签：</span>
+    <el-button v-for="(tag, idx) in props.tagList" :key="tag" :type="activeIdx === idx ? 'primary' : undefined"
+      :plain="activeIdx !== idx" @click="switchTag(idx)">
+      {{ tag }}
+    </el-button>
   </div>
+  <!-- 注意：课程数据未提供，所以这里显示空状态 -->
+  <el-row :gutter="24" v-if="props.courses.length != 0">
+    <el-col v-for="course in props.courses" :key="course.id" :xs="12" :sm="8" :md="6">
+      <el-card shadow="hover" class="course-card" :body-style="{ padding: '0px' }">
+        <el-image :src="course.image" fit="cover" class="course-image" />
+        <div class="course-info">
+          <h4 class="course-title">{{ course.title }}</h4>
+          <p class="course-instructor">{{ course.instructor }}</p>
+          <div class="course-meta">
+            <span class="course-price">¥{{ course.price }} <span class="price-unit">/节</span></span>
+            <el-button type="primary" link>免费详情</el-button>
+          </div>
+        </div>
+      </el-card>
+    </el-col>
+  </el-row>
+  <el-empty description="数据为空" class="empty-data-state" v-else>
+    <template #image>
+      <img class="custom-empty-image" src="@/assets/static/empty.png" alt="">
+    </template>
+  </el-empty>
 
 </template>
 
@@ -37,6 +49,13 @@ const props = defineProps({
       '个人发展',
       '兴趣爱好'
     ]
+  },
+
+  courses: {
+    type: Array,
+    default: () => [
+      { id: 1, title: '微软 Power BI 数据分析师', instructor: '陈老师', price: '99', image: 'src/assets/static/course.png' }
+    ]
   }
 })
 
@@ -48,21 +67,6 @@ function switchTag(idx) {
 </script>
 
 <style scoped>
-.explore-courses-section {
-  max-width: 1200px;
-  margin: 60px auto 80px;
-  padding: 30px;
-  background-color: #ffffff;
-  box-sizing: border-box;
-}
-
-.explore-title {
-  font-size: 22px;
-  font-weight: 600;
-  color: var(--el-text-color-primary);
-  margin-bottom: 20px;
-}
-
 .tag-list {
   display: flex;
   flex-wrap: wrap;
@@ -78,28 +82,70 @@ function switchTag(idx) {
   flex-shrink: 0;
 }
 
-.tag-list .el-button {
-  border-radius: 4px;
-  padding: 8px 15px;
-  font-size: 14px;
-  font-weight: 400;
+.course-card {
+  margin-bottom: 24px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--el-border-color-lighter);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.tag-list .el-button.is-plain:hover,
-.tag-list .el-button.is-plain:focus {
-  background-color: var(--el-color-primary-light-9);
-  color: var(--el-color-primary);
-  border-color: var(--el-color-primary-light-7);
+.course-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--el-box-shadow);
 }
 
-.empty-data-state {
+.course-image {
+  width: 100%;
+  height: 160px;
+  display: block;
+}
+
+.course-info {
+  padding: 16px;
+}
+
+.course-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--el-text-color-primary);
+  margin: 0 0 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.course-instructor {
+  font-size: 13px;
+  color: var(--el-text-color-secondary);
+  margin: 0 0 16px;
+}
+
+.course-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.course-price {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--el-color-danger);
+}
+
+.price-unit {
+  font-size: 13px;
+  color: var(--el-text-color-secondary);
+  font-weight: normal;
+  margin-left: 2px;
+}
+
+.load-more-container {
+  text-align: left;
   margin-top: 20px;
-  padding: 40px 0;
-  background-color: transparent;
-  box-shadow: none;
 }
 
-.custom-empty-image {
-  opacity: 0.8;
+.load-more-container.text-center {
+  text-align: center;
 }
 </style>
