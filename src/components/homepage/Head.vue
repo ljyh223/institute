@@ -1,11 +1,4 @@
-<script setup>
-import { Bell, ArrowRight } from '@element-plus/icons-vue'
 
-// 定义组件名称
-defineOptions({
-  name: 'HomePageHead'
-})
-</script>
 <template>
 
   <el-header class="header">
@@ -59,6 +52,11 @@ const router = useRouter()
 function goPersonalCenter() {
   router.push({ name: 'PersonalCenter' })
 }
+
+// 定义组件名称
+defineOptions({
+  name: 'HomePageHead'
+})
 </script>
 
 

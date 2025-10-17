@@ -2,7 +2,6 @@
 import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import { viteMockServe } from 'vite-plugin-mock'
 // import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vite.dev/config/
@@ -12,9 +11,26 @@ const dirname =
   typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url))
 
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
-export default defineConfig({
+async function loadMockPlugin() {
+  try {
+    const { viteMockServe } = await import('vite-plugin-mock')
+    return [
+      viteMockServe({
+        mockPath: 'mock',
+        localEnabled: true,
+      })
+    ]
+  } catch (err) {
+    // 当 vite-plugin-mock 未安装时，忽略该插件，避免开发服务器启动失败
+    return []
+  }
+}
+
+export default defineConfig(async () => {
+  const isVitest = !!process.env.VITEST
+  return ({
   plugins: [
-    vue(), 
+    vue(),
     // vueDevTools()
   ],
   resolve: {
@@ -32,10 +48,7 @@ export default defineConfig({
           storybookTest({
             configDir: path.join(dirname, '.storybook'),
           }),
-          viteMockServe({
-            mockPath: 'mock',
-            localEnabled: true,
-          })
+          ...(isVitest ? (await loadMockPlugin()) : [])
         ],
         test: {
           name: 'storybook',
@@ -63,4 +76,5 @@ export default defineConfig({
       },
     },
   },
+})
 })

@@ -29,6 +29,7 @@
 
 <script setup>
 import { Location, User } from '@element-plus/icons-vue'
+import { useRouter } from 'vue-router'
 
 // 定义组件名称
 defineOptions({
@@ -47,6 +48,7 @@ defineProps({
 
 // 点击小卡片跳转到场馆详情页（HomepageDetail）
 const router = useRouter()
+
 function goVenueDetail(id) {
   router.push({ name: 'venue-detail', params: { id } })
 }
@@ -108,21 +110,21 @@ function goVenueDetail(id) {
   .venue-image {
     height: 160px;
   }
-  
+
   .venue-info-body {
     padding: 15px;
   }
-  
+
   .venue-name {
     font-size: 16px;
     margin-bottom: 12px;
   }
-  
+
   .venue-detail {
     font-size: 13px;
     margin-bottom: 8px;
   }
-  
+
   .venue-detail .el-icon {
     font-size: 14px;
     margin-right: 6px;
@@ -134,11 +136,11 @@ function goVenueDetail(id) {
   .venue-image {
     height: 180px;
   }
-  
+
   .venue-info-body {
     padding: 18px;
   }
-  
+
   .venue-name {
     font-size: 17px;
   }
