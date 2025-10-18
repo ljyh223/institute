@@ -36,51 +36,30 @@
           <el-button type="primary" link class="switcher-btn">关注</el-button>
         </div>
 
-
-        
-        <!-- 动态列表 -->
-        <div class="feed-list">
-          <div v-for="post in posts" :key="post.id" class="post-card">
-            <div class="post-header">
-              <el-avatar :size="40" :src="post.author.avatar" />
-              <div class="author-info">
-                <span class="author-name">{{ post.author.name }}</span>
-                <span class="post-timestamp">{{ post.timestamp }}</span>
-              </div>
-              <el-button type="primary" class="follow-btn">关注</el-button>
-            </div>
-            <div class="post-content">
-              <h4 class="post-title">{{ post.title }}</h4>
-              <p class="post-text">{{ post.content }}</p>
-              <div v-if="post.images.length > 0" :class="['image-gallery', `layout-${Math.min(post.images.length, 4)}`]">
-                <el-image 
-                  v-for="(img, index) in post.images" 
-                  :key="index" 
-                  :src="img" 
-                  fit="cover" 
-                  class="gallery-image"
-                  :preview-src-list="post.images"
-                  :initial-index="index"
-                  hide-on-click-modal
-                />
-              </div>
-            </div>
-            <div class="post-actions">
-                <div class="action-item">
-                    <el-icon><Pointer /></el-icon>
-                    <span>点赞 ({{ post.stats.likes }})</span>
-                </div>
-                <div class="action-item">
-                    <el-icon><Star /></el-icon>
-                    <span>收藏 ({{ post.stats.favorites }})</span>
-                </div>
-                <div class="action-item">
-                    <el-icon><Warning /></el-icon>
-                    <span>屏蔽</span>
+         <!-- 发布动态 (保持不变) -->
+        <div class="post-creator">
+            <div class="post-creator">
+            <div class="creator-top">
+                <el-input
+                    type="textarea"
+                    :rows="3"
+                    placeholder="说点什么吧"
+                    v-model="newPostText"
+                    resize="none"
+                    class="creator-textarea"
+                ></el-input>
+                <div class="image-upload-box">
+                    <img src="./picture/路径1(1).png" alt="" >
                 </div>
             </div>
-          </div>
+            <div class="creator-bottom">
+                <span class="hash-tag">#</span>
+                <el-button type="primary">发表</el-button>
+            </div>
         </div>
+        </div>
+    
+        <DynamicList :posts="posts" />
 
       </div>
     </el-main>
@@ -89,22 +68,20 @@
 
 <script setup>
 import { ref } from 'vue';
-import { ArrowRight, Search, Bell, Camera, Pointer, Star, Warning } from '@element-plus/icons-vue';
+import { ArrowRight } from '@element-plus/icons-vue';
 import 'element-plus/theme-chalk/display.css';
 import HomePageHead from '@/components/homepage/Head.vue';
+import DynamicList from '@/components/community/DynamicList.vue';
 
-const newPostText = ref('');
-
-// 模拟动态数据
 const posts = ref([
   { 
     id: 1, 
     author: { name: '油猫病', avatar: 'https://randomuser.me/api/portraits/women/32.jpg' },
     timestamp: '2025-09-01 15:38',
     title: 'React Hooks 最佳实践分享',
-    content: '最近在项目中使⽤React Hooks有⼀些⼼得，特别是useEffect和useCallback的合理使⽤可以显著提升性能，避免不必要的重渲染...',
+    content: '最近在项目中使⽤React Hooks有⼀些⼼得...',
     images: ['https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=2070&auto-format&fit=crop'],
-    stats: { likes: 42, favorites: 42 } // <-- 已更新
+    stats: { likes: 42, favorites: 42 }
   },
   { 
     id: 2, 
@@ -116,9 +93,9 @@ const posts = ref([
         'https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=2070&auto=format&fit=crop',
         'https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop'
     ],
-    stats: { likes: 221, comments: 258, shares: 310 }
+    stats: { likes: 221, favorites: 258 }
   },
-  { 
+   { 
     id: 3, 
     author: { name: '李思聪', avatar: 'https://randomuser.me/api/portraits/men/33.jpg' },
     timestamp: '2025-09-03 15:30',
@@ -148,6 +125,7 @@ const posts = ref([
     stats: { likes: 42, comments: 42, shares: 0 }
   }
 ]);
+
 </script>
 
 <style scoped>
@@ -157,20 +135,6 @@ const posts = ref([
 .top-black-bar { width: 100%; height: 30px; background-color:rgba(56, 56, 56, 1); position: sticky; top: 0; z-index: 1001; }
 .content-container { max-width: 800px; margin: 0 auto; padding: 0 20px 40px; }
 
-/* Header样式 */
-.header { background-color: #ffffff; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08); height: 64px; position: sticky; top: 30px; z-index: 1000; display: flex; align-items: center; }
-.header-content { max-width: 1200px; margin: 0 auto; width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; }
-.logo-section { display: flex; align-items: center; gap: 16px; }
-.logo-text { font-size: 24px; font-weight: bold; color: var(--el-color-primary); }
-.ai-explore-btn { border-color: var(--el-border-color-light); color: var(--el-text-color-primary); }
-.search-container { display: flex; align-items: center; flex-grow: 1; max-width: 450px; margin: 0 24px; }
-.header-search-input { --el-input-border-radius: 20px; }
-.header-search-input :deep(.el-input__wrapper) { box-shadow: none !important; border: 1px solid var(--el-border-color); }
-.search-icon-btn { margin-left: -35px; z-index: 5; }
-.user-action-section { display: flex; align-items: center; gap: 20px; }
-.notification-bell { color: var(--el-color-primary); cursor: pointer; }
-.el-dropdown-link { display: flex; align-items: center; gap: 20px; cursor: pointer; }
-
 /* 面包屑 */
 .page-breadcrumb { padding: 24px 0; }
 
@@ -178,11 +142,11 @@ const posts = ref([
 .community-banner {
   background-color: rgba(0, 86, 210, 1);
   color: #fff;
-  padding: 40px 0; /* 调整内边距 */
-  position: relative; /* 为绝对定位的链接提供基准 */
+  padding: 40px 0;
+  position: relative;
 }
 .banner-content-wrapper {
-  max-width: 800px; /* 内容宽度限制 */
+  max-width: 800px;
   margin: 0 auto;
   padding: 0 20px;
   display: flex;
@@ -204,11 +168,68 @@ const posts = ref([
 .my-posts-link {
   position: absolute;
   top: 24px;
-  right: calc((100% - 800px) / 2 + 20px); /* 定位到内容区的右侧 */
+  right: calc((100% - 800px) / 2 + 20px);
   color: #fff;
   opacity: 0.9;
 }
 .my-posts-link:hover { opacity: 1; }
+
+/* 发布动态 */
+.post-creator {
+  background-color: #fff;
+  border: 1px solid var(--el-border-color-lighter);
+  border-radius: 6px;
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+.creator-top {
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+.creator-textarea {
+  flex-grow: 1;
+}
+.creator-textarea :deep(.el-textarea__inner) {
+  box-shadow: none !important;
+  background-color: transparent;
+  border: none;
+  padding: 16px;
+  font-size: 15px;
+  border-radius: 0;
+}
+.image-upload-box {
+  width: 80px;
+  flex-shrink: 0;
+  align-self: stretch;
+  border-left: 1px solid var(--el-border-color-lighter);
+  background-color: #f9fafb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #c0c4cc;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.image-upload-box img{
+    width: 50%;
+}
+.image-upload-box:hover {
+  background-color: #f5f7fa;
+}
+.creator-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--el-border-color-lighter);
+  padding: 12px 16px;
+}
+.hash-tag {
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--el-text-color-placeholder);
+  cursor: pointer;
+}
 
 /* 视图切换 */
 .view-switcher { padding: 12px 20px; border-bottom: 1px solid var(--el-border-color-lighter);   text-align: center;  }
@@ -216,83 +237,12 @@ const posts = ref([
 .switcher-btn.active { font-weight: 600; color: var(--el-color-primary); position: relative; }
 .switcher-btn.active::after { content: ''; position: absolute; bottom: -13px; left: 8px; right: 8px; height: 3px; background-color: var(--el-color-primary); border-radius: 2px; }
 
-/* 发布动态 (优化后) */
-.post-input-card { background-color: #fff; padding: 20px; border-radius: 8px; margin-bottom: 16px; border: 1px solid var(--el-border-color-lighter); }
-.input-main { display: flex; gap: 16px; }
-.post-textarea { flex-grow: 1; }
-.post-textarea :deep(.el-textarea__inner) { box-shadow: none !important; border: none; padding: 0; font-size: 15px; background-color: transparent; }
-.input-actions { display: flex; justify-content: space-between; align-items: center; margin-top: 12px; padding-left: 56px; /* 40px avatar + 16px gap */ }
-.action-icons { display: flex; gap: 16px; }
-.action-icon { font-size: 20px; color: var(--el-text-color-secondary); cursor: pointer; }
-/* 动态列表 */
-.feed-list { display: flex; flex-direction: column; }
-.post-card { background-color: #fff; padding: 24px; border: 1px solid var(--el-border-color-lighter); border-top: none; }
-.feed-list > .post-card:first-child { border-radius: 8px 8px 0 0; border-top: 1px solid var(--el-border-color-lighter); }
-.feed-list > .post-card:last-child { border-radius: 0 0 8px 8px; }
-
-.post-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
-.author-info { display: flex; flex-direction: column; flex-grow: 1; }
-.author-name { font-weight: 600; }
-.post-timestamp { font-size: 13px; color: var(--el-text-color-secondary); }
-
-.post-content { margin-left: 52px; }
-.post-title { font-size: 16px; font-weight: 600; margin: 0 0 8px; }
-.post-text { font-size: 15px; line-height: 1.7; margin: 0 0 16px; white-space: pre-wrap; }
-
-/* 图片画廊 */
-.image-gallery {
-  display: grid;
-  gap: 8px;
-  border-radius: 8px;
-  overflow: hidden;
-  margin-top: 20px;
-}
-.gallery-image {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-/* 单张图片的样式 */
-.image-gallery.layout-1 .gallery-image {
-  max-width: 100%; /* 允许单图撑满宽度 */
-  max-height: 500px;
-  aspect-ratio: auto;
-}
-.image-gallery.layout-3 { grid-template-columns: repeat(3, 1fr); }
-.image-gallery.layout-3 .gallery-image { aspect-ratio: 1 / 1; }
-.image-gallery.layout-4 { grid-template-columns: repeat(3, 1fr); grid-template-rows: auto; } /* For 4+ images */
-.image-gallery.layout-4 .gallery-image { aspect-ratio: 1 / 1; }
-
-/* 动态操作栏 */
-.post-actions {
-  display: flex;
-  justify-content: flex-end; /* 右对齐 */
-  gap: 24px; /* 加大操作项间距 */
-  margin-top: 24px;
-  padding-top: 0; /* 移除上边框和内边距 */
-  border-top: none;
-}
-.action-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 14px;
-  color: var(--el-text-color-secondary);
-  cursor: pointer;
-}
-.action-item:hover {
-  color: var(--el-color-primary);
-}
-
 /* --- 响应式适配 --- */
 @media (max-width: 767px) {
   .content-container { padding: 0 10px 20px; }
-  .post-content { margin-left: 0; }
-  .image-gallery.layout-3, 
-  .image-gallery.layout-4 { grid-template-columns: repeat(2, 1fr); }
 }
 
-@media (max-width: 840px) { /* 800px content + 2*20px padding */
+@media (max-width: 840px) {
   .my-posts-link {
     right: 20px;
   }

@@ -52,28 +52,7 @@
                 <el-breadcrumb-item>课程详情</el-breadcrumb-item>
             </el-breadcrumb>
             
-            <!-- 课程主 Banner -->
-            <div class="course-banner">
-                <el-row :gutter="30" align="middle">
-                    <el-col :xs="24" :md="14" class="course-info-col">
-                        <h1 class="course-title">前端开发入门——从零开始学习Java</h1>
-                        <p class="course-subtitle">副标题副标题副标题副标题副标题</p>
-                        <div class="course-price">¥ 0</div>
-                        <el-button type="primary" size="large" class="join-course-btn">加入我的课程</el-button>
-                    </el-col>
-                    <el-col :xs="24" :md="10" class="course-image-col">
-                        <el-image 
-                            src="https://images.unsplash.com/photo-1605379399642-870262d3d051?q=80&w=1506&auto=format&fit=crop" 
-                            fit="cover" 
-                            class="course-main-image"
-                        >
-                           <template #placeholder>
-                                <div class="image-slot">加载中<span class="dot">...</span></div>
-                           </template>
-                        </el-image>
-                    </el-col>
-                </el-row>
-            </div>
+           <TopBar1/>
             
             <!-- 课程元数据 -->
             <div class="quick-links-wrapper">
@@ -230,8 +209,16 @@ import {
   ArrowRight, Search, Bell, VideoCamera, Brush, User, Avatar, Location, Phone,ChatDotSquare, Monitor, Goods, ShoppingCartFull
 } from '@element-plus/icons-vue';
 import 'element-plus/theme-chalk/display.css';
+import TopBar1 from '@/components/homepage/TopBar1.vue';
 
 const activeTab = ref('overview');
+
+const defineProps = ref({
+  title: '...',
+  subtitle: '...',
+  price: 299,
+  coverImage: '...'
+});
 
 const interestedCourses = ref([
   { id: 1, title: '微软 Power BI 数据分析师', instructor: '陈老师', price: '99', image: 'src/components/Coursedetail/picture/image(1).png' },
@@ -309,54 +296,6 @@ const footerLinks = ref([
     padding: 25px 0;
     font-size: 14px;
 }
-
-/* 课程 Banner */
-.course-banner {
-    background: rgba(0, 86, 210, 1);
-    color: #ffffff;
-    padding: 40px;
-    margin-bottom: 20px;
-}
-.course-title {
-    font-size: 36px;
-    font-weight: bold;
-    margin: 0 0 10px;
-    line-height: 1.3;
-}
-.course-subtitle {
-    font-size: 16px;
-    opacity: 0.85;
-    margin: 0 0 20px;
-}
-.course-price {
-    font-size: 32px;
-    font-weight: bold;
-    margin-bottom: 25px;
-}
-.join-course-btn {
-    --el-button-bg-color: #ffffff;
-    --el-button-text-color: var(--el-color-primary);
-    --el-button-hover-bg-color: #f0faff;
-    border: none;
-    font-weight: bold;
-}
-.course-main-image {
-    width: 100%;
-    height: 250px;
-    border-radius: 8px;
-    overflow: hidden;
-}
-.image-slot {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    background: var(--el-fill-color-light);
-    color: var(--el-text-color-secondary);
-    font-size: 14px;
-}
-
 
 /* 课程元数据条 */
 .quick-links-wrapper {
@@ -713,7 +652,7 @@ const footerLinks = ref([
 
 /* 响应式适配 */
 @media (max-width: 992px) {
-    .course-title { font-size: 30px; }
+    .course-title { font-size: 30px; }ssssssssssssss
     .course-banner { padding: 30px; }
 }
 
