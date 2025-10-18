@@ -1,6 +1,4 @@
-<script setup>
-import { Bell, ArrowRight } from '@element-plus/icons-vue'
-</script>
+
 <template>
 
   <el-header class="header">
@@ -30,9 +28,10 @@ import { Bell, ArrowRight } from '@element-plus/icons-vue'
         <el-avatar :size="30" src="https://cube.elemecdn.com/3/7c/3ed689582b989fd05f42a77428753.jpeg"></el-avatar>
         <el-popover placement="bottom-end" :width="150" trigger="hover">
           <template #reference>
-            <el-button link class="personal-center-btn hidden-xs-only">个人中心</el-button>
+            <el-button link class="personal-center-btn hidden-xs-only" @click="goPersonalCenter">个人中心</el-button>
           </template>
           <div class="popover-menu">
+            <p @click="goPersonalCenter">个人中心</p>
             <p>我的订单</p>
             <p>联系市场</p>
             <p>我的收藏</p>
@@ -44,6 +43,21 @@ import { Bell, ArrowRight } from '@element-plus/icons-vue'
   </el-header>
 </template>
 
+<script setup>
+import { Bell, ArrowRight } from '@element-plus/icons-vue'
+import { useRouter } from 'vue-router'
+
+// 跳转到个人中心（publish.vue 作为个人中心布局页）
+const router = useRouter()
+function goPersonalCenter() {
+  router.push({ name: 'PersonalCenter' })
+}
+
+// 定义组件名称
+defineOptions({
+  name: 'HomePageHead'
+})
+</script>
 
 
 
@@ -136,5 +150,39 @@ import { Bell, ArrowRight } from '@element-plus/icons-vue'
 
 .popover-menu p:hover {
   background-color: var(--el-color-primary-light-9);
+}
+
+/* 响应式适配 - 移动端 */
+@media (max-width: 767px) {
+  .header {
+    height: auto;
+    padding: 10px 15px;
+  }
+
+  .header-content {
+    flex-wrap: wrap;
+  }
+
+  .logo-section {
+    flex: 1 0 50%;
+  }
+
+  .search-section {
+    order: 3;
+    flex: 1 0 100%;
+    margin-top: 10px;
+  }
+
+  .user-action-section {
+    flex: 1 0 50%;
+  }
+
+  .header-search-input {
+    max-width: 100%;
+  }
+
+  .personal-center-btn {
+    display: none;
+  }
 }
 </style>

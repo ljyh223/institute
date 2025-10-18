@@ -1,3 +1,4 @@
+
 <template>
   <div class="wallet-table">
     <el-table :data="pagedRows" border style="width: 100%">

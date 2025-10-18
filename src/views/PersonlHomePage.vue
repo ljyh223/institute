@@ -15,26 +15,22 @@
 
         <div class="explore-courses-section">
           <h3 class="explore-title">探索你感兴趣的课程</h3>
-          <InterestClass :tag-list="tagList" :courses="courses" />
+          <InterestClass :tag-list="tagList" :courses="courses" @click="goDetail" @more="goCourseList" />
         </div>
 
 
         <div class="explore-teachers-section">
           <h3 class="section-title">探索你感兴趣的老师</h3>
-          <InterestedTeacher :teachers="teachers" :sort="sort" :modality="modality" :field="field" />
+
+          <InterestedTeacher :teachers="teachers" :sort="sort" :modality="modality" :field="field"
+            @click="goTeacherHome" @more="goTeacherList" />
         </div>
 
         <!-- Nearby Venues Section -->
         <div class="nearby-venues-section">
           <h3 class="section-title">附近适合您的场馆</h3>
-          <el-row :gutter="24">
-            <el-col v-for="venue in venues" :key="venue.id" :xs="24" :sm="12" :md="8">
-              <VenueCard :venue="venue" />
-            </el-col>
-          </el-row>
-          <div class="load-more-container">
-            <el-button type="primary" size="large">查看更多</el-button>
-          </div>
+          <HomePageVenue :venues="venues" @click="goVenueDetail" @more="goVenueList" />
+
         </div>
 
       </el-main>
@@ -48,11 +44,12 @@
 
 <script setup>
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 import HomePageHead from '@/components/homepage/Head.vue';
 import HomePageTopBar from '@/components/homepage/TopBar.vue';
 import HomePageSearchBar from '@/components/homepage/SearchBar.vue';
 import InterestedTeacher from '@/components/homepage/InterestedTeacher.vue';
-import VenueCard from '@/components/homepage/Venue.vue';
+import HomePageVenue from '@/components/homepage/HomePageVenue.vue';
 import InterestClass from '@/components/homepage/InterestClass.vue';
 import BottomBar from '@/components/homepage/BottomBar.vue';
 import 'element-plus/theme-chalk/display.css'; // 引入响应式隐藏类
@@ -114,6 +111,29 @@ const venues = ref([
   { id: 2, name: '飞羽竞技场', type: '篮球场馆', address: '苏州市工业园区独墅湖校区258号', phone: '19552698532', image: 'src/assets/static/矩形_17.png' },
   { id: 3, name: '飞羽竞技场', type: '篮球场馆', address: '苏州市工业园区独墅湖校区258号', phone: '19552698532', image: 'src/assets/static/矩形_17.png' },
 ]);
+
+const router = useRouter();
+function goDetail(id) {
+  router.push({ name: 'course-detail', params: { id } })
+}
+
+function goCourseList() {
+  router.push({ name: 'course-list' })
+}
+function goTeacherHome(id) {
+  router.push({ name: 'teacher-home', params: { id } })
+}
+
+function goTeacherList() {
+  router.push({ name: 'teacher-list' })
+}
+function goVenueDetail(id) {
+  router.push({ name: 'venue-detail', params: { id } })
+}
+
+function goVenueList() {
+  router.push({ name: 'venue-list' })
+}
 
 </script>
 
@@ -213,46 +233,10 @@ const venues = ref([
 
 
 
+/* 响应式适配 - 页面布局相关 */
+
 /* 响应式适配 (Tablet) */
 @media (min-width: 768px) and (max-width: 1024px) {
-  .banner-left h1 {
-    font-size: 42px;
-  }
-
-  .banner-left h2 {
-    font-size: 32px;
-  }
-
-  .banner-right-image-col {
-    min-height: 450px;
-  }
-
-  .banner-image-container {
-    width: 320px;
-    height: 320px;
-  }
-
-  .background-circle.circle-1 {
-    width: 380px;
-    height: 380px;
-  }
-
-  .floating-bubble {
-    padding: 12px 18px;
-    font-size: 13px;
-  }
-
-  .bubble-great-teacher {
-    left: -10px;
-  }
-
-  .bubble-happy-students {
-    right: -20px;
-  }
-
-  .bubble-weekly-progress {
-    bottom: 8%;
-  }
 
   .efficiency-title,
   .explore-title {
@@ -262,109 +246,10 @@ const venues = ref([
   .section-title {
     font-size: 26px;
   }
-
-  .hidden-sm-and-down {
-    display: none;
-  }
 }
 
 /* 响应式适配 (Mobile) */
 @media (max-width: 767px) {
-  .header {
-    height: auto;
-    padding: 10px 15px;
-  }
-
-  .header-content {
-    flex-wrap: wrap;
-  }
-
-  .logo-section {
-    flex: 1 0 50%;
-  }
-
-  .search-section {
-    order: 3;
-    flex: 1 0 100%;
-    margin-top: 10px;
-  }
-
-  .user-action-section {
-    flex: 1 0 50%;
-  }
-
-  .header-search-input {
-    max-width: 100%;
-  }
-
-  .personal-center-btn {
-    display: none;
-  }
-
-  .top-banner-wrapper {
-    padding: 30px 15px;
-  }
-
-  .banner-left {
-    text-align: center;
-    margin-bottom: 30px;
-  }
-
-  .banner-left h1 {
-    font-size: 38px;
-  }
-
-  .banner-left h2 {
-    font-size: 28px;
-  }
-
-  .banner-right-image-col {
-    min-height: 350px;
-  }
-
-  .banner-image-container {
-    width: 280px;
-    height: 280px;
-  }
-
-  .background-circle.circle-1 {
-    width: 330px;
-    height: 330px;
-  }
-
-  .floating-bubble {
-    padding: 10px 15px;
-    font-size: 12px;
-  }
-
-  .bubble-great-teacher {
-    top: 5%;
-    left: 5%;
-  }
-
-  .bubble-happy-students {
-    top: 8%;
-    right: 5%;
-  }
-
-  .bubble-weekly-progress {
-    bottom: 5%;
-    left: 8%;
-  }
-
-  .search-bar-wrapper {
-    margin-top: -30px;
-    padding: 0 8px;
-    height: 54px;
-  }
-
-  .links-container {
-    margin-right: 10px;
-  }
-
-  .link-item .el-icon {
-    font-size: 18px;
-  }
 
   .efficiency-title,
   .explore-title {
@@ -378,38 +263,6 @@ const venues = ref([
   .section-title {
     font-size: 24px;
     text-align: center;
-  }
-
-  .tag-list {
-    justify-content: center;
-  }
-
-  .tag-list .el-button {
-    font-size: 12px;
-    padding: 5px 10px;
-  }
-
-  .filter-bar {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .filter-search {
-    width: 100%;
-  }
-
-  .footer-col {
-    text-align: center;
-  }
-
-  .footer-social,
-  .footer-brand {
-    width: 100%;
-  }
-
-  .social-icons,
-  .app-badges {
-    justify-content: center;
   }
 }
 </style>

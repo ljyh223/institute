@@ -1,4 +1,5 @@
-<template>
+  
+  <template>
   <div class="wallet">
     <div class="balance-card">
       <div class="title">当前余额</div>

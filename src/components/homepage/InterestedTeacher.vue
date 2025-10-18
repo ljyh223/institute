@@ -2,42 +2,48 @@
 
   <div class="filter-bar">
     <div class="filter-options">
-      <span class="filter-label">领域:</span>
-      <el-dropdown @command="selectField">
-        <el-button plain>
-          {{ activeField }}<el-icon class="el-icon--right"><arrow-down /></el-icon>
-        </el-button>
+      <div class="filter-option">
+        <span class="filter-label">领域:</span>
+        <el-dropdown @command="selectField">
+          <el-button plain>
+            {{ activeField }}<el-icon class="el-icon--right"><arrow-down /></el-icon>
+          </el-button>
 
-        <template #dropdown>
-          <el-dropdown-menu>
-            <el-dropdown-item v-for="item in props.field" :key="item" :command="item">
-              {{ item }}
-            </el-dropdown-item>
-          </el-dropdown-menu>
-        </template>
-      </el-dropdown>
-      <span class="filter-label">排序:</span>
-      <el-dropdown @command="selectSort">
-        <el-button plain>
-          {{ activeSort }}<el-icon class="el-icon--right"><arrow-down /></el-icon>
-        </el-button>
-        <template #dropdown>
-          <el-dropdown-menu>
-            <el-dropdown-item v-for="item in props.sort" :key="item" :command="item">{{ item }}</el-dropdown-item>
-          </el-dropdown-menu>
-        </template>
-      </el-dropdown>
-      <span class="filter-label">形式:</span>
-      <el-dropdown @command="selectModality" class="hidden-sm-and-down">
-        <el-button plain>
-          {{ activeModality }}<el-icon class="el-icon--right"><arrow-down /></el-icon>
-        </el-button>
-        <template #dropdown>
-          <el-dropdown-menu>
-            <el-dropdown-item v-for="item in props.modality" :key="item" :command="item">{{ item }}</el-dropdown-item>
-          </el-dropdown-menu>
-        </template>
-      </el-dropdown>
+          <template #dropdown>
+            <el-dropdown-menu>
+              <el-dropdown-item v-for="item in props.field" :key="item" :command="item">
+                {{ item }}
+              </el-dropdown-item>
+            </el-dropdown-menu>
+          </template>
+        </el-dropdown>
+      </div>
+      <div class="filter-option">
+        <span class="filter-label">排序:</span>
+        <el-dropdown @command="selectSort">
+          <el-button plain>
+            {{ activeSort }}<el-icon class="el-icon--right"><arrow-down /></el-icon>
+          </el-button>
+          <template #dropdown>
+            <el-dropdown-menu>
+              <el-dropdown-item v-for="item in props.sort" :key="item" :command="item">{{ item }}</el-dropdown-item>
+            </el-dropdown-menu>
+          </template>
+        </el-dropdown>
+      </div>
+      <div class="filter-option">
+        <span class="filter-label">形式:</span>
+        <el-dropdown @command="selectModality">
+          <el-button plain>
+            {{ activeModality }}<el-icon class="el-icon--right"><arrow-down /></el-icon>
+          </el-button>
+          <template #dropdown>
+            <el-dropdown-menu>
+              <el-dropdown-item v-for="item in props.modality" :key="item" :command="item">{{ item }}</el-dropdown-item>
+            </el-dropdown-menu>
+          </template>
+        </el-dropdown>
+      </div>
     </div>
     <div class="filter-search">
       <el-input placeholder="搜索" :prefix-icon="Search" />
@@ -48,7 +54,7 @@
   <el-row :gutter="24">
     <el-col v-for="teacher in teachers" :key="teacher.id" :xs="24" :sm="12" :md="8">
 
-      <el-card class="teacher-card" shadow="hover">
+      <el-card class="teacher-card" shadow="hover" @click="$emit('click', teacher.id)">
 
         <!-- 老师信息 -->
         <div class="teacher-info">
@@ -65,7 +71,7 @@
     </el-col>
   </el-row>
 
-  <div class="load-more-container">
+  <div class="load-more-container" @click="$emit('more')">
     <el-button type="primary" size="large">查看更多</el-button>
   </div>
 
@@ -75,7 +81,7 @@
 <script setup>
 import { ref } from 'vue'
 import { Search, ArrowDown } from '@element-plus/icons-vue'
-
+defineEmits(['click', 'more']);
 const props = defineProps({
 
   teachers: {
@@ -115,6 +121,8 @@ function selectField(val) {
 function selectModality(val) {
   activeModality.value = val
 }
+
+
 </script>
 <style scoped>
 .filter-bar {
@@ -136,7 +144,7 @@ function selectModality(val) {
 .filter-label {
   font-size: 14px;
   color: var(--el-text-color-secondary);
-  margin-right: -5px;
+  margin-right: 10px;
 }
 
 .filter-search {
@@ -195,5 +203,69 @@ function selectModality(val) {
 
 .view-profile-btn {
   width: 100%;
+}
+
+/* 响应式适配 - 移动端 */
+@media (max-width: 767px) {
+  .filter-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-options {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+
+  .filter-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .filter-option .el-button {
+    flex: 1;
+    margin-left: 10px;
+  }
+
+  .filter-search {
+    width: 100%;
+  }
+
+  .teacher-card {
+    --el-card-padding: 20px 15px;
+  }
+
+  .teacher-info .el-avatar {
+    width: 80px !important;
+    height: 80px !important;
+  }
+
+  .teacher-name {
+    font-size: 16px;
+  }
+
+  .teacher-field {
+    font-size: 13px;
+  }
+
+  .teacher-bio {
+    font-size: 13px;
+    min-height: 40px;
+  }
+}
+
+/* 响应式适配 - 平板 */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .teacher-info .el-avatar {
+    width: 90px !important;
+    height: 90px !important;
+  }
+
+  .teacher-name {
+    font-size: 17px;
+  }
 }
 </style>

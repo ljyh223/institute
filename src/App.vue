@@ -1,11 +1,10 @@
 <script setup>
 import { ref } from 'vue';
-import PersonHomePage from './views/PersonlHomePage.vue';
 </script>
 
 <template>
-
-  <PersonHomePage/>
+  <!-- 使用路由视图承载各页面 -->
+  <router-view />
 </template>
 
 <style scoped></style>
