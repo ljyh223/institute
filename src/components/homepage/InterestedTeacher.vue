@@ -54,7 +54,7 @@
   <el-row :gutter="24">
     <el-col v-for="teacher in teachers" :key="teacher.id" :xs="24" :sm="12" :md="8">
 
-      <el-card class="teacher-card" shadow="hover">
+      <el-card class="teacher-card" shadow="hover" @click="$emit('click', teacher.id)">
 
         <!-- 老师信息 -->
         <div class="teacher-info">
@@ -64,14 +64,14 @@
           <p class="teacher-bio">{{ teacher.bio }}</p>
         </div>
 
-        <el-button type="primary" class="view-profile-btn" @click="goTeacherHome(teacher.id)">
+        <el-button type="primary" class="view-profile-btn">
           查看主页
         </el-button>
       </el-card>
     </el-col>
   </el-row>
 
-  <div class="load-more-container">
+  <div class="load-more-container" @click="$emit('more')">
     <el-button type="primary" size="large">查看更多</el-button>
   </div>
 
@@ -80,9 +80,8 @@
 
 <script setup>
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
 import { Search, ArrowDown } from '@element-plus/icons-vue'
-
+defineEmits(['click', 'more']);
 const props = defineProps({
 
   teachers: {
@@ -123,11 +122,7 @@ function selectModality(val) {
   activeModality.value = val
 }
 
-// 跳转到老师主页（HomepageDetail1）
-const router = useRouter()
-function goTeacherHome(id) {
-  router.push({ name: 'teacher-home', params: { id } })
-}
+
 </script>
 <style scoped>
 .filter-bar {

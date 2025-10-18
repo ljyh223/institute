@@ -15,87 +15,22 @@
 
         <div class="explore-courses-section">
           <h3 class="explore-title">探索你感兴趣的课程</h3>
-          <InterestClass :tag-list="tagList" :courses="courses" />
+          <InterestClass :tag-list="tagList" :courses="courses" @click="goDetail" @more="goCourseList" />
         </div>
 
 
         <div class="explore-teachers-section">
           <h3 class="section-title">探索你感兴趣的老师</h3>
 
-          <!-- Filter Bar -->
-          <div class="filter-bar">
-            <div class="filter-options">
-              <span class="filter-label">领域:</span>
-              <el-dropdown @command="handleFieldChange">
-                <el-button plain>
-                  {{ currentField }}<el-icon class="el-icon--right"><arrow-down /></el-icon>
-                </el-button>
-
-                <template #dropdown>
-                  <el-dropdown-menu>
-                    <el-dropdown-item v-for="item in TeacherField" :key="item" :command="item">
-                      {{ item }}
-                    </el-dropdown-item>
-
-                  </el-dropdown-menu>
-                </template>
-              </el-dropdown>
-              <span class="filter-label">排序:</span>
-              <el-dropdown>
-                <el-button plain>
-                  综合推荐<el-icon class="el-icon--right"><arrow-down /></el-icon>
-                </el-button>
-                <template #dropdown>
-                  <el-dropdown-menu>
-                    <el-dropdown-item>综合推荐</el-dropdown-item>
-                    <el-dropdown-item>人气最高</el-dropdown-item>
-                  </el-dropdown-menu>
-                </template>
-              </el-dropdown>
-
-              <el-dropdown class="hidden-sm-and-down">
-                <el-button plain>
-                  全部形式<el-icon class="el-icon--right"><arrow-down /></el-icon>
-                </el-button>
-                <template #dropdown>
-                  <el-dropdown-menu>
-                    <el-dropdown-item>线上课</el-dropdown-item>
-                    <el-dropdown-item>直播课</el-dropdown-item>
-                    <el-dropdown-item>线下课</el-dropdown-item>
-                  </el-dropdown-menu>
-                </template>
-              </el-dropdown>
-            </div>
-            <div class="filter-search">
-              <el-input placeholder="搜索" :prefix-icon="Search" />
-            </div>
-          </div>
-
-          <!-- Teacher List -->
-          <el-row :gutter="24">
-            <el-col v-for="teacher in teachers" :key="teacher.id" :xs="24" :sm="12" :md="8">
-              <InterestedTeacher :teacher="teacher" />
-            </el-col>
-          </el-row>
-
-          <div class="load-more-container">
-            <el-button type="primary" size="large" @click="goTeacherList">查看更多</el-button>
-          </div>
-
-          <InterestedTeacher :teachers="teachers" :sort="sort" :modality="modality" :field="field" />
+          <InterestedTeacher :teachers="teachers" :sort="sort" :modality="modality" :field="field"
+            @click="goTeacherHome" @more="goTeacherList" />
         </div>
 
         <!-- Nearby Venues Section -->
         <div class="nearby-venues-section">
           <h3 class="section-title">附近适合您的场馆</h3>
-          <el-row :gutter="24">
-            <el-col v-for="venue in venues" :key="venue.id" :xs="24" :sm="12" :md="8">
-              <VenueCard :venue="venue" />
-            </el-col>
-          </el-row>
-          <div class="load-more-container">
-            <el-button type="primary" size="large" @click="goVenueList">查看更多</el-button>
-          </div>
+          <HomePageVenue :venues="venues" @click="goVenueDetail" @more="goVenueList" />
+
         </div>
 
       </el-main>
@@ -114,7 +49,7 @@ import HomePageHead from '@/components/homepage/Head.vue';
 import HomePageTopBar from '@/components/homepage/TopBar.vue';
 import HomePageSearchBar from '@/components/homepage/SearchBar.vue';
 import InterestedTeacher from '@/components/homepage/InterestedTeacher.vue';
-import VenueCard from '@/components/homepage/Venue.vue';
+import HomePageVenue from '@/components/homepage/HomePageVenue.vue';
 import InterestClass from '@/components/homepage/InterestClass.vue';
 import BottomBar from '@/components/homepage/BottomBar.vue';
 import 'element-plus/theme-chalk/display.css'; // 引入响应式隐藏类
@@ -176,6 +111,29 @@ const venues = ref([
   { id: 2, name: '飞羽竞技场', type: '篮球场馆', address: '苏州市工业园区独墅湖校区258号', phone: '19552698532', image: 'src/assets/static/矩形_17.png' },
   { id: 3, name: '飞羽竞技场', type: '篮球场馆', address: '苏州市工业园区独墅湖校区258号', phone: '19552698532', image: 'src/assets/static/矩形_17.png' },
 ]);
+
+const router = useRouter();
+function goDetail(id) {
+  router.push({ name: 'course-detail', params: { id } })
+}
+
+function goCourseList() {
+  router.push({ name: 'course-list' })
+}
+function goTeacherHome(id) {
+  router.push({ name: 'teacher-home', params: { id } })
+}
+
+function goTeacherList() {
+  router.push({ name: 'teacher-list' })
+}
+function goVenueDetail(id) {
+  router.push({ name: 'venue-detail', params: { id } })
+}
+
+function goVenueList() {
+  router.push({ name: 'venue-list' })
+}
 
 </script>
 

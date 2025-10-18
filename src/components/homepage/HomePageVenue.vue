@@ -1,43 +1,49 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <el-card class="venue-card" shadow="hover" :body-style="{ padding: '0px' }" @click="goVenueDetail(venue.id)">
-    <!-- 封面图 -->
-    <el-image :src="venue.image" class="venue-image" fit="cover" />
 
-    <!-- 详细信息 -->
-    <div class="venue-info-body">
-      <h4 class="venue-name">
-        {{ venue.name }}（{{ venue.type }}）
-      </h4>
+  <el-row :gutter="24">
+    <el-col v-for="venue in props.venues" :key="venue.id" :xs="24" :sm="12" :md="8">
+      <el-card class="venue-card" shadow="hover" :body-style="{ padding: '0px' }" @click="$emit('click', venue.id)">
+        <!-- 封面图 -->
+        <el-image :src="venue.image" class="venue-image" fit="cover" />
 
-      <p class="venue-detail">
-        <el-icon>
-          <Location />
-        </el-icon>
-        <span>{{ venue.address }}</span>
-      </p>
+        <!-- 详细信息 -->
+        <div class="venue-info-body">
+          <h4 class="venue-name">
+            {{ venue.name }}（{{ venue.type }}）
+          </h4>
 
-      <p class="venue-detail">
-        <el-icon>
-          <User />
-        </el-icon>
-        <span>{{ venue.phone }}</span>
-      </p>
-    </div>
-  </el-card>
+          <p class="venue-detail">
+            <el-icon>
+              <Location />
+            </el-icon>
+            <span>{{ venue.address }}</span>
+          </p>
+
+          <p class="venue-detail">
+            <el-icon>
+              <User />
+            </el-icon>
+            <span>{{ venue.phone }}</span>
+          </p>
+        </div>
+      </el-card>
+    </el-col>
+  </el-row>
+
+
+  <div class="load-more-container" @click="$emit('more')">
+    <el-button type="primary" size="large">查看更多</el-button>
+  </div>
 </template>
 
 <script setup>
 import { Location, User } from '@element-plus/icons-vue'
-import { useRouter } from 'vue-router'
 
-// 定义组件名称
-defineOptions({
-  name: 'VenueCard'
-})
 
-defineProps({
-  venue: {
+defineEmits(['click', 'more'])
+const props = defineProps({
+  venues: {
     type: Object,
     required: true,
     default: () => ({ id: 1, name: '飞羽竞技场', type: '篮球场馆', address: '苏州市工业园区独墅湖校区258号', phone: '19552698532', image: 'src/components/Homepage1/Person/picture/矩形_17.png' }),
@@ -46,12 +52,7 @@ defineProps({
   }
 })
 
-// 点击小卡片跳转到场馆详情页（HomepageDetail）
-const router = useRouter()
 
-function goVenueDetail(id) {
-  router.push({ name: 'venue-detail', params: { id } })
-}
 </script>
 
 <style scoped>

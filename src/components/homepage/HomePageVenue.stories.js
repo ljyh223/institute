@@ -1,4 +1,4 @@
-import Venue from './Venue.vue';
+import Venue from './HomePageVenue.vue';
 
 export default {
   title: 'HomePage/Venue',
