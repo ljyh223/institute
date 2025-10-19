@@ -2,37 +2,9 @@
   <div class="common-layout">
     <!-- 黑色顶部条 -->
     <div class="top-black-bar"></div>
-
-    <el-container class="main-container">
       <!-- Header -->
-      <el-header class="header">
-      <div class="header-content">
-        <!-- Logo 和 AI 探索 -->
-        <div class="logo-section">
-          <span class="logo-text">学会</span>
-          <el-button class="ai-explore-btn">
-            AI探索
-            <el-icon><ArrowRight /></el-icon>
-          </el-button>
-        </div>
-        
-        <!-- 搜索框 -->
-        <div class="search-container hidden-xs-only">
-          <el-input
-            placeholder="What do you want learn?"
-            class="header-search-input"
-          />
-          <el-button type="primary" :icon="Search" circle class="search-icon-btn" />
-        </div>
-        
-        <!-- 用户操作区 -->
-        <div class="user-action-section">
-          <el-icon :size="22" class="notification-bell"><Bell /></el-icon>
-          <el-avatar :size="32" src="https://cube.elemecdn.com/3/7c/3ed689582b989fd05f42a77428753.jpeg" />
-        </div>
-      </div>
-    </el-header>
-
+       <HomePageHead/>
+    <el-container class="main-container">
       <!-- Main Content -->
       <el-main class="main-content">
         <div class="page-container">
@@ -99,21 +71,12 @@
           </div>
         </div>
         
-        <!-- 图片画廊 (优化后) -->
-        <div class="page-container gallery-section">
-            <el-row :gutter="20">
-                <el-col :xs="24" :sm="18">
-                    <el-image :src="galleryMainImage" fit="cover" class="gallery-main-image" />
-                </el-col>
-                <el-col :xs="24" :sm="6" class="preview-col">
-                    <div class="gallery-preview-wrapper">
-                        <el-image :src="galleryPreviewImage" fit="cover" class="gallery-preview-image" />
-                        <div class="gallery-arrow">
-                            <el-icon><ArrowRight /></el-icon>
-                        </div>
-                    </div>
-                </el-col>
-            </el-row>
+        <!-- 图片画廊 -->
+        <div class="page-container">
+          <Gallery 
+              :main-image="galleryMainImage" 
+              :preview-image="galleryPreviewImage" 
+            />
         </div>
 
         <!-- 其他您可能感兴趣的空间 -->
@@ -136,59 +99,7 @@
     </el-container>
     
     <!-- Footer -->
-       <footer class="site-footer">
-        <div class="footer-container">
-            <el-row :gutter="30" justify="space-between">
-                <!-- Brand Info -->
-                <el-col :xs="24" :sm="12" :md="6" class="footer-col footer-brand">
-                    <h3>学会</h3>
-                    <p>新一代学习生态系统</p>
-                </el-col>
-
-                <!-- Footer Links -->
-                <el-col :xs="12" :sm="6" :md="3" class="footer-col footer-links" v-for="section in footerLinks" :key="section.title">
-                    <h4>{{ section.title }}</h4>
-                    <ul>
-                        <li v-for="link in section.links" :key="link.name">
-                            <el-link :underline="false">{{ link.name }}</el-link>
-                        </li>
-                    </ul>
-                </el-col>
-
-                <!-- Social and App Downloads -->
-                <el-col :xs="24" :sm="12" :md="5" class="footer-col footer-social">
-                    <div class="social-icons">
-                        <a href="#" class="social-icon" aria-label="Facebook">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/></svg>
-                        </a>
-                        <a href="#" class="social-icon instagram" aria-label="Instagram">
-                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                        </a>
-                        <a href="#" class="social-icon" aria-label="Twitter">
-                           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616v.064c0 2.295 1.616 4.212 3.763 4.649-.69.188-1.432.233-2.193.084.623 1.955 2.441 3.364 4.604 3.404-1.72 1.34-3.882 2.083-6.242 2.083-.404 0-.802-.023-1.195-.069 2.209 1.409 4.833 2.231 7.646 2.231 9.177 0 14.209-7.469 13.945-14.517.975-.701 1.816-1.583 2.483-2.578z"/></svg>
-                        </a>
-                    </div>
-                    <h4>下载我们的APP</h4>
-                    <div class="app-badges">
-                      <a href="#" class="app-badge">
-                        <img class="app-badge-icon" src="./picture/google-play1.png" alt="">
-                        <span class="app-badge-text">
-                          <span>GET IT ON</span>
-                          <strong>Google Play</strong>
-                        </span>
-                      </a>
-                      <a href="#" class="app-badge">
-                        <img class="app-badge-icon" src="./picture/苹果.png" alt="">
-                        <span class="app-badge-text">
-                          <span>Available on the</span>
-                          <strong>Apple Store</strong>
-                        </span>
-                      </a>
-                    </div>
-                </el-col>
-            </el-row>
-        </div>
-    </footer>
+        <BottomBar/>
   </div>
 </template>
 
@@ -198,6 +109,9 @@ import {
   ArrowRight, Search, Bell, Van, Connection, CoffeeCup
 } from '@element-plus/icons-vue';
 import 'element-plus/theme-chalk/display.css';
+import HomePageHead from '@/components/homepage/Head.vue';
+import BottomBar from '@/components/homepage/BottomBar.vue';
+import Gallery from '@/components/homepage/Gallery.vue'; // 修正：只保留一个 import
 
 // 设施服务数据
 const amenities = ref([
@@ -254,83 +168,6 @@ const footerLinks = ref([
   margin-bottom: 24px;
   text-align: left;
 }
-
-/* Header样式 */
-.header {
-  background-color: #ffffff;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08); /* 使用更柔和的阴影 */
-  height: 64px;
-  position: sticky;
-  top: 30px; /* 假设顶部黑条高度为30px */
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-}
-.header-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 20px;
-}
-.logo-section {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-.logo-text {
-  font-size: 24px;
-  font-weight: bold;
-  color: var(--el-color-primary); /* 更改为蓝色 */
-}
-.ai-explore-btn {
-  border-color: var(--el-border-color-light); /* 浅色边框 */
-  color: var(--el-text-color-primary); /* 默认文字颜色 */
-}
-.ai-explore-btn .el-icon {
-  margin-left: 4px;
-}
-
-/* 搜索框容器 */
-.search-container {
-  display: flex;
-  align-items: center;
-  flex-grow: 1;
-  max-width: 450px;
-  margin: 0 24px;
-}
-.header-search-input {
-  /* 使用 CSS 变量来设置圆角，使其变为药丸形状 */
-  --el-input-border-radius: 20px;
-  flex-grow: 1;
-}
-/* 调整 Element Plus 内部 wrapper 的样式 */
-.header-search-input :deep(.el-input__wrapper) {
-  box-shadow: none !important;
-  border: 1px solid var(--el-border-color);
-  transition: border-color 0.2s;
-}
-.header-search-input :deep(.el-input__wrapper:hover) {
-  border-color: var(--el-color-primary);
-}
-.search-icon-btn {
-  margin-left: -35px; /* 让按钮覆盖在输入框的末尾 */
-  z-index: 5;
-}
-
-/* 用户操作区 */
-.user-action-section {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-.notification-bell {
-  color: var(--el-color-primary); /* 更改为蓝色 */
-  cursor: pointer;
-}
-
 /* 面包屑 */
 .page-breadcrumb {
   padding: 24px 0;
@@ -441,68 +278,6 @@ color: rgba(0, 86, 210, 1);
   margin: 0;
 }
 
-/* 图片画廊 (优化后) */
-.gallery-section {
-  margin: 60px auto;
-}
-.gallery-main-image {
-  width: 100%;
-  height: 450px;
-  border-radius: 12px;
-  border: 2px solid var(--el-color-primary-light-8);
-  display: block;
-}
-.gallery-preview-wrapper {
-  position: relative;
-  height: 450px;
-  cursor: pointer;
-}
-.gallery-preview-image {
-  width: 100%;
-  height: 100%;
-  border-radius: 12px;
-  display: block;
-}
-.gallery-arrow {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.85);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--el-text-color-primary);
-  font-size: 22px;
-  transition: background-color 0.3s;
-  backdrop-filter: blur(2px);
-}
-.gallery-preview-wrapper:hover .gallery-arrow {
-  background-color: #fff;
-}
-
-/* 在响应式部分添加或修改以下规则 */
-@media (max-width: 991px) {
-  /* ... */
-  .gallery-main-image, .gallery-preview-wrapper { 
-    height: 350px; 
-  }
-}
-
-@media (max-width: 767px) {
-  /* ... */
-  .gallery-main-image { 
-    height: 250px; 
-    margin-bottom: 15px; 
-  }
-  .preview-col { 
-    display: none; /* 在手机上直接隐藏预览图以简化布局 */
-  } 
-}
-
 /* 推荐空间 */
 .recommended-section {
   padding-bottom: 60px;
@@ -534,36 +309,6 @@ color: rgba(0, 86, 210, 1);
 .space-card-name { font-size: 14px; }
 .details-btn.el-button { font-size: 12px; height: 28px; }
 .load-more-container { text-align: left; margin-top: 24px; }
-
-/* 页脚 */
-.site-footer {
-    background: rgba(242, 246, 253, 1);
-    padding: 60px 20px;
-    border-top: 1px solid var(--el-border-color-light);
-}
-.footer-container { max-width: 1200px; margin: 0 auto; }
-.footer-col { margin-bottom: 30px; }
-.footer-brand h3 { font-size: 32px; font-weight: bold; color: var(--el-text-color-primary); margin: 0 0 10px; }
-.footer-brand p { font-size: 14px; color: var(--el-text-color-regular); margin: 0; }
-.footer-links h4 { font-size: 16px; font-weight: 600; color: var(--el-text-color-primary); margin: 0 0 20px; }
-.footer-links ul { list-style: none; padding: 0; margin: 0; }
-.footer-links li { margin-bottom: 12px; }
-.footer-links .el-link { --el-link-text-color: var(--el-text-color-regular); font-weight: 400; }
-.footer-links .el-link:hover { --el-link-text-color: var(--el-color-primary); }
-.footer-social h4 { font-size: 16px; font-weight: 600; color: var(--el-text-color-primary); margin: 20px 0; }
-.social-icons { display: flex; gap: 15px; margin-bottom: 20px; }
-.social-icon { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background-color: #fff; color: var(--el-text-color-secondary); box-shadow: var(--el-box-shadow-light); transition: all 0.3s ease; }
-.social-icon:hover { transform: translateY(-3px); box-shadow: var(--el-box-shadow); color: var(--el-text-color-primary); }
-.social-icon.instagram { background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); color: #fff; }
-.social-icon.instagram:hover { opacity: 0.9; }
-.app-badges { display: flex; gap: 15px; flex-wrap: wrap; }
-.app-badge { display: inline-flex; align-items: center; background-color: #404040; color: #ffffff; padding: 8px 16px; border-radius: 20px; text-decoration: none; transition: background-color 0.2s; }
-.app-badge:hover { background-color: #2c2c2c; }
-.app-badge-icon { width: 24px; height: 24px; margin-right: 12px; }
-.app-badge-text { display: flex; flex-direction: column; text-align: left; line-height: 1.2; }
-.app-badge-text span { font-size: 10px; }
-.app-badge-text strong { font-size: 16px; font-weight: 600; }
-
 
 /* --- 响应式适配 --- */
 @media (max-width: 991px) {

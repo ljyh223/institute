@@ -1,39 +1,10 @@
 <template>
   <div class="common-layout">
-
       <!-- 顶部深灰色细条 -->
     <div class="top-black-bar"></div>
 
     <!-- 顶部固定Header -->
-    <el-header class="header">
-      <div class="header-content">
-        <!-- Logo 和 AI 搜索 -->
-        <div class="logo-section">
-          <span class="logo-text">学会</span>
-          <el-button class="ai-search-btn" type="primary" link>
-            AI搜索
-            <el-icon><ArrowRight /></el-icon>
-          </el-button>
-        </div>
-        
-        <!-- 搜索框 (在小屏幕上隐藏) -->
-        <div class="search-section hidden-xs-only">
-          <el-input
-            v-model="headerSearch"
-            placeholder="What do you want learn?"
-            :prefix-icon="Search"
-            round
-          />
-        </div>
-        
-        <!-- 用户操作区 -->
-        <div class="user-action-section">
-          <el-icon :size="22" class="notification-bell"><Bell /></el-icon>
-          <el-avatar :size="32" src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" />
-        </div>
-      </div>
-    </el-header>
-
+    <HomePageHead/>
     <!-- 主内容区 -->
     <el-main class="main-content">
       <div class="content-container">
@@ -121,10 +92,10 @@
 <script setup>
 import { ref, reactive, onMounted, onBeforeUnmount } from 'vue';
 import { ArrowRight, Search, Bell, ArrowUp, ArrowDown } from '@element-plus/icons-vue';
-// 引入Element Plus的响应式CSS类
 import 'element-plus/theme-chalk/display.css';
+import HomePageHead from '@/components/homepage/Head.vue';
+import InterestClass from '@/components/homepage/InterestClass.vue';
 
-// --- 数据定义 ---
 
 // 头部搜索框
 const headerSearch = ref('');
@@ -207,55 +178,6 @@ onBeforeUnmount(() => {
   position: sticky;
   top: 0;
   z-index: 1001;
-}
-
-/* 头部样式 */
-.header {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background-color: #ffffff;
-  border-bottom: 1px solid var(--el-border-color-lighter);
-  height: 64px;
-  display: flex;
-  align-items: center;
-}
-.header-content {
-  max-width: 1200px;
-  width: 100%;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.logo-section {
-  display: flex;
-  align-items: center;
-}
-.logo-text {
-  font-size: 24px;
-  font-weight: bold;
-  color: var(--el-text-color-primary);
-  margin-right: 1rem;
-}
-.ai-search-btn {
-  background-color: var(--el-color-primary-light-9);
-  border: 1px solid var(--el-color-primary-light-7);
-  border-radius: 16px;
-  padding: 6px 12px;
-}
-.search-section {
-  flex-grow: 1;
-  max-width: 400px;
-  margin: 0 2rem;
-}
-.user-action-section {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-}
-.notification-bell {
-  cursor: pointer;
 }
 
 /* 主内容区 */
