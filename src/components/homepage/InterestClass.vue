@@ -19,7 +19,7 @@
             <el-button type="primary" link>免费详情</el-button>
           </div>
         </div>
-      </el-card>+
+      </el-card>
     </el-col>
   </el-row>
   <el-empty description="数据为空" class="empty-data-state" v-else>

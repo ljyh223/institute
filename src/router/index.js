@@ -3,7 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 // 说明：这里统一使用相对 `src/router/index.js` 的相对路径。
 // Home 与 课程详情页
 const HomePage = () => import('../views/PersonlHomePage.vue')
-const CourseDetail = () => import('../components/page/Personlcenter1/PersonalcenterCourse.vue')
+const CourseDetail = () => import('../views/PersonalcenterCourse.vue')
 // 老师主页详情页（HomepageDetail1）
 const TeacherHomeDetail = () => import('../components/page/homepage/Homepage2/HomepageDetail1.vue')
 // 场馆/空间详情页（HomepageDetail）
