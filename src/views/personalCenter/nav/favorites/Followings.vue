@@ -18,7 +18,7 @@
 import { ref, computed } from 'vue'
 import PaginationBar from '@/components/PaginationBar.vue'
 
-const users = Array.from({ length: 120 }, (_, i) => ({ id: i + 1, name: '油猫病', avatar: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png' }))
+const users = Array.from({ length: 80 }, (_, i) => ({ id: i + 1, name: '油猫病', avatar: `https://picsum.photos/400/250?random=${i + 1}` }))
 const currentPage = ref(1)
 const pageSize = ref(8)
 const total = computed(() => users.length)

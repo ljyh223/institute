@@ -3,14 +3,18 @@
     <div class="course-cards">
       <div v-for="item in currentCourseList" :key="item.id" class="course-card">
         <div class="course-image">
-          <img src="../assets/image.png" alt="课程封面" />
+          <img :src="item.image" alt="课程封面" />
         </div>
         <div class="course-info">
           <div class="course-title">{{ item.title }}</div>
 
           <div class="course-actions">
             <div class="course-author">{{ item.author }}</div>
-            <el-button size="small" plain>查看详情</el-button>
+            <div>
+              <el-button size="small" plain>查看详情</el-button>
+              <el-button size="small" plain>下架课程</el-button>
+            </div>
+
           </div>
         </div>
       </div>
@@ -31,7 +35,8 @@ const courseData = ref(
   Array.from({ length: 625 }, (_, i) => ({
     id: i + 1,
     title: `课程 ${i + 1}`,
-    author: '陈恩翔'
+    author: '陈恩翔',
+    image: `https://picsum.photos/400/250?random=${i + 1}`
   }))
 )
 

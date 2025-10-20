@@ -16,20 +16,15 @@
     </div>
 
     <div class="pagination">
-      <PaginationBar
-        :total="total"
-        v-model:currentPage="currentPage"
-        v-model:pageSize="pageSize"
-        @size-change="onSizeChange"
-        @current-change="onPageChange"
-      />
+      <PaginationBar :total="total" v-model:currentPage="currentPage" v-model:pageSize="pageSize"
+        @size-change="onSizeChange" @current-change="onPageChange" />
     </div>
   </div>
 </template>
 
 <script setup>
 import { ref, computed } from 'vue'
-import PaginationBar from './components/PaginationBar.vue'
+import PaginationBar from '@/components/PaginationBar.vue'
 
 const data = ref(Array.from({ length: 6 }, (_, i) => ({ id: i + 1, author: '商品商家' })))
 const currentPage = ref(1)
@@ -51,19 +46,80 @@ const onPageChange = (page) => {
 </script>
 
 <style scoped>
-.course-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 12px; }
-.course-card { border: 1px solid #ebeef5; border-radius: 4px; overflow: hidden; transition: box-shadow .3s ease; }
-.course-card:hover { box-shadow: 0 2px 12px 0 rgba(0,0,0,.1); }
-.course-image { width: 100%; height: 160px; overflow: hidden; }
-.course-image img { width: 100%; height: 100%; object-fit: cover; }
-.course-info { padding: 12px; }
-.course-title { font-size: 15px; font-weight: bold; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.course-author { color: #909399; font-size: 13px; }
-.course-actions { display: flex; justify-content: space-between; align-items: center; }
-.pagination { display: flex; justify-content: flex-end; }
-@media (max-width: 1024px) { .course-cards { grid-template-columns: repeat(3, 1fr); } }
-@media (max-width: 768px) { .course-cards { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 480px) { .course-cards { grid-template-columns: 1fr; } }
+.course-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 12px;
+}
+
+.course-card {
+  border: 1px solid #ebeef5;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: box-shadow .3s ease;
+}
+
+.course-card:hover {
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
+}
+
+.course-image {
+  width: 100%;
+  height: 160px;
+  overflow: hidden;
+}
+
+.course-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.course-info {
+  padding: 12px;
+}
+
+.course-title {
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.course-author {
+  color: #909399;
+  font-size: 13px;
+}
+
+.course-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 1024px) {
+  .course-cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .course-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .course-cards {
+    grid-template-columns: 1fr;
+  }
+}
 </style>
-
-

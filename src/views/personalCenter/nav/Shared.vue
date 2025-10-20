@@ -3,7 +3,7 @@
     <div class="course-cards">
       <div v-for="item in currentList" :key="item.id" class="course-card">
         <div class="course-image">
-          <img src="../assets/image.png" alt="封面" />
+          <img :src="item.image" alt="封面" />
         </div>
         <div class="course-info">
           <div class="course-title">共享空间 {{ item.id }}</div>
@@ -26,7 +26,7 @@
 import { ref, computed } from 'vue'
 import PaginationBar from '@/components/PaginationBar.vue'
 
-const data = ref(Array.from({ length: 5 }, (_, i) => ({ id: i + 1, author: '共享作者' })))
+const data = ref(Array.from({ length: 5 }, (_, i) => ({ id: i + 1, author: '共享作者', image: `https://picsum.photos/400/250?random=${i + 1}` })))
 const currentPage = ref(1)
 const pageSize = ref(8)
 const total = computed(() => data.value.length)

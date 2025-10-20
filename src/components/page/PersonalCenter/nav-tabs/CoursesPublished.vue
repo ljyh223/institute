@@ -7,34 +7,29 @@
         </div>
         <div class="course-info">
           <div class="course-title">{{ item.title }}</div>
-         
+
           <div class="course-actions">
-             <div class="course-author">{{ item.author }}</div>
-             <div>
-               <el-button size="small" plain>查看详情</el-button>
-            <el-button size="small" plain>下架课程</el-button>
-             </div>
-           
+            <div class="course-author">{{ item.author }}</div>
+            <div>
+              <el-button size="small" plain>查看详情</el-button>
+              <el-button size="small" plain>下架课程</el-button>
+            </div>
+
           </div>
         </div>
       </div>
     </div>
 
     <div class="pagination">
-      <PaginationBar
-        :total="total"
-        v-model:currentPage="currentPage"
-        v-model:pageSize="pageSize"
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-      />
+      <PaginationBar :total="total" v-model:currentPage="currentPage" v-model:pageSize="pageSize"
+        @size-change="handleSizeChange" @current-change="handleCurrentChange" />
     </div>
   </div>
 </template>
 
 <script setup>
 import { ref, computed } from 'vue'
-import PaginationBar from './components/PaginationBar.vue'
+import PaginationBar from '@/components/PaginationBar.vue'
 
 const courseData = ref(
   Array.from({ length: 625 }, (_, i) => ({
@@ -84,43 +79,187 @@ const handleJump = () => {
   gap: 20px;
   margin-bottom: 20px;
 }
-.course-card { border: 1px solid #ebeef5; border-radius: 4px; overflow: hidden; transition: box-shadow 0.3s ease; }
-.course-card:hover { box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1); }
-.course-image { width: 100%; height: 160px; overflow: hidden; }
-.course-image img { width: 100%; height: 100%; object-fit: cover; }
-.course-info { padding: 12px; }
-.course-title { font-size: 15px; font-weight: bold; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.course-author { color: #909399; font-size: 13px; margin-bottom: 12px; }
-.course-actions { display: flex; gap: 8px;  justify-content: space-between;line-height: 31px;}
-.pagination { display: flex; justify-content: flex-end; margin-top: 12px; }
-.pagination :deep(.el-pagination) { --el-pagination-button-height: 32px; display: flex; align-items: center; gap: 14px; }
+
+.course-card {
+  border: 1px solid #ebeef5;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
+
+.course-card:hover {
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+}
+
+.course-image {
+  width: 100%;
+  height: 160px;
+  overflow: hidden;
+}
+
+.course-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.course-info {
+  padding: 12px;
+}
+
+.course-title {
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.course-author {
+  color: #909399;
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+.course-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+  line-height: 31px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 12px;
+}
+
+.pagination :deep(.el-pagination) {
+  --el-pagination-button-height: 32px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
 /* 蓝色主题定制 */
 .pagination :deep(.el-pagination .btn-prev),
 .pagination :deep(.el-pagination .btn-next),
-.pagination :deep(.el-pagination .el-pager li) { background: #fff; border: 1px solid #a0cfff; color: #409eff; border-radius: 4px; min-width: 36px; height: 32px; line-height: 30px; }
-.pagination :deep(.el-pagination .el-pager li.is-active) { background-color: #409eff; border-color: #409eff; color: #fff; }
-.pagination :deep(.el-pagination .el-pager li:hover) { border-color: #409eff; color: #409eff; }
+.pagination :deep(.el-pagination .el-pager li) {
+  background: #fff;
+  border: 1px solid #a0cfff;
+  color: #409eff;
+  border-radius: 4px;
+  min-width: 36px;
+  height: 32px;
+  line-height: 30px;
+}
+
+.pagination :deep(.el-pagination .el-pager li.is-active) {
+  background-color: #409eff;
+  border-color: #409eff;
+  color: #fff;
+}
+
+.pagination :deep(.el-pagination .el-pager li:hover) {
+  border-color: #409eff;
+  color: #409eff;
+}
+
 .pagination :deep(.el-pagination .btn-prev:hover),
-.pagination :deep(.el-pagination .btn-next:hover) { border-color: #409eff; }
-.pagination :deep(.el-pagination__sizes) { margin-left: 8px; }
-.pagination :deep(.el-select .el-input__wrapper) { border: 1px solid #a0cfff; box-shadow: none !important; height: 32px; border-radius: 6px; transition: all .2s; }
+.pagination :deep(.el-pagination .btn-next:hover) {
+  border-color: #409eff;
+}
+
+.pagination :deep(.el-pagination__sizes) {
+  margin-left: 8px;
+}
+
+.pagination :deep(.el-select .el-input__wrapper) {
+  border: 1px solid #a0cfff;
+  box-shadow: none !important;
+  height: 32px;
+  border-radius: 6px;
+  transition: all .2s;
+}
+
 .pagination :deep(.el-select .el-input__wrapper:hover),
-.pagination :deep(.is-focus .el-input__wrapper) { border-color: #409eff; }
-.pagination :deep(.el-select .el-input__inner) { color: #409eff; }
-.pagination :deep(.el-pagination__sizes .el-select .el-input .el-input__suffix) { color: #409eff; }
-.pagination :deep(.el-pagination button.is-active) { color: #fff; }
-.pagination :deep(.el-pagination .is-disabled) { opacity: 0.6; }
-.pagination :deep(.el-input-number .el-input__wrapper) { border: 1px solid #a0cfff; height: 32px; border-radius: 6px; transition: all .2s; }
+.pagination :deep(.is-focus .el-input__wrapper) {
+  border-color: #409eff;
+}
+
+.pagination :deep(.el-select .el-input__inner) {
+  color: #409eff;
+}
+
+.pagination :deep(.el-pagination__sizes .el-select .el-input .el-input__suffix) {
+  color: #409eff;
+}
+
+.pagination :deep(.el-pagination button.is-active) {
+  color: #fff;
+}
+
+.pagination :deep(.el-pagination .is-disabled) {
+  opacity: 0.6;
+}
+
+.pagination :deep(.el-input-number .el-input__wrapper) {
+  border: 1px solid #a0cfff;
+  height: 32px;
+  border-radius: 6px;
+  transition: all .2s;
+}
+
 .pagination :deep(.el-input-number .el-input__wrapper:hover),
-.pagination :deep(.el-input-number.is-controls-right .el-input__wrapper.is-active) { border-color: #409eff; }
-.pagination :deep(.el-input-number .el-input__inner) { text-align: center; }
-.pagination :deep(.el-button--primary) { background-color: #409eff; border-color: #409eff; height: 32px; padding: 6px 12px; border-radius: 6px; }
-.pagination :deep(.el-button--primary:hover) { filter: brightness(1.05); }
-.pagination :deep(.total-text) { color: #409eff; margin-left: 6px; }
-.jump-control { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #606266; }
-@media (max-width: 1024px) { .course-cards { grid-template-columns: repeat(3, 1fr); } }
-@media (max-width: 768px) { .course-cards { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 480px) { .course-cards { grid-template-columns: 1fr; } }
+.pagination :deep(.el-input-number.is-controls-right .el-input__wrapper.is-active) {
+  border-color: #409eff;
+}
+
+.pagination :deep(.el-input-number .el-input__inner) {
+  text-align: center;
+}
+
+.pagination :deep(.el-button--primary) {
+  background-color: #409eff;
+  border-color: #409eff;
+  height: 32px;
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+
+.pagination :deep(.el-button--primary:hover) {
+  filter: brightness(1.05);
+}
+
+.pagination :deep(.total-text) {
+  color: #409eff;
+  margin-left: 6px;
+}
+
+.jump-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #606266;
+}
+
+@media (max-width: 1024px) {
+  .course-cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .course-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .course-cards {
+    grid-template-columns: 1fr;
+  }
+}
 </style>
-
-

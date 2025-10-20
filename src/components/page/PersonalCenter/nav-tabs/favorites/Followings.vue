@@ -9,18 +9,14 @@
       </div>
     </div>
     <div class="pagination">
-      <PaginationBar
-        :total="total"
-        v-model:currentPage="currentPage"
-        v-model:pageSize="pageSize"
-      />
+      <PaginationBar :total="total" v-model:currentPage="currentPage" v-model:pageSize="pageSize" />
     </div>
   </div>
 </template>
 
 <script setup>
 import { ref, computed } from 'vue'
-import PaginationBar from '../components/PaginationBar.vue'
+import PaginationBar from '@/components/PaginationBar.vue'
 
 const users = Array.from({ length: 80 }, (_, i) => ({ id: i + 1, name: '油猫病', avatar: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png' }))
 const currentPage = ref(1)
@@ -33,10 +29,27 @@ const pagedUsers = computed(() => {
 </script>
 
 <style scoped>
-.user-row { display: grid; grid-template-columns: 36px 1fr auto; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid #f0f0f0; }
-.name { color: #303133; }
-.actions { display: flex; gap: 8px; }
-.pagination { display: flex; justify-content: flex-end; margin-top: 12px; }
+.user-row {
+  display: grid;
+  grid-template-columns: 36px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.name {
+  color: #303133;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 12px;
+}
 </style>
-
-
