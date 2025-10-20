@@ -51,8 +51,6 @@ const props = defineProps({
       ['name', 'type', 'address', 'phone', 'image'].every(k => k in v)
   }
 })
-
-
 </script>
 
 <style scoped>
