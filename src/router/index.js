@@ -32,6 +32,9 @@ const FavoritesFollowings = () => import('../views/personalCenter/nav/favorites/
 const FavoritesFollowers = () => import('../views/personalCenter/nav/favorites/Followers.vue')
 const FavoritesCollections = () => import('../views/personalCenter/nav/favorites/Collections.vue')
 
+const Community = () => import('../views/community/Community.vue')
+const Posts  = () => import('../views/community/Posts.vue')
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   // 修复切换路由时页面停留在底部的问题：每次导航滚动到页面顶部
@@ -106,7 +109,9 @@ const router = createRouter({
           ]
         }
       ]
-    }
+    },
+    { path: '/community', name: 'community', component: Community },
+    { path: '/community/posts', name: 'posts', component: Posts },
   ],
 })
 

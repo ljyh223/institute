@@ -4,7 +4,8 @@
       <HomePageHead />
       <el-main class="main-content">
         <HomePageTopBar />
-        <HomePageSearchBar />
+        <HomePageSearchBar @community-click="goCommunity" @live-click="goLive" @group-click="goGroup"
+          @shop-click="goShop" @search-click="goSearch" />
         <div class="efficiency-section">
           <h3 class="efficiency-title">让你的学习更高效</h3>
           <p class="efficiency-description">
@@ -52,7 +53,7 @@ import InterestedTeacher from '@/components/homepage/teacher/InterestedTeacher.v
 import HomePageVenue from '@/components/homepage/venue/Venue.vue';
 import InterestCourse from '@/components/homepage/course/InterestCourse1.vue';
 import BottomBar from '@/components/homepage/bar/BottomBar.vue';
-import 'element-plus/theme-chalk/display.css'; // 引入响应式隐藏类
+import 'element-plus/theme-chalk/display.css';
 
 
 const tagList = ref([
@@ -135,6 +136,26 @@ function goVenueList() {
   router.push({ name: 'venue-list' })
 }
 
+
+function goCommunity() {
+  console.log('goCommunity');
+  router.push({ name: 'community' })
+}
+
+function goLive() {
+  // router.push({ name: 'live' })
+}
+function goGroup() {
+  // router.push({ name: 'group' })
+}
+
+function goShop() {
+  // router.push({ name: 'shop' })
+}
+
+function goSearch() {
+  // router.push({ name: 'search' })
+}
 </script>
 
 <style scoped>

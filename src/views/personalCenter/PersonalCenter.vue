@@ -1,10 +1,5 @@
 <template>
   <div class="personal-center">
-    <!-- 顶部导航栏 -->
-    <div class="header">
-      <div class="breadcrumb">个人中心-我的课程-我发布的</div>
-    </div>
-
     <!-- 主要内容区域 -->
     <div class="main-content">
       <!-- 顶部操作区 -->
