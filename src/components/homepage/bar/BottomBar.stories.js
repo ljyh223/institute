@@ -1,7 +1,7 @@
 import BottomBar from './BottomBar.vue';
 
 export default {
-  title: 'HomePage/BottomBar',
+  title: 'homepage/bar/BottomBar',
   component: BottomBar,
   tags: ['autodocs'],
 };

@@ -2,43 +2,43 @@
   <div class="common-layout">
     <!-- 黑色顶部条 -->
     <div class="top-black-bar"></div>
-    <HomePageHead/>
-    
+    <HomePageHead />
+
     <el-container class="main-container">
       <!-- Main Content -->
       <el-main class="main-content">
         <div class="page-container">
-            <!-- 面包屑导航 -->
-            <el-breadcrumb :separator-icon="ArrowRight" class="page-breadcrumb">
-                <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-                <el-breadcrumb-item>探索您感兴趣的课程</el-breadcrumb-item>
-                <el-breadcrumb-item>课程详情</el-breadcrumb-item>
-            </el-breadcrumb>
+          <!-- 面包屑导航 -->
+          <el-breadcrumb :separator-icon="ArrowRight" class="page-breadcrumb">
+            <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+            <el-breadcrumb-item>探索您感兴趣的课程</el-breadcrumb-item>
+            <el-breadcrumb-item>课程详情</el-breadcrumb-item>
+          </el-breadcrumb>
         </div>
-      
-            <!-- 课程主 Banner -->
-            <TopBar1/>
-            <!-- 课程元数据 -->
-            <div class="quick-links-wrapper">
-                <div class="links-container">
-                <el-link :underline="false" class="link-item">
-                    <img src="./picture/线上.png" alt="" >
-                    <span class="link-text hidden-md-and-down">线上课程</span>
-                </el-link>
-                <el-link :underline="false" class="link-item">
-                    <img src="./picture/设计.png" alt="">
-                    <span class="link-text hidden-md-and-down">艺术人文</span>
-                </el-link>
-                <el-link :underline="false" class="link-item">
-                    <img src="./picture/路径1.png" alt="">
-                    <span class="link-text hidden-md-and-down">购买人数:1.2K</span>
-                </el-link>
-                <el-link :underline="false" class="link-item">
-                    <img src="./picture/用户.png" alt="">
-                    <span class="link-text hidden-md-and-down">授课老师：张研究</span>
-                </el-link>
-                </div>
-            </div>
+
+        <!-- 课程主 Banner -->
+        <TopBar1 />
+        <!-- 课程元数据 -->
+        <div class="quick-links-wrapper">
+          <div class="links-container">
+            <el-link :underline="false" class="link-item">
+              <img src="./picture/线上.png" alt="">
+              <span class="link-text hidden-md-and-down">线上课程</span>
+            </el-link>
+            <el-link :underline="false" class="link-item">
+              <img src="./picture/设计.png" alt="">
+              <span class="link-text hidden-md-and-down">艺术人文</span>
+            </el-link>
+            <el-link :underline="false" class="link-item">
+              <img src="./picture/路径1.png" alt="">
+              <span class="link-text hidden-md-and-down">购买人数:1.2K</span>
+            </el-link>
+            <el-link :underline="false" class="link-item">
+              <img src="./picture/用户.png" alt="">
+              <span class="link-text hidden-md-and-down">授课老师：张研究</span>
+            </el-link>
+          </div>
+        </div>
 
         <!-- 课程内容区域 -->
         <div class="page-section course-content-section">
@@ -46,16 +46,16 @@
             <el-tab-pane label="课程概览" name="overview"></el-tab-pane>
             <el-tab-pane label="课程内容" name="content">
               <div class="course-content-header">
-                  <div class="chapter-nav">
-                      <el-button round>1.1</el-button>
-                      <el-button round type="info" plain>2.1</el-button>
-                      <el-button round type="info" plain>3.1</el-button>
-                      <el-button round type="info" plain>4.1</el-button>
-                      <el-button round type="info" plain>5.1</el-button>
-                  </div>
-                  <h2 class="course-main-title">前端开发入门——从零开始学习Java</h2>
+                <div class="chapter-nav">
+                  <el-button round>1.1</el-button>
+                  <el-button round type="info" plain>2.1</el-button>
+                  <el-button round type="info" plain>3.1</el-button>
+                  <el-button round type="info" plain>4.1</el-button>
+                  <el-button round type="info" plain>5.1</el-button>
+                </div>
+                <h2 class="course-main-title">前端开发入门——从零开始学习Java</h2>
               </div>
-              
+
               <div class="course-chapter-list">
                 <!-- 章节一 -->
                 <el-card shadow="never" class="chapter-card">
@@ -76,7 +76,7 @@
                     <el-button :icon="Monitor">阅读资料</el-button>
                   </div>
                 </el-card>
-                
+
                 <!-- 章节三 -->
                 <el-card shadow="never" class="chapter-card">
                   <p class="chapter-info">第2大章：语言程序</p>
@@ -93,34 +93,34 @@
 
         <!-- 您可能感兴趣的课程 -->
         <div class="page-section interested-courses-section">
-            <h3 class="section-title">您可能感兴趣的课程</h3>
-            <InterestClass1 :courses="interestedCourses"/>
+          <h3 class="section-title">您可能感兴趣的课程</h3>
+          <InterestClass1 :courses="interestedCourses" />
         </div>
 
         <!-- 附近适合您的场馆 -->
         <div class="page-section nearby-venues-section">
-            <h3 class="section-title">附近适合您的场馆</h3>
-           <HomePageVenue :venues="nearbyVenues"/>
+          <h3 class="section-title">附近适合您的场馆</h3>
+          <HomePageVenue :venues="nearbyVenues" />
         </div>
       </el-main>
     </el-container>
-    
+
     <!-- Footer -->
-       <BottomBar/>
+    <BottomBar />
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
 import {
-  ArrowRight, Search, Bell, VideoCamera, Brush, User, Avatar, Location, Phone,ChatDotSquare, Monitor, Goods, ShoppingCartFull
+  ArrowRight, Search, Bell, VideoCamera, Brush, User, Avatar, Location, Phone, ChatDotSquare, Monitor, Goods, ShoppingCartFull
 } from '@element-plus/icons-vue';
 import 'element-plus/theme-chalk/display.css';
 import HomePageHead from '@/components/homepage/Head.vue';
 import TopBar1 from '@/components/homepage/TopBar1.vue';
 import InterestClass1 from '@/components/homepage/InterestClass1.vue';
 import HomePageVenue from '@/components/homepage/HomePageVenue.vue';
-import BottomBar from '@/components/homepage/BottomBar.vue';
+import BottomBar from '@/components/homepage/bar/BottomBar.vue';
 
 const activeTab = ref('content');
 
@@ -138,9 +138,9 @@ const nearbyVenues = ref([
 ]);
 
 const footerLinks = ref([
-    { title: '公司', links: [ { name: '关于我们' }, { name: '职业' }, { name: '其他' } ] },
-    { title: '常见问题', links: [ { name: '帮助/常见问题' }, { name: '问题' }, { name: '客服' } ] },
-    { title: '更多', links: [ { name: '服务协议' }, { name: '隐私政策' }, { name: '商务洽谈' }, { name: '帮助中心' } ] }
+  { title: '公司', links: [{ name: '关于我们' }, { name: '职业' }, { name: '其他' }] },
+  { title: '常见问题', links: [{ name: '帮助/常见问题' }, { name: '问题' }, { name: '客服' }] },
+  { title: '更多', links: [{ name: '服务协议' }, { name: '隐私政策' }, { name: '商务洽谈' }, { name: '帮助中心' }] }
 ]);
 </script>
 
@@ -152,13 +152,19 @@ const footerLinks = ref([
   flex-direction: column;
   background-color: #ffffff;
 }
-.main-container { flex: 1; }
-.main-content { padding: 0; }
+
+.main-container {
+  flex: 1;
+}
+
+.main-content {
+  padding: 0;
+}
 
 .top-black-bar {
   width: 100%;
   height: 30px;
-  background-color:rgba(56, 56, 56, 1);
+  background-color: rgba(56, 56, 56, 1);
   position: sticky;
   top: 0;
   z-index: 1001;
@@ -166,14 +172,14 @@ const footerLinks = ref([
 
 /* --- 页面核心内容 --- */
 .page-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 .page-breadcrumb {
-    padding: 25px 0;
-    font-size: 14px;
+  padding: 25px 0;
+  font-size: 14px;
 }
 
 /* 课程元数据条 */
@@ -191,6 +197,7 @@ const footerLinks = ref([
   z-index: 20;
   margin-bottom: 20px;
 }
+
 .links-container {
   display: flex;
   align-items: center;
@@ -198,16 +205,19 @@ const footerLinks = ref([
   justify-content: space-around;
   margin-right: 20px;
 }
+
 .link-item {
   font-size: 16px;
   font-weight: 500;
   padding: 5px 10px;
   --el-link-text-color: var(--el-text-color-primary);
 }
+
 .link-item:hover {
   /* 定义悬停时的颜色，使用主色调 */
   --el-link-text-color: var(--el-color-primary);
 }
+
 .link-text {
   margin-left: 8px;
 }
@@ -216,46 +226,87 @@ const footerLinks = ref([
 .course-content-section {
   padding-top: 40px;
 }
+
 /* 通用区块样式 */
 .page-section {
-    max-width: 1200px;
-    margin: 0 auto 80px;
-    padding: 0 20px;
+  max-width: 1200px;
+  margin: 0 auto 80px;
+  padding: 0 20px;
 }
+
 .section-title {
-    font-size: 24px;
-    font-weight: 600;
-    color: var(--el-text-color-primary);
-    margin-bottom: 30px;
-    text-align: left;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--el-text-color-primary);
+  margin-bottom: 30px;
+  text-align: left;
 }
+
 .load-more-container {
-    text-align: left;
-    margin-top: 20px;
+  text-align: left;
+  margin-top: 20px;
 }
 
 /* 响应式适配 */
 @media (max-width: 992px) {
-    .course-title { font-size: 30px; }
-    .course-banner { padding: 30px; }
+  .course-title {
+    font-size: 30px;
+  }
+
+  .course-banner {
+    padding: 30px;
+  }
 }
 
 @media (max-width: 767px) {
-    .course-banner { padding: 20px; text-align: center; }
-    .course-info-col { margin-bottom: 25px; }
-    .course-title { font-size: 24px; }
-    .course-subtitle { font-size: 14px; }
-    .course-price { font-size: 28px; }
-    .course-main-image { height: 200px; }
-
-    .quick-links-wrapper {
-    width: 95%; /* 在小屏幕上增加宽度占比 */
-    padding-left: 15px; /* 稍微调整内边距 */
+  .course-banner {
+    padding: 20px;
+    text-align: center;
   }
 
-    .page-section { padding: 0 15px; margin-bottom: 60px; }
-    .section-title { font-size: 20px; }
-    .footer-col { text-align: center; }
-    .social-icons, .app-badges { justify-content: center; }
+  .course-info-col {
+    margin-bottom: 25px;
+  }
+
+  .course-title {
+    font-size: 24px;
+  }
+
+  .course-subtitle {
+    font-size: 14px;
+  }
+
+  .course-price {
+    font-size: 28px;
+  }
+
+  .course-main-image {
+    height: 200px;
+  }
+
+  .quick-links-wrapper {
+    width: 95%;
+    /* 在小屏幕上增加宽度占比 */
+    padding-left: 15px;
+    /* 稍微调整内边距 */
+  }
+
+  .page-section {
+    padding: 0 15px;
+    margin-bottom: 60px;
+  }
+
+  .section-title {
+    font-size: 20px;
+  }
+
+  .footer-col {
+    text-align: center;
+  }
+
+  .social-icons,
+  .app-badges {
+    justify-content: center;
+  }
 }
 </style>
