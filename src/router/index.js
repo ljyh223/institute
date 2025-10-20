@@ -3,15 +3,15 @@ import { createRouter, createWebHistory } from 'vue-router'
 // 说明：这里统一使用相对 `src/router/index.js` 的相对路径。
 // Home 与 课程详情页
 const HomePage = () => import('../views/PersonlHomePage.vue')
-const CourseDetail = () => import('../views/PersonalcenterCourse.vue')
+const CourseDetail = () => import('../views/CourseDetail.vue')
 // 老师主页详情页（HomepageDetail1）
-const TeacherHomeDetail = () => import('../components/page/homepage/Homepage2/HomepageDetail1.vue')
+const TeacherHomeDetail = () => import('../views/TeacherDetail.vue')
 // 场馆/空间详情页（HomepageDetail）
-const VenueDetail = () => import('../components/page/homepage/Homepage2/HomepageDetail.vue')
+const VenueDetail = () => import('../views/VenueDetail.vue')
 // 列表页（查看更多）
-const TeacherListPage = () => import('../components/page/homepage/Homepage2/HomepageList.vue')
-const VenueListPage = () => import('../components/page/homepage/Homepage2/HomepageList1.vue')
-const CourseListPage = () => import('../components/page/homepage/Homepage2/HomepageList2.vue')
+const TeacherListPage = () => import('../views/TeacherList.vue')
+const VenueListPage = () => import('../views/VenueList.vue')
+const CourseListPage = () => import('../views/CourseList.vue')
 
 // 个人中心相关视图（注意真实路径位于 components/page/PersonalCenter/...）
 const PersonalCenterLayout = () => import('../components/page/PersonalCenter/publish.vue')

@@ -1,10 +1,8 @@
 <template>
   <div class="common-layout">
-    <!-- 黑色顶部条 -->
-    <div class="top-black-bar"></div>
     <HomePageHead />
-    <el-container class="main-container">
 
+    <el-container class="main-container">
       <!-- Main Content -->
       <el-main class="main-content">
         <div class="page-container">
@@ -24,7 +22,7 @@
                 <el-avatar size="small" :src="instructor.avatar"></el-avatar>
                 <span class="instructor-name">授课老师：{{ instructor.name }}</span>
               </div>
-              <el-button type="primary" size="large" class="join-course-btn">立即购买</el-button>
+              <el-button type="primary" size="large" class="join-course-btn">加入我的课程</el-button>
             </div>
             <div class="progress-circle-placeholder"></div>
           </div>
@@ -33,27 +31,27 @@
           <div class="quick-links-wrapper">
             <div class="links-container">
               <el-link :underline="false" class="link-item">
-                <img src="./picture/线上.png" alt="线上课程">
+                <img src="@/assets/static/线上.png" alt="线上课程">
                 <span class="link-text hidden-md-and-down">线上课程</span>
               </el-link>
               <el-link :underline="false" class="link-item">
-                <img src="./picture/设计.png" alt="艺术人文">
+                <img src="@/assets/static/设计.png" alt="艺术人文">
                 <span class="link-text hidden-md-and-down">艺术人文</span>
               </el-link>
               <el-link :underline="false" class="link-item">
-                <img src="./picture/路径1.png" alt="购买人数">
+                <img src="@/assets/static/路径1.png" alt="购买人数">
                 <span class="link-text hidden-md-and-down">购买人数: 1.2k</span>
               </el-link>
               <el-link :underline="false" class="link-item no-border">
-                <img src="./picture/用户.png" alt="授课老师">
+                <img src="@/assets/static/用户.png" alt="授课老师">
                 <span class="link-text hidden-md-and-down">授课老师：张研究</span>
               </el-link>
             </div>
           </div>
 
-          <!-- 课程内容区域 (结构已调整) -->
           <CourseContent v-model:activeTab="activeTab" v-model:activeCollapse="activeCollapse"
             :learning-goals="learningGoals" :skills="skills" :course-outline="courseOutline" :instructor="instructor" />
+
         </div>
 
         <!-- 您可能感兴趣的课程 -->
@@ -78,7 +76,7 @@
 <script setup>
 import { ref } from 'vue';
 import {
-  ArrowRight, Search, Bell, Location, Phone, SuccessFilled, ChatDotSquare
+  ArrowRight
 } from '@element-plus/icons-vue';
 import 'element-plus/theme-chalk/display.css';
 import HomePageHead from '@/components/homepage/Head.vue';
@@ -89,6 +87,7 @@ import CourseContent from '@/components/homepage/course/CourseContent.vue';
 
 const activeTab = ref('about');
 const activeCollapse = ref(0); // 默认展开第一项，accordion模式下值为number
+
 // 讲师信息
 const instructor = ref({
   name: '张老师',
@@ -148,9 +147,9 @@ const courseOutline = ref([
 ]);
 
 const nearbyVenues = ref([
-  { id: 1, name: '飞羽竞技场', type: '篮球场馆', address: '苏州市工业园区独墅湖校区258号', phone: '19552698532', image: 'src/components/Coursedetail/picture/矩形17.png' },
-  { id: 2, name: '飞羽竞技场', type: '篮球场馆', address: '苏州市工业园区独墅湖校区258号', phone: '19552698532', image: 'src/components/Coursedetail/picture/矩形17(1).png' },
-  { id: 3, name: '飞羽竞技场', type: '篮球场馆', address: '苏州市工业园区独墅湖校区258号', phone: '19552698532', image: 'src/components/Coursedetail/picture/矩形17(2).png' },
+  { id: 1, name: '飞羽竞技场', type: '篮球场馆', address: '苏州市工业园区独墅湖校区258号', phone: '19552698532', image: '/src/assets/static/矩形_17.png' },
+  { id: 2, name: '飞羽竞技场', type: '篮球场馆', address: '苏州市工业园区独墅湖校区258号', phone: '19552698532', image: '/src/assets/static/矩形_17.png' },
+  { id: 3, name: '飞羽竞技场', type: '篮球场馆', address: '苏州市工业园区独墅湖校区258号', phone: '19552698532', image: '/src/assets/static/矩形_17.png' },
 ]);
 
 
@@ -160,6 +159,8 @@ const interestedCourses = ref([
   { id: 3, title: '前端Vue3框架实战精讲', price: '99', image: 'src/components/Coursedetail/picture/image(3).png' },
   { id: 4, title: 'Python从入门到数据科学', price: '149', image: 'src/components/Coursedetail/picture/image(3).png' },
 ]);
+
+
 </script>
 
 <style scoped>
@@ -341,6 +342,7 @@ h1.course-title {
   margin-bottom: 30px;
   text-align: left;
 }
+
 
 /* 响应式适配 */
 @media (max-width: 992px) {

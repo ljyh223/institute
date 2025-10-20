@@ -9,17 +9,7 @@
   <!-- 注意：课程数据未提供，所以这里显示空状态 -->
   <el-row :gutter="24" v-if="props.courses.length != 0">
     <el-col v-for="course in props.courses" :key="course.id" :xs="12" :sm="8" :md="6">
-      <el-card shadow="hover" class="course-card" :body-style="{ padding: '0px' }" @click="$emit('click', course.id)">
-        <el-image :src="course.image" fit="cover" class="course-image" />
-        <div class="course-info">
-          <h4 class="course-title">{{ course.title }}</h4>
-          <p class="course-instructor">{{ course.instructor }}</p>
-          <div class="course-meta">
-            <span class="course-price">¥{{ course.price }} <span class="price-unit">/节</span></span>
-            <el-button type="primary" link>免费详情</el-button>
-          </div>
-        </div>
-      </el-card>
+      <ClassCard :course="course" @click="$emit('click', course.id)" />
     </el-col>
   </el-row>
   <el-empty description="数据为空" class="empty-data-state" v-else>
@@ -36,7 +26,7 @@
 
 <script setup>
 import { ref } from 'vue'
-
+import ClassCard from './CourseCard.vue'
 defineEmits(['click', 'more'])
 // 定义组件props
 const props = defineProps({
@@ -99,63 +89,6 @@ function switchTag(idx) {
   flex-shrink: 0;
 }
 
-.course-card {
-  margin-bottom: 24px;
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid var(--el-border-color-lighter);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.course-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--el-box-shadow);
-}
-
-.course-image {
-  width: 100%;
-  height: 160px;
-  display: block;
-}
-
-.course-info {
-  padding: 16px;
-}
-
-.course-title {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--el-text-color-primary);
-  margin: 0 0 8px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.course-instructor {
-  font-size: 13px;
-  color: var(--el-text-color-secondary);
-  margin: 0 0 16px;
-}
-
-.course-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.course-price {
-  font-size: 18px;
-  font-weight: bold;
-  color: var(--el-color-danger);
-}
-
-.price-unit {
-  font-size: 13px;
-  color: var(--el-text-color-secondary);
-  font-weight: normal;
-  margin-left: 2px;
-}
 
 .load-more-container {
   text-align: left;
@@ -163,7 +96,7 @@ function switchTag(idx) {
 }
 
 .load-more-container.text-center {
-  text-align: center;
+  text-align: left;
 }
 
 /* 响应式适配 - 移动端 */
@@ -177,78 +110,5 @@ function switchTag(idx) {
     padding: 5px 10px;
   }
 
-  .course-image {
-    height: 140px;
-  }
-
-  .course-info {
-    padding: 12px;
-  }
-
-  .course-title {
-    font-size: 14px;
-  }
-
-  .course-instructor {
-    font-size: 12px;
-  }
-
-  .course-price {
-    font-size: 16px;
-  }
-}
-
-/* 响应式适配 - 平板 */
-@media (min-width: 768px) and (max-width: 1024px) {
-  .course-image {
-    height: 150px;
-  }
-
-  .course-info {
-    padding: 14px;
-  }
-
-  .course-title {
-    font-size: 15px;
-  }
-}
-
-.course-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.course-info {
-  padding-top: 10px;
-}
-
-.course-title {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--el-text-color-primary);
-  margin: 6px 0 2px;
-}
-
-.course-author {
-  font-size: 13px;
-  color: var(--el-text-color-secondary);
-  margin: 0 0 10px;
-}
-
-.course-bottom {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.course-price {
-  color: var(--el-color-danger);
-  font-weight: 600;
-}
-
-.load-more-container {
-  text-align: center;
-  margin-top: 24px;
 }
 </style>

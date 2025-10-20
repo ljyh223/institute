@@ -50,7 +50,8 @@
         <!-- 课程卡片网格 -->
         <el-row :gutter="24">
           <el-col v-for="course in courses" :key="course.id" :xs="12" :sm="8" :md="6">
-            <el-card class="course-card" shadow="hover" :body-style="{ padding: '0px' }">
+            <el-card class="course-card" shadow="hover" :body-style="{ padding: '0px' }"
+              @click="goCourseDetail(course.id)">
               <el-image :src="course.image" class="course-image" fit="cover" />
               <div class="course-info">
                 <h4 class="course-title">{{ course.title }}</h4>
@@ -77,13 +78,14 @@
 </template>
 
 <script setup>
+import { useRouter } from 'vue-router';
 import { ref, reactive, onMounted, onBeforeUnmount } from 'vue';
-import { ArrowRight, Search, Bell, ArrowUp, ArrowDown } from '@element-plus/icons-vue';
+import { ArrowRight, ArrowUp } from '@element-plus/icons-vue';
 import 'element-plus/theme-chalk/display.css';
 import HomePageHead from '@/components/homepage/Head.vue';
-import InterestClass from '@/components/homepage/course/InterestCourse1.vue';
 
 
+const router = useRouter();
 // 头部搜索框
 const headerSearch = ref('');
 
@@ -136,9 +138,13 @@ const pagination = reactive({
 // --- 响应式处理 ---
 const isMobile = ref(false);
 
+function goCourseDetail(id) {
+  router.push({ name: 'course-detail', params: { id } })
+}
 const checkScreenSize = () => {
   isMobile.value = window.innerWidth < 768;
 };
+
 
 onMounted(() => {
   checkScreenSize();

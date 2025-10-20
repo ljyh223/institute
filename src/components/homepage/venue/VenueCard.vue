@@ -1,54 +1,50 @@
-<!-- eslint-disable vue/multi-word-component-names -->
+<!-- src/components/homepage/venue/VenueCard.vue -->
 <template>
+  <el-card class="venue-card" shadow="hover" :body-style="{ padding: '0px' }" @click="$emit('click', venue.id)">
+    <!-- 封面图 -->
+    <el-image :src="venue.image" class="venue-image" fit="cover" />
 
-  <el-row :gutter="24">
-    <el-col v-for="venue in props.venues" :key="venue.id" :xs="24" :sm="12" :md="8">
-      <el-card class="venue-card" shadow="hover" :body-style="{ padding: '0px' }" @click="$emit('click', venue.id)">
-        <!-- 封面图 -->
-        <el-image :src="venue.image" class="venue-image" fit="cover" />
+    <!-- 详细信息 -->
+    <div class="venue-info-body">
+      <h4 class="venue-name">
+        {{ venue.name }}（{{ venue.type }}）
+      </h4>
 
-        <!-- 详细信息 -->
-        <div class="venue-info-body">
-          <h4 class="venue-name">
-            {{ venue.name }}（{{ venue.type }}）
-          </h4>
+      <p class="venue-detail">
+        <el-icon>
+          <Location />
+        </el-icon>
+        <span>{{ venue.address }}</span>
+      </p>
 
-          <p class="venue-detail">
-            <el-icon>
-              <Location />
-            </el-icon>
-            <span>{{ venue.address }}</span>
-          </p>
-
-          <p class="venue-detail">
-            <el-icon>
-              <User />
-            </el-icon>
-            <span>{{ venue.phone }}</span>
-          </p>
-        </div>
-      </el-card>
-    </el-col>
-  </el-row>
-
-
-  <div class="load-more-container" @click="$emit('more')">
-    <el-button type="primary" size="large">查看更多</el-button>
-  </div>
+      <p class="venue-detail">
+        <el-icon>
+          <User />
+        </el-icon>
+        <span>{{ venue.phone }}</span>
+      </p>
+    </div>
+  </el-card>
 </template>
 
 <script setup>
 import { Location, User } from '@element-plus/icons-vue'
 
-
-defineEmits(['click', 'more'])
-const props = defineProps({
-  venues: {
+defineEmits(['click'])
+defineProps({
+  venue: {
     type: Object,
     required: true,
-    default: () => ({ id: 1, name: '飞羽竞技场', type: '篮球场馆', address: '苏州市工业园区独墅湖校区258号', phone: '19552698532', image: 'src/components/Homepage1/Person/picture/矩形_17.png' }),
+    default: () => ({
+      id: 1,
+      name: '飞羽竞技场',
+      type: '篮球场馆',
+      address: '苏州市工业园区独墅湖校区258号',
+      phone: '19552698532',
+      image: '/src/assets/static/im-one.png'
+    }),
     validator: v =>
-      ['name', 'type', 'address', 'phone', 'image'].every(k => k in v)
+      ['id', 'name', 'type', 'address', 'phone', 'image'].every(k => k in v)
   }
 })
 </script>
@@ -58,6 +54,7 @@ const props = defineProps({
   margin-bottom: 24px;
   border-radius: var(--el-card-border-radius);
   overflow: hidden;
+  cursor: pointer;
 }
 
 .venue-image {

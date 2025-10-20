@@ -2,17 +2,17 @@
   <div class="common-layout">
     <!-- 黑色顶部条 -->
     <div class="top-black-bar"></div>
-     <!-- Header -->
-      <HomePageHead/>
+    <!-- Header -->
+    <HomePageHead />
 
     <el-container class="main-container">
       <!-- Main Content -->
       <el-main class="main-content">
         <!-- Top Banner from First Code Snippet -->
-        <TopBar/>
+        <TopBar />
 
         <!-- 快捷功能/搜索栏 -->
-        <SearchBar/>
+        <SearchBar />
 
         <!-- 核心优势介绍 -->
         <div class="efficiency-section">
@@ -25,26 +25,26 @@
         <!-- Nearby Venues Section -->
         <div class="page-section nearby-venues-section">
           <h3 class="section-title">附近适合您的场馆</h3>
-          <HomePageVenue :venues="venues"/>
+          <HomePageVenue :venues="venues" />
         </div>
 
         <!-- 课程探索区 -->
         <div class="page-section explore-courses-section">
           <h3 class="section-title">探索你感兴趣的课程</h3>
-          <InterestClass :courses="courses"/>
-           
+          <InterestClass :courses="courses" />
+
         </div>
-       
+
         <!-- Explore Teachers Section -->
         <div class="page-section explore-teachers-section">
           <h3 class="section-title">探索你感兴趣的老师</h3>
-          <InterestedTeacher :teachers="teachers"/>
+          <InterestedTeacher :teachers="teachers" />
         </div>
       </el-main>
     </el-container>
-    
+
     <!-- [REPLACED] Footer from First Code Snippet -->
-    <BottomBar/>
+    <BottomBar />
   </div>
 </template>
 
@@ -52,13 +52,13 @@
 import { ref } from 'vue';
 import 'element-plus/theme-chalk/display.css';
 import HomePageHead from '@/components/homepage/Head.vue';
-import BottomBar from '@/components/homepage/BottomBar.vue';
-import TopBar from '@/components/homepage/TopBar.vue';
+import BottomBar from '@/components/homepage/bar/BottomBar.vue';
+import TopBar from '@/components/homepage/bar/TopBar.vue';
 import SearchBar from '@/components/homepage/SearchBar.vue';
-import HomePageVenue from '@/components/homepage/HomePageVenue.vue';
-import InterestClass from '@/components/homepage/InterestClass.vue';
-import InterestedTeacher from '@/components/homepage/InterestedTeacher.vue';
-import InterestedTeacher from '@/components/homepage/InterestedTeacher.vue';
+import HomePageVenue from '@/components/homepage/venue/Venue.vue';
+import InterestClass from '@/components/homepage/course/InterestCourse1.vue';
+import InterestedTeacher from '@/components/homepage/teacher/InterestedTeacher.vue';
+import InterestedTeacher from '@/components/homepage/teacher/InterestedTeacher.vue';
 
 const teacherRating = ref(4.5);
 
@@ -93,13 +93,19 @@ const teachers = ref([
   flex-direction: column;
   background-color: #ffffff;
 }
-.main-container { flex: 1; }
-.main-content { padding: 0; }
+
+.main-container {
+  flex: 1;
+}
+
+.main-content {
+  padding: 0;
+}
 
 .top-black-bar {
   width: 100%;
   height: 30px;
-  background-color:rgba(56, 56, 56, 1);
+  background-color: rgba(56, 56, 56, 1);
   position: sticky;
   top: 0;
   z-index: 1001;
@@ -111,6 +117,7 @@ const teachers = ref([
   margin: 0 auto 80px;
   padding: 0 20px;
 }
+
 .section-title {
   font-size: 28px;
   font-weight: 600;
@@ -118,6 +125,7 @@ const teachers = ref([
   margin-bottom: 30px;
   text-align: center;
 }
+
 .section-description {
   font-size: 16px;
   color: var(--el-text-color-regular);
@@ -125,37 +133,99 @@ const teachers = ref([
   max-width: 800px;
   margin: 0 auto 60px;
 }
+
 .load-more-container {
   text-align: left;
   margin-top: 40px;
 }
 
 /* 核心优势介绍 */
-.efficiency-section { margin: 80px auto; padding: 0 20px; text-align: center; }
+.efficiency-section {
+  margin: 80px auto;
+  padding: 0 20px;
+  text-align: center;
+}
 
 /* === 响应式适配 === */
 @media (max-width: 992px) {
-    .section-title { font-size: 26px; }
-    .filter-bar { flex-direction: column; align-items: stretch; }
-    .filter-search { width: 100%; }
+  .section-title {
+    font-size: 26px;
+  }
 
-    /* Banner Responsive */
-    h1.banner-main-title { font-size: 42px; }
-    h2.banner-sub-title { font-size: 32px; }
-    .banner-right-image-col { min-height: 450px; }
-    .banner-image-container { width: 320px; height: 320px; }
-    .background-circle.circle-1 { width: 380px; height: 380px; }
-    .floating-bubble { padding: 12px 18px; font-size: 13px; transform: scale(0.9); }
-    .bubble-great-teacher { left: -10px; }
-    .bubble-happy-students { right: -20px; }
-    .bubble-weekly-progress { bottom: 8%; }
+  .filter-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-search {
+    width: 100%;
+  }
+
+  /* Banner Responsive */
+  h1.banner-main-title {
+    font-size: 42px;
+  }
+
+  h2.banner-sub-title {
+    font-size: 32px;
+  }
+
+  .banner-right-image-col {
+    min-height: 450px;
+  }
+
+  .banner-image-container {
+    width: 320px;
+    height: 320px;
+  }
+
+  .background-circle.circle-1 {
+    width: 380px;
+    height: 380px;
+  }
+
+  .floating-bubble {
+    padding: 12px 18px;
+    font-size: 13px;
+    transform: scale(0.9);
+  }
+
+  .bubble-great-teacher {
+    left: -10px;
+  }
+
+  .bubble-happy-students {
+    right: -20px;
+  }
+
+  .bubble-weekly-progress {
+    bottom: 8%;
+  }
 }
 
 @media (max-width: 767px) {
-    .header { height: auto; padding: 10px 15px; }
-    .header-content { flex-wrap: wrap; }
-    .search-section { order: 3; flex: 1 0 100%; margin-top: 10px; }
-    .header-search-input { max-width: 100%; }
-   cial-icons, .app-badges { justify-content: center; }
+  .header {
+    height: auto;
+    padding: 10px 15px;
+  }
+
+  .header-content {
+    flex-wrap: wrap;
+  }
+
+  .search-section {
+    order: 3;
+    flex: 1 0 100%;
+    margin-top: 10px;
+  }
+
+  .header-search-input {
+    max-width: 100%;
+  }
+
+  cial-icons,
+  .app-badges {
+    justify-content: center;
+  }
 }
 </style>

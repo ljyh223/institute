@@ -15,14 +15,14 @@
 
         <div class="explore-courses-section">
           <h3 class="explore-title">探索你感兴趣的课程</h3>
-          <InterestClass :tag-list="tagList" :courses="courses" @click="goDetail" @more="goCourseList" />
+          <InterestCourse :tag-list="tagList" :courses="courses" @click="goDetail" @more="goCourseList" />
         </div>
 
 
         <div class="explore-teachers-section">
           <h3 class="section-title">探索你感兴趣的老师</h3>
 
-          <InterestedTeacher :teachers="teachers" :sort="sort" :modality="modality" :field="field"
+          <InterestedTeacher :teachers="teachers" :sort="sort" :modality="modality" :field="field" :showRate="false"
             @click="goTeacherHome" @more="goTeacherList" />
         </div>
 
@@ -46,12 +46,12 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import HomePageHead from '@/components/homepage/Head.vue';
-import HomePageTopBar from '@/components/homepage/TopBar.vue';
+import HomePageTopBar from '@/components/homepage/bar/TopBar.vue';
 import HomePageSearchBar from '@/components/homepage/SearchBar.vue';
-import InterestedTeacher from '@/components/homepage/InterestedTeacher.vue';
-import HomePageVenue from '@/components/homepage/HomePageVenue.vue';
-import InterestClass from '@/components/homepage/InterestClass.vue';
-import BottomBar from '@/components/homepage/BottomBar.vue';
+import InterestedTeacher from '@/components/homepage/teacher/InterestedTeacher.vue';
+import HomePageVenue from '@/components/homepage/venue/Venue.vue';
+import InterestCourse from '@/components/homepage/course/InterestCourse1.vue';
+import BottomBar from '@/components/homepage/bar/BottomBar.vue';
 import 'element-plus/theme-chalk/display.css'; // 引入响应式隐藏类
 
 

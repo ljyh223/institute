@@ -2,16 +2,16 @@
   <div class="common-layout">
     <!-- 黑色顶部条 -->
     <div class="top-black-bar"></div>
-      <!-- Header -->
-    <HomePageHead/>
+    <!-- Header -->
+    <HomePageHead />
 
     <el-container class="main-container">
       <!-- Main Content -->
       <el-main class="main-content">
         <!-- Top Banner -->
-        <TopBar/>
+        <TopBar />
         <!-- 快捷功能/搜索栏 -->
-        <SearchBar/>
+        <SearchBar />
 
         <!-- 核心优势介绍 -->
         <div class="efficiency-section">
@@ -20,26 +20,34 @@
             构建AI技术驱动的终身学习生态,让每个人都能在成长的任何阶段都能找到属于自己的进阶路径
           </p>
         </div>
-        
+
         <!-- AI 智能引导 -->
         <div class="ai-prompt-container">
           <div class="ai-prompt-bar">
             <span class="prompt-text">是什么让您今天来到学会？</span>
             <div class="prompt-buttons">
               <el-button plain class="prompt-button">
-                <span class="prompt-icon-wrapper"><el-icon><MagicStick /></el-icon></span>
+                <span class="prompt-icon-wrapper"><el-icon>
+                    <MagicStick />
+                  </el-icon></span>
                 学什么？
               </el-button>
               <el-button plain class="prompt-button">
-                <span class="prompt-icon-wrapper"><el-icon><Memo /></el-icon></span>
+                <span class="prompt-icon-wrapper"><el-icon>
+                    <Memo />
+                  </el-icon></span>
                 怎么学？
               </el-button>
               <el-button plain class="prompt-button">
-                <span class="prompt-icon-wrapper"><el-icon><QuestionFilled /></el-icon></span>
+                <span class="prompt-icon-wrapper"><el-icon>
+                    <QuestionFilled />
+                  </el-icon></span>
                 为什么学？
               </el-button>
               <el-button plain class="prompt-button">
-                <span class="prompt-icon-wrapper"><el-icon><TrendCharts /></el-icon></span>
+                <span class="prompt-icon-wrapper"><el-icon>
+                    <TrendCharts />
+                  </el-icon></span>
                 学了干什么？
               </el-button>
             </div>
@@ -49,27 +57,27 @@
         <!-- 课程探索区 -->
         <div class="explore-courses-section">
           <h3 class="explore-title">探索你感兴趣的课程</h3>
-          <InterestClass :courses="courses"/>
+          <InterestClass :courses="courses" />
         </div>
 
         <!-- 对您可能有帮助的老师 -->
         <div class="helpful-teachers-section">
           <div class="teachers-content-wrapper">
-            <InterestedTeacher :teachers="teachers"/>
+            <InterestedTeacher :teachers="teachers" />
           </div>
         </div>
-        
+
         <!-- [新增] Nearby Venues Section -->
         <div class="nearby-venues-section">
           <h3 class="section-title">附近适合您的场馆</h3>
-          <venues :venues="venues"/>
+          <venues :venues="venues" />
         </div>
 
       </el-main>
     </el-container>
-    
+
     <!--  Footer -->
-    <BottomBar/>
+    <BottomBar />
 
   </div>
 </template>
@@ -84,11 +92,11 @@ import {
 } from '@element-plus/icons-vue';
 import 'element-plus/theme-chalk/display.css'; // 引入响应式隐藏类
 import HomePageHead from '@/components/homepage/Head.vue';
-import BottomBar from '@/components/homepage/BottomBar.vue';
-import TopBar from '@/components/homepage/TopBar.vue';
+import BottomBar from '@/components/homepage/bar/BottomBar.vue';
+import TopBar from '@/components/homepage/bar/TopBar.vue';
 import SearchBar from '@/components/homepage/SearchBar.vue';
-import InterestClass from '@/components/homepage/InterestClass.vue';
-import InterestedTeacher from '@/components/homepage/InterestedTeacher.vue';
+import InterestClass from '@/components/homepage/course/InterestCourse1.vue';
+import InterestedTeacher from '@/components/homepage/teacher/InterestedTeacher.vue';
 
 const teacherRating = ref(4.5);
 
@@ -121,7 +129,8 @@ const venues = ref([
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #f7f8fa; /* 使用更柔和的背景色 */
+  background-color: #f7f8fa;
+  /* 使用更柔和的背景色 */
 }
 
 .top-black-bar {
@@ -171,6 +180,7 @@ const venues = ref([
 .ai-prompt-container {
   padding: 0 20px;
 }
+
 .ai-prompt-bar {
   max-width: 1000px;
   margin: 20px auto 40px;
@@ -217,7 +227,7 @@ const venues = ref([
 /* 课程探索区 */
 .explore-courses-section {
   max-width: 1200px;
-  margin: 60px auto 80px; 
+  margin: 60px auto 80px;
   padding: 0 20px;
 }
 
@@ -239,20 +249,58 @@ const venues = ref([
   margin: 60px auto 80px;
   padding: 0 20px;
 }
+
 /* === 响应式适配 === */
 @media (max-width: 992px) {
-  .banner-left h1 { font-size: 42px; }
-  .banner-left h2 { font-size: 32px; }
-  .banner-right-image-col { min-height: 450px; }
-  .banner-image-container { width: 320px; height: 320px; }
-  .background-circle.circle-1 { width: 380px; height: 380px; }
-  .floating-bubble { padding: 12px 18px; font-size: 13px; }
-  .bubble-great-teacher { left: -10px; }
-  .bubble-happy-students { right: -20px; }
-  .bubble-weekly-progress { bottom: 8%; }
+  .banner-left h1 {
+    font-size: 42px;
+  }
 
-  .efficiency-title, .explore-title, .teacher-section-title, .section-title { font-size: 26px; }
-  .ai-prompt-bar { justify-content: center; }
+  .banner-left h2 {
+    font-size: 32px;
+  }
+
+  .banner-right-image-col {
+    min-height: 450px;
+  }
+
+  .banner-image-container {
+    width: 320px;
+    height: 320px;
+  }
+
+  .background-circle.circle-1 {
+    width: 380px;
+    height: 380px;
+  }
+
+  .floating-bubble {
+    padding: 12px 18px;
+    font-size: 13px;
+  }
+
+  .bubble-great-teacher {
+    left: -10px;
+  }
+
+  .bubble-happy-students {
+    right: -20px;
+  }
+
+  .bubble-weekly-progress {
+    bottom: 8%;
+  }
+
+  .efficiency-title,
+  .explore-title,
+  .teacher-section-title,
+  .section-title {
+    font-size: 26px;
+  }
+
+  .ai-prompt-bar {
+    justify-content: center;
+  }
 
   .teacher-intro-text {
     text-align: center;
@@ -261,43 +309,149 @@ const venues = ref([
 }
 
 @media (max-width: 767px) {
-  .header { height: auto; padding: 10px 15px; }
-  .header-content { flex-wrap: wrap; }
-  .logo-section { flex: 1 0 50%; }
-  .search-section { order: 3; flex: 1 0 100%; margin-top: 10px; }
-  .user-action-section { flex: 1 0 50%; }
-  .header-search-input { max-width: 100%; }
+  .header {
+    height: auto;
+    padding: 10px 15px;
+  }
 
-  .top-banner-wrapper { padding: 30px 15px; }
-  .banner-left { text-align: center; margin-bottom: 30px; }
-  .banner-left h1 { font-size: 38px; }
-  .banner-left h2 { font-size: 28px; }
+  .header-content {
+    flex-wrap: wrap;
+  }
 
-  .banner-right-image-col { min-height: 350px; }
-  .banner-image-container { width: 280px; height: 280px; }
-  .background-circle.circle-1 { width: 330px; height: 330px; }
-  .floating-bubble { padding: 10px 15px; font-size: 12px; }
-  .bubble-great-teacher { top: 5%; left: 5%; }
-  .bubble-happy-students { top: 8%; right: 5%; }
-  .bubble-weekly-progress { bottom: 5%; left: 8%; }
+  .logo-section {
+    flex: 1 0 50%;
+  }
 
-  .search-bar-wrapper { padding: 0 8px; height: 54px; }
-  .links-container { margin-right: 10px; }
-  .link-item .el-icon { font-size: 18px; }
+  .search-section {
+    order: 3;
+    flex: 1 0 100%;
+    margin-top: 10px;
+  }
 
-  .efficiency-title, .explore-title, .teacher-section-title, .section-title { font-size: 24px; }
-  .section-title { text-align: center; } /* 新增场馆标题居中 */
-  .efficiency-description { font-size: 14px; }
-  .ai-prompt-bar { flex-direction: column; align-items: stretch; border-radius: 20px; }
-  .prompt-text { text-align: center; margin-bottom: 5px; }
-  .prompt-buttons { justify-content: center; }
+  .user-action-section {
+    flex: 1 0 50%;
+  }
 
-  .course-image { height: 120px; }
-  .helpful-teachers-section { padding: 60px 0; }
+  .header-search-input {
+    max-width: 100%;
+  }
+
+  .top-banner-wrapper {
+    padding: 30px 15px;
+  }
+
+  .banner-left {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .banner-left h1 {
+    font-size: 38px;
+  }
+
+  .banner-left h2 {
+    font-size: 28px;
+  }
+
+  .banner-right-image-col {
+    min-height: 350px;
+  }
+
+  .banner-image-container {
+    width: 280px;
+    height: 280px;
+  }
+
+  .background-circle.circle-1 {
+    width: 330px;
+    height: 330px;
+  }
+
+  .floating-bubble {
+    padding: 10px 15px;
+    font-size: 12px;
+  }
+
+  .bubble-great-teacher {
+    top: 5%;
+    left: 5%;
+  }
+
+  .bubble-happy-students {
+    top: 8%;
+    right: 5%;
+  }
+
+  .bubble-weekly-progress {
+    bottom: 5%;
+    left: 8%;
+  }
+
+  .search-bar-wrapper {
+    padding: 0 8px;
+    height: 54px;
+  }
+
+  .links-container {
+    margin-right: 10px;
+  }
+
+  .link-item .el-icon {
+    font-size: 18px;
+  }
+
+  .efficiency-title,
+  .explore-title,
+  .teacher-section-title,
+  .section-title {
+    font-size: 24px;
+  }
+
+  .section-title {
+    text-align: center;
+  }
+
+  /* 新增场馆标题居中 */
+  .efficiency-description {
+    font-size: 14px;
+  }
+
+  .ai-prompt-bar {
+    flex-direction: column;
+    align-items: stretch;
+    border-radius: 20px;
+  }
+
+  .prompt-text {
+    text-align: center;
+    margin-bottom: 5px;
+  }
+
+  .prompt-buttons {
+    justify-content: center;
+  }
+
+  .course-image {
+    height: 120px;
+  }
+
+  .helpful-teachers-section {
+    padding: 60px 0;
+  }
 
   /* 页脚响应式 */
-  .footer-col { text-align: center; }
-  .footer-social, .footer-brand { width: 100%; }
-  .social-icons, .app-badges { justify-content: center; }
+  .footer-col {
+    text-align: center;
+  }
+
+  .footer-social,
+  .footer-brand {
+    width: 100%;
+  }
+
+  .social-icons,
+  .app-badges {
+    justify-content: center;
+  }
 }
 </style>

@@ -52,22 +52,8 @@
 
   <!-- Teacher List -->
   <el-row :gutter="24">
-    <el-col v-for="teacher in teachers" :key="teacher.id" :xs="24" :sm="12" :md="8">
-
-      <el-card class="teacher-card" shadow="hover" @click="$emit('click', teacher.id)">
-
-        <!-- 老师信息 -->
-        <div class="teacher-info">
-          <el-avatar :size="100" :src="teacher.avatar" />
-          <h4 class="teacher-name">{{ teacher.name }}</h4>
-          <p class="teacher-field">{{ teacher.field }}</p>
-          <p class="teacher-bio">{{ teacher.bio }}</p>
-        </div>
-
-        <el-button type="primary" class="view-profile-btn">
-          查看主页
-        </el-button>
-      </el-card>
+    <el-col v-for="t in teachers" :key="t.id" :xs="24" :sm="12" :md="8">
+      <TeacherCard :teacher="t" @click="id => $emit('click', id)" :showRate="props.showRate" />
     </el-col>
   </el-row>
 
@@ -81,13 +67,15 @@
 <script setup>
 import { ref } from 'vue'
 import { Search, ArrowDown } from '@element-plus/icons-vue'
+import TeacherCard from './TeacherCard.vue'
 defineEmits(['click', 'more']);
 const props = defineProps({
-
   teachers: {
-    type: Object,
+    type: Array,
     required: true,
-    default: () => ({ id: 1, name: '李明', field: '基础教育', bio: '前Google数据科学家, 10年机器学习经验', avatar: 'src/components/Homepage1/Person/picture/圆形_3.png' })
+    default: () => [
+      { id: 1, name: '李明', field: '基础教育', bio: '前Google数据科学家, 10年机器学习经验', avatar: '/src/assets/static/李明.png', rate: 4.8 }
+    ]
   },
   sort: {
     type: Array,
@@ -104,6 +92,10 @@ const props = defineProps({
     required: true,
     default: () => ['全部领域', '艺术人文', '经济金融', '健康时尚', '职业教育']
   },
+  showRate: {
+    type: Boolean,
+    default: true
+  }
 })
 
 
@@ -153,12 +145,12 @@ function selectModality(val) {
 
 
 .load-more-container {
-  text-align: center;
+  text-align: left;
   margin-top: 20px;
 }
 
 .teacher-card {
-  text-align: center;
+  text-align: left;
   margin-bottom: 24px;
   position: relative;
   --el-card-padding: 30px 20px;

@@ -45,14 +45,14 @@
         <h4>下载我们的APP</h4>
         <div class="app-badges">
           <a href="#" class="app-badge">
-            <img class="app-badge-icon" src="@/assets/static/google-play_1.png" alt="">
+            <img class="app-badge-icon" src="/src/assets/static/google-play_1.png" alt="">
             <span class="app-badge-text">
               <span>GET IT ON</span>
               <strong>Google Play</strong>
             </span>
           </a>
           <a href="#" class="app-badge">
-            <img class="app-badge-icon" src="@/assets/static/apple.png" alt="">
+            <img class="app-badge-icon" src="/src/assets/static/apple.png" alt="">
             <span class="app-badge-text">
               <span>Available on the</span>
               <strong>Apple Store</strong>
@@ -132,6 +132,40 @@ const footerLinks = ref([
   /* 在小屏幕上允许换行 */
 }
 
+.social-icon:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--el-box-shadow);
+  color: var(--el-text-color-primary);
+}
+
+.social-icon.instagram {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  color: #fff;
+}
+
+.social-icon.instagram:hover {
+  opacity: 0.9;
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #fff;
+  color: var(--el-text-color-secondary);
+  box-shadow: var(--el-box-shadow-light);
+  transition: all 0.3s ease;
+}
+
 .app-badge {
   display: inline-flex;
   align-items: center;
@@ -155,12 +189,12 @@ const footerLinks = ref([
   .footer-col {
     text-align: center;
   }
-  
+
   .footer-social,
   .footer-brand {
     width: 100%;
   }
-  
+
   .social-icons,
   .app-badges {
     justify-content: center;
