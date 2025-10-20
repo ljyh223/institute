@@ -34,7 +34,7 @@ import { ref } from 'vue';
 import { ArrowRight, Search, Bell } from '@element-plus/icons-vue';
 import 'element-plus/theme-chalk/display.css';
 import HomePageHead from '@/components/homepage/Head.vue';
-import DynamicList from '@/components/community/DynamicList.vue'; // <-- 确保路径正确
+import DynamicList from '@/components/community/DynamicList.vue';
 
 // 模拟帖子数据
 const posts = ref([
