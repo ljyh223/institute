@@ -69,7 +69,7 @@
         <!-- 您可能感兴趣的课程 -->
         <div class="page-section interested-courses-section">
           <h3 class="section-title">TA发布的课程</h3>
-          <InterestedCourses1 :courses="interestedCourses" />
+          <InterestCourse1 :courses="interestedCourses" />
         </div>
 
         <!-- 附近适合您的场馆 -->
@@ -100,9 +100,9 @@ import 'element-plus/theme-chalk/display.css';
 import 'element-plus/theme-chalk/display.css';
 import HomePageHead from '@/components/homepage/Head.vue';
 import BottomBar from '@/components/homepage/bar/BottomBar.vue';
-import InterestedCourses1 from '@/components/homepage/InterestedCourses1.vue';
-import HomePageVenue from '@/components/homepage/HomePageVenue.vue';
-import InterestedTeacher from '@/components/homepage/InterestedTeacher.vue';
+import InterestCourse1 from '@/components/homepage/course/InterestCourse1.vue';
+import HomePageVenue from '@/components/homepage/venue/Venue.vue';
+import InterestedTeacher from '@/components/homepage/teacher/InterestedTeacher.vue';
 
 const activeTab = ref('overview');
 

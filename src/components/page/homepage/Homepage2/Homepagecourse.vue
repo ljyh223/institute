@@ -87,9 +87,9 @@ import {
 import 'element-plus/theme-chalk/display.css';
 import HomePageHead from '@/components/homepage/Head.vue';
 import BottomBar from '@/components/homepage/bar/BottomBar.vue';
-import InterestedCourses from '@/components/homepage/course/InterestedCourses1.vue';
-import CourseContent from '@/components/homepage/CourseContent.vue';
-import HomePageVenue from '@/components/homepage/HomePageVenue.vue';
+import InterestedCourses from '@/components/homepage/course/InterestCourse1.vue';
+import CourseContent from '@/components/homepage/course/CourseContent.vue';
+import HomePageVenue from '@/components/homepage/venue/Venue.vue';
 
 const activeTab = ref('about');
 const activeCollapse = ref(0); // 默认展开第一项，accordion模式下值为number

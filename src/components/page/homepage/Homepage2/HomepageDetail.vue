@@ -139,10 +139,10 @@
 import { ref } from 'vue';
 import { ArrowRight, Plus, Van, Connection, Mug } from '@element-plus/icons-vue';
 import 'element-plus/theme-chalk/display.css';
-import InterestedCourses from '@/components/homepage/course/InterestedCourses1.vue';
+import InterestedCourses from '@/components/homepage/course/InterestCourse1.vue';
 import BottomBar from '@/components/homepage/bar/BottomBar.vue';
 import HomePageHead from '@/components/homepage/Head.vue';
-import HomePageVenue from '@/components/homepage/HomePageVenue.vue';
+import HomePageVenue from '@/components/homepage/venue/Venue.vue';
 
 const activeTab = ref('overview');
 

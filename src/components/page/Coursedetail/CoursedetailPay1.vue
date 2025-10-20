@@ -118,8 +118,8 @@ import {
 import 'element-plus/theme-chalk/display.css';
 import HomePageHead from '@/components/homepage/Head.vue';
 import TopBar1 from '@/components/homepage/TopBar1.vue';
-import InterestClass1 from '@/components/homepage/InterestClass1.vue';
-import HomePageVenue from '@/components/homepage/HomePageVenue.vue';
+import InterestClass1 from '@/components/homepage/course/InterestCourse1.vue';
+import HomePageVenue from '@/components/homepage/venue/Venue.vue';
 import BottomBar from '@/components/homepage/bar/BottomBar.vue';
 
 const activeTab = ref('content');
