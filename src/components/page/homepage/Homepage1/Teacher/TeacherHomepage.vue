@@ -58,7 +58,6 @@ import SearchBar from '@/components/homepage/SearchBar.vue';
 import HomePageVenue from '@/components/homepage/venue/Venue.vue';
 import InterestClass from '@/components/homepage/course/InterestCourse1.vue';
 import InterestedTeacher from '@/components/homepage/teacher/InterestedTeacher.vue';
-import InterestedTeacher from '@/components/homepage/teacher/InterestedTeacher.vue';
 
 const teacherRating = ref(4.5);
 

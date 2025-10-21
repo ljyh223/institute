@@ -46,9 +46,9 @@ const activeStatus = ref('全部');
 const statuses = ref(['全部', '待支付', '已取消', '已完成']);
 
 const orders = ref([
-  { id: 1, orderNumber: '12345678912345645891', date: '2025-12-12 20:00', name: '学会手环', image: 'src/components/Personlcenter1/picture/矩形2.png', price: 100.00, quantity: 1, amount: 100.00, status: 'completed' },
-  { id: 2, orderNumber: '12345678912345645891', date: '2025-12-12 20:00', name: '学会手环', image: 'src/components/Personlcenter1/picture/矩形2(2).png', price: 100.00, quantity: 1, amount: 100.00, status: 'pending' },
-  { id: 3, orderNumber: '12345678912345645891', date: '2025-12-12 20:00', name: '学会手环', image: 'src/components/Personlcenter1/picture/矩形2(4).png', price: 100.00, quantity: 1, amount: 100.00, status: 'cancelled' }
+  { id: 1, orderNumber: '12345678912345645891', date: '2025-12-12 20:00', name: '学会手环', image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1932&auto=format&fit=crop', price: 100.00, quantity: 1, amount: 100.00, status: 'completed' },
+  { id: 2, orderNumber: '12345678912345645891', date: '2025-12-12 20:00', name: '学会手环', image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1932&auto=format&fit=crop', price: 100.00, quantity: 1, amount: 100.00, status: 'pending' },
+  { id: 3, orderNumber: '12345678912345645891', date: '2025-12-12 20:00', name: '学会手环', image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1932&auto=format&fit=crop', price: 100.00, quantity: 1, amount: 100.00, status: 'cancelled' }
 ]);
 
 const getStatusText = (status) => {
