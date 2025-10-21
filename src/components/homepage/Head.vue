@@ -1,4 +1,3 @@
-
 <template>
 
   <el-header class="header">
@@ -22,10 +21,10 @@
         </el-input>
       </el-col>
       <el-col :xs="14" :sm="6" :md="6" class="user-action-section">
-        <el-icon :size="20" class="icon-notification">
+        <el-icon :size="20" class="icon-notification" @click="goMessages">
           <Bell />
         </el-icon>
-        <el-avatar :size="30" src="https://cube.elemecdn.com/3/7c/3ed689582b989fd05f42a77428753.jpeg"></el-avatar>
+        <el-avatar :size="30" src="https://picsum.photos/400/250?random=1"></el-avatar>
         <el-popover placement="bottom-end" :width="150" trigger="hover">
           <template #reference>
             <el-button link class="personal-center-btn hidden-xs-only" @click="goPersonalCenter">个人中心</el-button>
@@ -51,6 +50,10 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 function goPersonalCenter() {
   router.push({ name: 'PersonalCenter' })
+}
+
+function goMessages() {
+  router.push({ name: 'messages' })
 }
 
 // 定义组件名称
