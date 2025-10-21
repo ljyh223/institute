@@ -1,7 +1,7 @@
 import OrderCenter from './OrderCenter.vue';
 
 export default {
-  title: 'HomePage/OrderCenter',
+  title: 'homepage/personalcenter1/OrderCenter.vue',
   component: OrderCenter,
   tags: ['autodocs'],
 };

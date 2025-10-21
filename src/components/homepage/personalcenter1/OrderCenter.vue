@@ -51,7 +51,7 @@
                 <div class="col-quantity">{{ order.quantity }}</div>
                 <div class="col-amount">¥{{ order.amount.toFixed(2) }}</div>
                 <div class="col-actions">
-                  <el-button type="primary" link>详情</el-button>
+                  <el-button type="primary" link @click="onViewDetailsClick(order)">详情</el-button>
                   <el-button v-if="order.status === 'completed'" type="primary" link>{{ completedActionText }}</el-button>
                   <el-button v-if="order.status === 'pending'" type="danger" link>去付款</el-button>
                   <el-button v-if="order.status === 'cancelled'" type="warning" link>重新购买</el-button>
@@ -65,7 +65,12 @@
       </el-tab-pane>
       
       <el-tab-pane label="售出商品" name="sold">
-        <el-empty description="暂无售出商品" />
+        <ProductList
+          v-if="availableProducts.length > 0"
+          :products="availableProducts"
+          @sell-product="handleProductSold"
+        />
+        <el-empty v-else description="暂无售出商品" />
       </el-tab-pane>
     </el-tabs>
     
@@ -88,15 +93,17 @@
 <script setup>
 // Script部分没有变化，保持原样即可
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
+import ProductList from '@/components/homepage/personalcenter1/ProductList.vue';
 
 const props = defineProps({
   orders: { type: Array, required: true, default: () => [] },
   pagination: { type: Object, required: true, default: () => ({ currentPage: 1, pageSize: 20, total: 0 }) },
   loading: { type: Boolean, default: false },
-  productType: { type: String, default: 'goods' }
+  productType: { type: String, default: 'goods' },
+  availableProducts: { type: Array, required: true, default: () => [] }
 });
 
-const emit = defineEmits(['filters-change', 'pagination-change']);
+const emit = defineEmits(['filters-change', 'pagination-change','click-product']);
 
 const activeTab = ref('purchased');
 const activeSubTab = ref('courses');
@@ -126,6 +133,14 @@ const handleSizeChange = (newPageSize) => {
 const handleCurrentChange = (newCurrentPage) => {
   emit('pagination-change', { currentPage: newCurrentPage, pageSize: props.pagination.pageSize });
 };
+
+const onViewDetailsClick = (order) => {
+  emit('view-details', order);
+};
+
+const handleProductSold = (product) =>{
+  emit('click-product', product);
+}
 
 const isMobile = ref(false);
 const checkScreenSize = () => { isMobile.value = window.innerWidth < 768; };
