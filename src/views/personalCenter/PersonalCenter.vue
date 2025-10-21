@@ -19,18 +19,18 @@
         </div>
 
         <div class="user-actions">
-          <el-badge :value="3" class="item">
+          <el-badge :value="3" class="item" @click="toMessages">
             <el-button icon="Bell" circle size="small" />
           </el-badge>
-          <el-dropdown trigger="click">
+          <el-dropdown trigger="click" @command="handleCommand">
             <el-avatar :size="30" src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" />
             <template #dropdown>
               <el-dropdown-menu>
-                <el-dropdown-item>个人中心</el-dropdown-item>
-                <el-dropdown-item>我的订单</el-dropdown-item>
-                <el-dropdown-item>联系场馆</el-dropdown-item>
-                <el-dropdown-item>设置</el-dropdown-item>
-                <el-dropdown-item divided>退出</el-dropdown-item>
+                <el-dropdown-item command="/personalCenter">个人中心</el-dropdown-item>
+                <el-dropdown-item command="/orders">我的订单</el-dropdown-item>
+                <el-dropdown-item command="/contactVenue">联系场馆</el-dropdown-item>
+                <el-dropdown-item command="/setting">设置</el-dropdown-item>
+                <el-dropdown-item command="/logout" divided>退出</el-dropdown-item>
               </el-dropdown-menu>
             </template>
           </el-dropdown>
@@ -106,6 +106,14 @@ watch(
     }
   }
 )
+
+const handleCommand = (command) => {
+  router.push({ path: command })
+}
+
+function toMessages() {
+  router.push({ name: 'messages' })
+}
 const selectAll = ref(false)
 
 // 下方原有课程卡片与分页展示被替换为基于路由的子视图

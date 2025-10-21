@@ -8,7 +8,7 @@
         <!-- 面包屑导航 -->
         <el-breadcrumb :separator-icon="ArrowRight" class="page-breadcrumb">
           <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-          <el-breadcrumb-item>我的社区</el-breadcrumb-item>
+          <el-breadcrumb-item :to="{ path: '/community' }">我的社区</el-breadcrumb-item>
           <el-breadcrumb-item>我的帖子</el-breadcrumb-item>
         </el-breadcrumb>
 

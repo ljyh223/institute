@@ -31,9 +31,14 @@ const TabFavorites = () => import('../views/personalCenter/nav/favorites/Favorit
 const FavoritesFollowings = () => import('../views/personalCenter/nav/favorites/Followings.vue')
 const FavoritesFollowers = () => import('../views/personalCenter/nav/favorites/Followers.vue')
 const FavoritesCollections = () => import('../views/personalCenter/nav/favorites/Collections.vue')
-
+// 学习圈 或者说是社区
 const Community = () => import('../views/community/Community.vue')
+// 我的帖子
 const Posts  = () => import('../views/community/Posts.vue')
+// 联系场馆（界面和场馆列表几乎相同）
+const ContactVenue = () => import('../views/personalCenter/ContactVenue.vue')
+// 消息列表
+const Messages = () => import('../views/Messages.vue')
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -112,6 +117,8 @@ const router = createRouter({
     },
     { path: '/community', name: 'community', component: Community },
     { path: '/community/posts', name: 'posts', component: Posts },
+    { path: '/contactVenue', name: 'contactVenue', component: ContactVenue },
+    { path: '/messages', name: 'messages', component: Messages },
   ],
 })
 

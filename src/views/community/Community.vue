@@ -7,7 +7,7 @@
         <!-- 面包屑导航 -->
         <el-breadcrumb :separator-icon="ArrowRight" class="page-breadcrumb">
           <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-          <el-breadcrumb-item>学习圈</el-breadcrumb-item>
+          <el-breadcrumb-item :to="{ path: '/community' }">学习圈</el-breadcrumb-item>
         </el-breadcrumb>
 
         <!-- 社区 Banner -->
