@@ -39,6 +39,10 @@ const Posts  = () => import('../views/community/Posts.vue')
 const ContactVenue = () => import('../views/personalCenter/ContactVenue.vue')
 // 消息列表
 const Messages = () => import('../views/Messages.vue')
+//直播详情
+const Live = () => import('../views/LiveFristpage.vue')
+//直播中心
+const LiveDetail = () => import('../views/LivePage.vue')
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -119,6 +123,9 @@ const router = createRouter({
     { path: '/community/posts', name: 'posts', component: Posts },
     { path: '/contactVenue', name: 'contactVenue', component: ContactVenue },
     { path: '/messages', name: 'messages', component: Messages },
+    { path: '/live', name: 'live', component:Live },
+    {  path: '/livedetail', name: 'livedetail', component: LiveDetail } 
+
   ],
 })
 

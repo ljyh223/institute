@@ -33,6 +33,9 @@
 
 <script setup>
 import { Search, ChatDotSquare, Monitor, Goods, ShoppingCartFull } from '@element-plus/icons-vue';
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 // 定义所有需要暴露给父组件的事件
 defineEmits([

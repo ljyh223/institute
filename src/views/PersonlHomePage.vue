@@ -143,7 +143,7 @@ function goCommunity() {
 }
 
 function goLive() {
-  // router.push({ name: 'live' })
+  router.push({ name: 'live' })
 }
 function goGroup() {
   // router.push({ name: 'group' })

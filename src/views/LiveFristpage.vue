@@ -99,7 +99,7 @@
         </div>
         <el-row :gutter="20">
           <el-col v-for="video in recommendedVideos" :key="video.title" :xs="24" :sm="12" :md="8" :lg="6">
-            <el-card shadow="hover" :body-style="{ padding: '0px' }" class="video-card" @click="goLiveDteail">
+            <el-card shadow="hover" :body-style="{ padding: '0px' }" class="video-card" @click="golivedetail">
               <div class="video-image-wrapper">
                 <el-image :src="video.image" fit="cover" class="video-image" />
                 <div class="video-overlay">
@@ -184,7 +184,7 @@ const handleCarouselChange = (newIndex) => {
   activeIndex.value = newIndex;
 };
 
- function goLiveDteail(id){
+ function golivedetail(id){
   router.push({name: 'livedetail'})
   
  }
